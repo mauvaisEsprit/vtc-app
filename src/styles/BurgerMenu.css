@@ -1,0 +1,15 @@
+/* Меню ддя телефона */
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.burger-icon {
+    width: 30px;
+    height: 5px;
+    background-color: white;
+}
+
