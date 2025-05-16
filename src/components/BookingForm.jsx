@@ -14,7 +14,7 @@ export default function BookingForm() {
             équipe dédiée assure un traitement rapide et soigné de chaque
             demande, pour un service de qualité qui s’adapte à vos besoins de
             transport sur toute la Côte d’Azur. Pour toute Réservation de
-            chauffeur privé á cannes dans l’immédiat ou dans moins d’une heure
+            chauffeur privé á Nice dans l’immédiat ou dans moins d’une heure
             merci de nous contacter directement par téléphone ou par whatsapp au
           </p>
           <a href="tel:+33622649963" className="numberTelephone">
