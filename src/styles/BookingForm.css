@@ -50,6 +50,23 @@
   background-color: rgba(0, 0, 0, 0.1);
   transition: 0.3s ease-in-out;
   border-radius: 10px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.booking-input,
+#name,
+#phone,
+#date,
+#from,
+#to,
+#comment,
+#garant,
+#adults,
+#children,
+#email::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  
 }
 
 .booking-datepicker {
@@ -66,7 +83,7 @@
 }
 
 .booking-datepicker::placeholder {
-  color: rgba(0, 0, 0, 0.483);
+  color: rgba(0, 0, 0, 0.4);
   font-size: 0.9rem;
   /*font-family: "Space Grotesk", sans-serif;*/
 }

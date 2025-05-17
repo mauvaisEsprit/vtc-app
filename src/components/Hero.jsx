@@ -1,8 +1,8 @@
-import "../styles/HeroTarifs.css";
+import "../styles/Hero.css";
 import { useRef } from "react";
 
 
-export default function HeroTarifs() {
+export default function Hero({ image, text, buttonText }) {
   const bookingRef = useRef(null);
 
 const scrollToBooking = () => {
@@ -21,14 +21,14 @@ const scrollToBooking = () => {
 <div>
       <div className="teslaImage">
         <img
-          src="https://www.ophorus.com/UPLOADS/DESTINATIONS/13/ophorus-167985-nice_large.jpeg" 
+          src={image}
           alt="image"
         />
         <div className="overlay-text">
-          <h1>Calculez le tarif de votre trajet</h1>
+          <h1>{text}</h1>
         </div>
         <button className="buttonRes" onClick={scrollToBooking}>
-          Calculez le tarif
+          {buttonText}
         </button>
       </div>
 

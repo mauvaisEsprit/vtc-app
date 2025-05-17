@@ -27,6 +27,16 @@
     transition: all 0.3s ease;
   }
 
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: white;
+    z-index: 1100;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
   .fullscreen-menu {
     position: fixed;
     top: 0;
@@ -39,7 +49,7 @@
     justify-content: center;
     align-items: center;
     transition: right 0.4s ease-in-out;
-    z-index: 1050;
+    z-index: 9999 !important;
   }
 
   .fullscreen-menu.open {
@@ -120,6 +130,16 @@
     z-index: 1000;
   }
 
+    .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: white;
+    z-index: 1100;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
   .burger-icon {
     width: 30px;
     height: 24px;
@@ -150,7 +170,7 @@
     justify-content: center;
     align-items: center;
     transition: right 0.4s ease-in-out;
-    z-index: 1050;
+    z-index: 2050;
   }
 
   .fullscreen-menu.open {
@@ -172,7 +192,7 @@
     font-family: "Space Grotesk", sans-serif;
   }
 
-   .fullscreen-menu nav button {
+  .fullscreen-menu nav button {
     text-decoration: none;
     font-size: 38px;
     font-weight: 600;
@@ -195,36 +215,32 @@
     z-index: 1100;
   }
 
+  .close-icon {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1100;
+  }
 
-.close-icon {
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 1100;
-}
+  .close-icon span {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    top: 50%;
+    left: 0;
+    transform-origin: center;
+    transition: 0.3s ease;
+  }
 
-.close-icon span {
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-  top: 50%;
-  left: 0;
-  transform-origin: center;
-  transition: 0.3s ease;
-}
+  .close-icon span:first-child {
+    transform: rotate(45deg);
+  }
 
-.close-icon span:first-child {
-  transform: rotate(45deg);
-}
-
-.close-icon span:last-child {
-  transform: rotate(-45deg);
-}
-
-
-
+  .close-icon span:last-child {
+    transform: rotate(-45deg);
+  }
 }

@@ -1,0 +1,118 @@
+{
+  "tarifs": {
+  "calculate_price": "Calculez le tarif",
+  "calculate": "Calculer",
+  "from": "De",
+  "to": "À",
+  "reset": "Réinitialiser",
+  "distance": "Distance",
+  "duration": "Durée",
+  "price": "Prix",
+  "enter_both_addresses": "Veuillez entrer les deux adresses !",
+  "address_not_found": "Adresse introuvable !",
+  "route_error": "Erreur lors du calcul de l'itinéraire : {{error}}",
+  "route_not_found": "Itinéraire non trouvé.",
+  "geolocation_error": "Impossible de déterminer la position. Veuillez activer la géolocalisation."
+  }
+,
+
+
+  "aboutUs": {
+    "heroText": "À propos de nous",
+    "heroButton": "Découvrir",
+    "title": "Votre chauffeur privé sur la Côte d’Azur",
+    "paragraph1": "Notre entreprise de VTC est née de la passion pour le service de qualité, le confort et la ponctualité. Basés à Nice, nous proposons un service de transport privé haut de gamme, dédié aux particuliers comme aux professionnels.",
+    "paragraph2": "Avec plusieurs années d’expérience, nous mettons à votre disposition des chauffeurs professionnels, discrets et bilingues, ainsi que des véhicules haut de gamme parfaitement entretenus.",
+    "paragraph3": "Que ce soit pour vos trajets aéroport, vos déplacements professionnels ou vos événements privés, nous vous garantissons un service sur mesure, fiable et élégant.",
+    "commitmentsTitle": "Nos engagements",
+    "commitment1": "Disponibilité 24/7",
+    "commitment2": "Chauffeurs expérimentés et courtois",
+    "commitment3": "Véhicules récents, confortables et climatisés",
+    "commitment4": "Services personnalisés"
+  }
+,
+
+
+  "home": {
+  "heroText": "Chauffeur VTC privé sur Nice et toute la Côte d’Azur",
+  "heroButton": "Réserver maintenant"
+  }
+,
+
+  
+  "services": {
+    "heroText": "Nos services",
+    "heroButton": "Découvrir",
+    "title": "Nos services VTC haut de gamme",
+    "bookButton": "Réserver",
+    "service1": {
+      "title": "Transferts aéroport et gare",
+      "description": "Transferts vers/depuis l’aéroport de Nice, la gare SNCF ou toute autre destination. Accueil personnalisé, assistance bagages, ponctualité assurée."
+    },
+    "service2": {
+      "title": "Mise à disposition",
+      "description": "Réservez un chauffeur privé à l’heure pour vos rendez-vous professionnels, vos excursions ou vos journées shopping. Vous décidez du programme, nous assurons le confort."
+    },
+    "service3": {
+      "title": "Événements privés et professionnels",
+      "description": "Mariages, soirées, séminaires, congrès... Faites confiance à notre équipe pour une logistique fluide et élégante."
+    },
+    "service4": {
+      "title": "Longues distances",
+      "description": "Besoin de vous rendre à Monaco, Cannes, Marseille ou ailleurs ? Profitez d’un trajet détendu avec un chauffeur privé."
+    }
+  }
+
+,
+
+  "form": {
+    "ready": "PRÊT À VOYAGER AVEC STYLE?",
+    "title": "Chauffeur Privé VTC 24/7",
+    "description": "Réservez votre transfert privé VTC Nice en ligne 24h/7j.  Notreéquipe dédiée assure un traitement rapide et soigné de chaque demande, pour un service de qualité qui s’adapte à vos besoins de transport sur toute la Côte d’Azur. Pour toute Réservation de chauffeur privé á Nice dans l’immédiat ou dans moins d’une heure, merci de nous contacter directement par téléphone ou par whatsapp au",
+    "datePlaceholder": "Sélectionner date et heure *",
+    "name": "Nom *",
+    "adults": "Adultes *",
+    "children": "Enfants",
+    "phone": "Téléphone *",
+    "email": "E-mail *",
+    "from": "Départ *",
+    "to": "Destination *",
+    "baggage": "Bagage",
+    "comment": "Commentaire",
+    "consent": "J'accepte que mes données soient collectées.",
+    "submit": "Réserver",
+    "success": "Merci ! Votre réservation a été envoyée.",
+    "error": {
+      "tooManyPeople": "Trop de personnes ! Maximum 4.",
+      "atLeastOneAdult": "Au moins 1 adulte est requis.",
+      "invalidDate": "Sélectionnez une date/heure valide (au moins 1h après maintenant).",
+      "submit": "Erreur lors de l'envoi, veuillez réessayer.",
+      "network": "Erreur réseau, veuillez réessayer."
+    }
+  }
+  ,
+
+  "nav": {
+  "home": "Accueil",
+  "about": "À propos",
+  "services": "Services",
+  "tarifs": "Tarifs"
+}
+,
+
+"footer": {
+  "linksTitle": "Liens",
+  "faq": "FAQ",
+  "contact": "Contactez-nous",
+  "support": "Support",
+  "infoTitle": "Infos",
+  "home": "Accueil",
+  "aboutUs": "À propos",
+  "services": "Services",
+  "tarifs": "Tarifs",
+  "followUs": "Suivez-nous",
+  "rightsReserved": "Tous droits réservés."
+}
+
+}
+

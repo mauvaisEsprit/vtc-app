@@ -1,0 +1,110 @@
+{
+  "calculate_price": "Calculate the price",
+  "from": "From",
+  "to": "To",
+  "calculate": "Calculate",
+  "reset": "Reset",
+  "distance": "Distance",
+  "duration": "Duration",
+  "price": "Price",
+  "enter_both_addresses": "Please enter both addresses!",
+  "address_not_found": "Address not found!",
+  "route_error": "Error calculating route: {{error}}"
+,
+  "aboutUs": {
+    "heroText": "About Us",
+    "heroButton": "Discover",
+    "title": "Your private driver on the French Riviera",
+    "paragraph1": "Our VTC company was born from a passion for quality service, comfort, and punctuality. Based in Nice, we offer premium private transport services for individuals and professionals alike.",
+    "paragraph2": "With many years of experience, we provide professional, discreet, bilingual drivers and well-maintained premium vehicles.",
+    "paragraph3": "Whether for airport transfers, business trips, or private events, we guarantee a tailored, reliable, and elegant service.",
+    "commitmentsTitle": "Our commitments",
+    "commitment1": "24/7 availability",
+    "commitment2": "Experienced and courteous drivers",
+    "commitment3": "Recent, comfortable, and air-conditioned vehicles",
+    "commitment4": "Personalized services"
+  }
+,
+
+  "home": {
+  "heroText": "Private VTC driver in Nice and across the French Riviera",
+  "heroButton": "Book now"
+}
+,
+  
+  "services": {
+    "heroText": "Our Services",
+    "heroButton": "Discover",
+    "title": "Our Premium VTC Services",
+    "bookButton": "Book Now",
+    "service1": {
+      "title": "Airport and Train Station Transfers",
+      "description": "Transfers to/from Nice airport, SNCF train station, or any other destination. Personalized welcome, luggage assistance, and guaranteed punctuality."
+    },
+    "service2": {
+      "title": "Chauffeur at Your Disposal",
+      "description": "Book a private driver by the hour for your business meetings, excursions, or shopping days. You set the schedule, we ensure your comfort."
+    },
+    "service3": {
+      "title": "Private and Business Events",
+      "description": "Weddings, parties, seminars, conferences... Trust our team for smooth and elegant logistics."
+    },
+    "service4": {
+      "title": "Long-Distance Journeys",
+      "description": "Need to travel to Monaco, Cannes, Marseille, or elsewhere? Enjoy a relaxed ride with a private driver."
+    }
+  }
+,
+
+
+  "form": {
+    "ready": "READY TO TRAVEL IN STYLE?",
+    "title": "Private Chauffeur VTC 24/7",
+    "description": "Book your private VTC transfer in Nice online 24/7. Our dedicated team ensures fast and careful handling of each request for a quality service that adapts to your transportation needs across the French Riviera. For immediate bookings or rides in less than one hour, please contact us directly by phone or WhatsApp at",
+    "datePlaceholder": "Select date and time *",
+    "name": "Name *",
+    "adults": "Adults *",
+    "children": "Children",
+    "phone": "Phone *",
+    "email": "E-mail *",
+    "from": "From *",
+    "to": "To *",
+    "baggage": "Baggage",
+    "comment": "Comment",
+    "consent": "I agree that my submitted data will be collected and stored.",
+    "submit": "Book",
+    "success": "Thank you! Your booking has been submitted.",
+    "error": {
+      "tooManyPeople": "Too many people! Maximum 4 allowed.",
+      "atLeastOneAdult": "At least 1 adult is required.",
+      "invalidDate": "Please select a valid date and time (at least 1 hour from now).",
+      "submit": "Submission error. Please try again later.",
+      "network": "Network error. Please try again later."
+    }
+  }
+  ,
+  "nav": {
+  "home": "Home",
+  "about": "About Us",
+  "services": "Services",
+  "tarifs": "Tariffs"
+}
+,
+
+"footer": {
+  "linksTitle": "Links",
+  "faq": "FAQ",
+  "contact": "Contact Us",
+  "support": "Support",
+  "infoTitle": "Info",
+  "home": "Home",
+  "aboutUs": "About Us",
+  "services": "Services",
+  "tarifs": "Tariffs",
+  "followUs": "Follow Us",
+  "rightsReserved": "All rights reserved."
+}
+
+}
+
+

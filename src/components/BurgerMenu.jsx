@@ -1,10 +1,14 @@
 import "../styles/BurgerMenu.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function BurgerMenu() {
+  const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const [lang, setLang] = useState("EN");
+
+  // Состояние языка только для кнопки, инициализируем из i18n.language
+  const [lang, setLang] = useState(i18n.language.startsWith("fr") ? "FR" : "EN");
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
@@ -15,8 +19,11 @@ export default function BurgerMenu() {
     };
   }, [isOpen]);
 
+  // При смене языка меняем и локальный стейт, и i18n язык
   const toggleLang = () => {
-    setLang((prev) => (prev === "FR" ? "EN" : "FR"));
+    const newLang = lang === "FR" ? "EN" : "FR";
+    setLang(newLang);
+    i18n.changeLanguage(newLang.toLowerCase());
   };
 
   return (
@@ -28,9 +35,9 @@ export default function BurgerMenu() {
           <div className="line"></div>
         </div>
       )}
-
       {isOpen && (
         <div className="fullscreen-menu open">
+          <div className="logo">Blue Coast</div>
           <div className="close-icon" onClick={toggleMenu}>
             <span></span>
             <span></span>

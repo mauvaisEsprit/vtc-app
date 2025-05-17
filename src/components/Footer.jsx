@@ -1,44 +1,47 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa"; 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import "../styles/Footer.css";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-column">
-          <h3>Links</h3>
+          <h3>{t("footer.linksTitle")}</h3>
           <ul>
             <li>
-              <a href="/faq">FAQ</a>
+              <a href="/faq">{t("footer.faq")}</a>
             </li>
             <li>
-              <a href="/contact">Contact Us</a>
+              <a href="/contact">{t("footer.contact")}</a>
             </li>
             <li>
-              <a href="/support">Support</a>
+              <a href="/support">{t("footer.support")}</a>
             </li>
           </ul>
         </div>
         <div className="footer-column">
-          <h3>Infos</h3>
+          <h3>{t("footer.infoTitle")}</h3>
           <ul>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">{t("footer.home")}</NavLink>
             </li>
             <li>
-              <NavLink to="/aboutus">About Us</NavLink>
+              <NavLink to="/aboutus">{t("footer.aboutUs")}</NavLink>
             </li>
             <li>
-              <NavLink to="/services">Services</NavLink>
+              <NavLink to="/services">{t("footer.services")}</NavLink>
             </li>
             <li>
-              <NavLink to="/tarifs">Tarifs</NavLink>
+              <NavLink to="/tarifs">{t("footer.tarifs")}</NavLink>
             </li>
           </ul>
         </div>
         <div className="footer-column">
-          <h3>Follow Us</h3>
+          <h3>{t("footer.followUs")}</h3>
           <div className="social-icons">
             <a
               href="https://facebook.com"
@@ -76,7 +79,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2025 Petro Limonov. Tous droits réservés.</p>
+        <p>&copy; 2025 Vladyslav Petrenko. {t("footer.rightsReserved")}</p>
       </div>
     </footer>
   );
