@@ -1,21 +1,22 @@
-import '../styles/BurgerMenu.css';
-import { useState, useEffect } from 'react';
+import "../styles/BurgerMenu.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function BurgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const [lang, setLang] = useState('EN');
+  const [lang, setLang] = useState("EN");
 
-  const toggleMenu = () => setIsOpen(prev => !prev);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [isOpen]);
-  
+
   const toggleLang = () => {
-    setLang(prev => (prev === 'FR' ? 'EN' : 'FR'));
+    setLang((prev) => (prev === "FR" ? "EN" : "FR"));
   };
 
   return (
@@ -36,11 +37,27 @@ export default function BurgerMenu() {
           </div>
 
           <nav>
-            <a href="#home" onClick={toggleMenu}>Home</a>
-            <a href="#services" onClick={toggleMenu}>Services</a>
-            <a href="#about" onClick={toggleMenu}>About</a>
-            <a href="#contact" onClick={toggleMenu}>Contact</a>
-            <button id="changeLang" onClick={toggleLang}>{lang}</button>
+            <Link to="/" onClick={toggleMenu}>
+              Home
+            </Link>
+            <Link to="/services" onClick={toggleMenu}>
+              Services
+            </Link>
+            <Link to="/aboutus" onClick={toggleMenu}>
+              About
+            </Link>
+            <Link to="/tarifs" onClick={toggleMenu}>
+              Tarifs
+            </Link>
+            <button
+              id="changeLang"
+              onClick={() => {
+                toggleLang();
+                toggleMenu();
+              }}
+            >
+              {lang}
+            </button>
           </nav>
         </div>
       )}

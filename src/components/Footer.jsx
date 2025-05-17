@@ -7,22 +7,25 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-column">
-          <h3>Test</h3>
+          <h3>Links</h3>
           <ul>
             <li>
-              <NavLink to="#">Test</NavLink>
+              <a href="/faq">FAQ</a>
             </li>
             <li>
-              <NavLink to="#">Test</NavLink>
+              <a href="/contact">Contact Us</a>
             </li>
             <li>
-              <NavLink to="#">Test</NavLink>
+              <a href="/support">Support</a>
             </li>
           </ul>
         </div>
         <div className="footer-column">
           <h3>Infos</h3>
           <ul>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
             <li>
               <NavLink to="/aboutus">About Us</NavLink>
             </li>
@@ -35,26 +38,46 @@ export default function Footer() {
           </ul>
         </div>
         <div className="footer-column">
-          <h3>Suivez-nous</h3>
+          <h3>Follow Us</h3>
           <div className="social-icons">
-            <a href="#">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
               <FaFacebook />
             </a>
-            <a href="#">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
               <FaTwitter />
             </a>
-            <a href="#">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
               <FaInstagram />
             </a>
-            <a href="#">
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+            >
               <FaYoutube />
             </a>
           </div>
         </div>
       </div>
-        <div className="footer-bottom">
-            <p>&copy; 2025 {`Petro Limonov`}. Tous droits réservés.</p>
-        </div>
+      <div className="footer-bottom">
+        <p>&copy; 2025 Petro Limonov. Tous droits réservés.</p>
+      </div>
     </footer>
   );
 }

@@ -152,6 +152,7 @@ export default function BookingForm() {
           </a>
         </div>
       </section>
+      
       <form className="booking-form" onSubmit={handleSubmit}>
         <label htmlFor="date" className="visually-hidden">
           Date

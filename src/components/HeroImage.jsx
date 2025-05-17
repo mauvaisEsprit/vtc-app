@@ -7,15 +7,19 @@ export default function HeroImage() {
 
 const scrollToBooking = () => {
   const headerHeight = window.innerWidth <= 768 ? 75 : 120;
-  const offset = -headerHeight ; // +30 для небольшого зазора
-  const elementPosition = bookingRef.current.getBoundingClientRect().top;
-  const offsetPosition = elementPosition + window.pageYOffset + offset;
+
+  // Получаем координаты элемента
+  const elementTop = bookingRef.current?.getBoundingClientRect().top || 0;
+
+  // Скроллим с учётом текущей прокрутки и хедера
+  const offsetTop = window.scrollY + elementTop - headerHeight ; // небольшой запас сверху
 
   window.scrollTo({
-    top: offsetPosition,
+    top: offsetTop,
     behavior: "smooth",
   });
 };
+
 
   return (
     <div>

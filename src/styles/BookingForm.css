@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   margin-top: 100px;
+  padding-bottom: 90px;
  
 }
 
@@ -65,7 +66,7 @@
 }
 
 .booking-datepicker::placeholder {
-  color: rgba(0, 0, 0, 0.503);
+  color: rgba(0, 0, 0, 0.483);
   font-size: 0.9rem;
   /*font-family: "Space Grotesk", sans-serif;*/
 }
@@ -149,11 +150,6 @@ input:checked + .slider:before {
   border-radius: 10px;
 }
 
-/*#booking button:disabled {
-    background: rgba(0, 0, 0, 0.1);
-    color: rgb(0, 0, 0);
-    transition: 0.3s ease-in-out;
-}*/
 
 #booking-form button:hover {
   animation: gold-flow 3s infinite linear;
