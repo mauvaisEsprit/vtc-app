@@ -60,7 +60,7 @@ export default function BookingForm() {
           name="children"
           min="0"
           max="3"
-          placeholder="Children *"
+          placeholder="Children "
         />
         <p id="error-message" style={{ color: "red", display: "none" }}>
           Too many people! Max 4.
