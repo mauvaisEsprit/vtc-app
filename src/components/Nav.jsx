@@ -15,7 +15,7 @@ const Nav = () => {
       <div className={`nav ${navOpen ? 'open' : ''}`}>
         <div className="nav-item"><Link to="/aboutus">About Us</Link></div>
         <div className="nav-item"><Link to="/services">Services</Link></div>
-        <div className="nav-item"><Link to="/tarifs">Prices</Link></div>
+        <div className="nav-item"><Link to="/tarifs">Tarifs</Link></div>
         <div className="nav-item">
           <button id="changeLang">FR</button>
         </div>
