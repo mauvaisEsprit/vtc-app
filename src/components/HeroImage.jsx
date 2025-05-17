@@ -5,16 +5,17 @@ import BookingForm from "../components/BookingForm";
 export default function HeroImage() {
   const bookingRef = useRef(null);
 
-  const scrollToBooking = () => {
-    const offset = -175; // смещение вверх (в пикселях)
-    const elementPosition = bookingRef.current.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset + offset;
+const scrollToBooking = () => {
+  const headerHeight = window.innerWidth <= 768 ? 75 : 120;
+  const offset = -headerHeight ; // +30 для небольшого зазора
+  const elementPosition = bookingRef.current.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.pageYOffset + offset;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
-  };
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: "smooth",
+  });
+};
 
   return (
     <div>
