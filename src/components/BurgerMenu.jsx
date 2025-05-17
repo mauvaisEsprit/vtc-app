@@ -1,25 +1,22 @@
-import { useState, useEffect } from "react";
-import "../styles/BurgerMenu.css";
+import '../styles/BurgerMenu.css';
+import { useState, useEffect } from 'react';
 
 export default function BurgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [lang, setLang] = useState('EN');
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen(prev => !prev);
 
-
-useEffect(() => {
-  if (isOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
-
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
   
-  return () => {
-    document.body.style.overflow = "auto";
+  const toggleLang = () => {
+    setLang(prev => (prev === 'FR' ? 'EN' : 'FR'));
   };
-}, [isOpen]);
-
 
   return (
     <div className="burger-wrapper">
@@ -31,29 +28,22 @@ useEffect(() => {
         </div>
       )}
 
-      <div className={`fullscreen-menu ${isOpen ? "open" : ""}`}>
-        {isOpen && (
+      {isOpen && (
+        <div className="fullscreen-menu open">
           <div className="close-icon" onClick={toggleMenu}>
             <span></span>
             <span></span>
           </div>
-        )}
 
-        <nav>
-          <a href="#home" onClick={toggleMenu}>
-            Home
-          </a>
-          <a href="#services" onClick={toggleMenu}>
-            Services
-          </a>
-          <a href="#about" onClick={toggleMenu}>
-            About
-          </a>
-          <a href="#contact" onClick={toggleMenu}>
-            Contact
-          </a>
-        </nav>
-      </div>
+          <nav>
+            <a href="#home" onClick={toggleMenu}>Home</a>
+            <a href="#services" onClick={toggleMenu}>Services</a>
+            <a href="#about" onClick={toggleMenu}>About</a>
+            <a href="#contact" onClick={toggleMenu}>Contact</a>
+            <button id="changeLang" onClick={toggleLang}>{lang}</button>
+          </nav>
+        </div>
+      )}
     </div>
   );
 }
