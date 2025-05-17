@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/BurgerMenu.css";
 
 export default function BurgerMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+
+useEffect(() => {
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [isOpen]);
+
 
   return (
     <div className="burger-wrapper">
