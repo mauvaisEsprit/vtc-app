@@ -22,6 +22,16 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
+.booking-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.booking-input,
 #name,
 #phone,
 #date,
@@ -39,6 +49,36 @@
   background-color: rgba(0, 0, 0, 0.1);
   transition: 0.3s ease-in-out;
   border-radius: 10px;
+}
+
+.booking-datepicker {
+  width: 100%;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.503);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Space Grotesk", sans-serif;
+  box-sizing: border-box;
+}
+
+.booking-datepicker::placeholder {
+  color: rgba(0, 0, 0, 0.503);
+  font-size: 0.9rem;
+  /*font-family: "Space Grotesk", sans-serif;*/
+}
+
+.react-datepicker  button{
+  height: 24px;
+}
+
+
+.react-datepicker__navigation-icon::before {
+  border-width: 2px 2px 0 0;
+  width: 6px;
+  height: 6px;
 }
 
 #baggage-container {
@@ -90,7 +130,7 @@ input:checked + .slider:before {
 }
 
   .booking-form button {
-  width: 100%;
+  
   padding: 15px;
   color: rgba(255, 255, 255, 0.5);
   border: 1px solid white;
