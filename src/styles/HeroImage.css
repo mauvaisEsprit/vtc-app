@@ -32,25 +32,34 @@
 
 .overlay-text {
   position: absolute;
-  top: 30%;
+  top: calc(20% + 120px); /* 120px — высота шапки на десктопе */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   color: white;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(20px, 6vw, 48px);
+  font-size: clamp(20px, 6vw, 34px);
   text-align: center;
   z-index: 2;
-  padding-top: 155px;
-  width: 100%;
+  width: 90%;
   max-width: 1000px;
   box-sizing: border-box;
+  padding: 0 20px; /* немного отступа слева и справа */
 }
+
+/* Для мобильных */
+@media (max-width: 768px) {
+  .overlay-text {
+    top: calc(25% + 75px); /* высота шапки на мобильных */
+    font-size: clamp(16px, 5vw, 22px);
+  }
+}
+
 
 .buttonRes {
   border: none;
   display: inline-block;
   position: absolute;
-  top: 65%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
