@@ -1,16 +1,33 @@
 import { useState } from "react";
+import { useCallback } from "react";
 import "../styles/BookingForm.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useTranslation } from "react-i18next";
+import RouteMap from "./RouteMap";
 
 export default function BookingForm() {
   const { t } = useTranslation();
+
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [price, setPrice] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handlePriceCalculated = useCallback((newPrice) => {
+    setPrice(newPrice);
+  }, []);
+
+  const handleLoading = useCallback((value) => {
+    setLoading(value);
+  }, []);
 
   const [adults, setAdults] = useState("");
   const [children, setChildren] = useState("");
   const [error, setError] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
   const handleAdultsChange = (e) => {
     const val = e.target.value;
@@ -82,20 +99,36 @@ export default function BookingForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (error) return;
-
-    if (!selectedDate) {
-      alert(t("form.error.invalidDate"));
-      return;
-    }
-
-    if (selectedDate < minDateTime) {
-      alert(t("form.error.invalidDate"));
+    const now = Date.now();
+    if (now - lastSubmitTime < 30000) {
+      alert(t("form.error.tooFast", "Please wait before sending again."));
       return;
     }
 
     const formData = new FormData(e.target);
+
+    // Honeypot
+    if (formData.get("website")) {
+      console.warn("Spam bot detected.");
+      return;
+    }
+
+    // Проверка даты
+    if (!selectedDate || selectedDate < minDateTime) {
+      alert(t("form.error.invalidDate"));
+      return;
+    }
+
+    // Проверка длины комментария, если введён
+    const comment = formData.get("comment");
+    if (comment && comment.length > 0 && comment.length < 3) {
+      alert(t("form.error.shortMessage", "Comment is too short."));
+      return;
+    }
+
     formData.set("date", formatDateParis(selectedDate));
+
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("https://formspree.io/f/mgvalzay", {
@@ -112,12 +145,25 @@ export default function BookingForm() {
         setChildren("");
         setSelectedDate(null);
         e.target.reset();
+        setLastSubmitTime(now);
       } else {
         alert(t("form.error.submit"));
       }
     } catch {
       alert(t("form.error.network"));
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const handleReset = () => {
+    setFrom("");
+    setTo("");
+    setPrice(null);
+    setAdults("");
+    setChildren("");
+    setSelectedDate(null);
+    setError("");
   };
 
   return (
@@ -134,7 +180,18 @@ export default function BookingForm() {
       </section>
 
       <form className="booking-form" onSubmit={handleSubmit}>
-        <label htmlFor="date" className="visually-hidden">Date</label>
+        {/* Honeypot */}
+        <input
+          type="text"
+          name="website"
+          style={{ display: "none" }}
+          tabIndex="-1"
+          autoComplete="off"
+        />
+
+        <label htmlFor="date" className="visually-hidden">
+          Date
+        </label>
         <DatePicker
           className="booking-datepicker"
           selected={selectedDate}
@@ -151,7 +208,39 @@ export default function BookingForm() {
           required
         />
 
-        <input type="text" id="name" name="name" placeholder={t("form.name")} required />
+        <input
+          type="text"
+          id="from"
+          name="from"
+          placeholder={t("form.from")}
+          required
+          value={from}
+          onChange={(e) => setFrom(e.target.value)}
+        />
+
+        <input
+          type="text"
+          id="to"
+          name="to"
+          placeholder={t("form.to")}
+          required
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+        />
+        <RouteMap
+          from={from}
+          to={to}
+          onPriceCalculated={handlePriceCalculated}
+          setLoading={handleLoading}
+        />
+
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder={t("form.name")}
+          required
+        />
 
         <input
           type="number"
@@ -176,15 +265,27 @@ export default function BookingForm() {
           onChange={handleChildrenChange}
         />
 
-        {error && <p id="error-message" style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <p id="error-message" style={{ color: "red" }}>
+            {error}
+          </p>
+        )}
 
-        <input type="tel" id="phone" name="phone" placeholder={t("form.phone")} required />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder={t("form.phone")}
+          required
+        />
 
-        <input type="email" id="email" name="email" placeholder={t("form.email")} required />
-
-        <input type="text" id="from" name="from" placeholder={t("form.from")} required />
-
-        <input type="text" id="to" name="to" placeholder={t("form.to")} required />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder={t("form.email")}
+          required
+        />
 
         <div id="baggage-container">
           <label htmlFor="baggage">{t("form.baggage")}</label>
@@ -194,15 +295,30 @@ export default function BookingForm() {
           </label>
         </div>
 
-        <textarea id="comment" name="comment" rows="3" placeholder={t("form.comment")}></textarea>
+        <textarea
+          id="comment"
+          name="comment"
+          rows="3"
+          placeholder={t("form.comment")}
+        ></textarea>
+
+        {loading && <div className="spinner1"></div>}
+        {!loading && price && (
+          <p>
+            {t("form.estimatedPrice")}: <strong>{price}</strong>
+          </p>
+        )}
 
         <div id="garant-container">
           <input type="checkbox" id="garant" name="garant" required />
           <label htmlFor="garant">{t("form.consent")}</label>
         </div>
 
-        <button type="submit" disabled={!!error}>
-          {t("form.submit")}
+        <button type="submit" disabled={isSubmitting || !!error}>
+          {isSubmitting ? t("form.sending", "Sending...") : t("form.submit")}
+        </button>
+        <button type="reset" onClick={handleReset}>
+          {t("form.reset")}
         </button>
       </form>
     </div>

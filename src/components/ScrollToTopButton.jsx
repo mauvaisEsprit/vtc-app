@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaArrowUp } from "react-icons/fa"; // Установи: npm install react-icons
+import { FaArrowUp } from "react-icons/fa"; 
 import '../styles/ScrollToTopButton.css';
 
 export default function ScrollToTopButton() {

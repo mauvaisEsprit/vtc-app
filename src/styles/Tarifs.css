@@ -2,7 +2,7 @@
 #tarifc {
   max-width: 600px;
   margin: 40px auto;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   padding: 30px 25px;
   border-radius: 15px;
   display: flex;
@@ -105,7 +105,7 @@
 /* Адаптив */
 @media (max-width: 768px) {
   #tarifc {
-    margin: 20px 10px;
+    width: 80%;
     padding: 20px 15px;
   }
 
@@ -120,7 +120,8 @@
   }
 
   #map {
-    width: 100%;
+    width: 80%;
+    max-width: 80%;
     height: 300px;
   }
 }
@@ -129,4 +130,13 @@
     position: absolute;
     z-index: 900;
     pointer-events: none;
+}
+
+.leaflet-control-attribution a {
+    display: none;
+}
+
+.leaflet-container .leaflet-control-attribution {
+   
+    display: none;
 }

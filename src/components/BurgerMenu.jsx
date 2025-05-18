@@ -36,51 +36,41 @@ export default function BurgerMenu() {
           <div className="line"></div>
         </div>
       )}
-      {isOpen && (
-        <div className="fullscreen-menu open">
-          <div className="logo">Blue Coast</div>
-          <div className="close-icon" onClick={toggleMenu}>
-            <span></span>
-            <span></span>
-          </div>
+{isOpen && (
+  <div className="fullscreen-menu open" onClick={toggleMenu}>
+    {/* Внутренний контейнер, который НЕ закрывает меню при клике */}
+    <div className="menu-inner" onClick={(e) => e.stopPropagation()}>
+      <div className="logo">Blue Coast</div>
+      <div className="close-icon" onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+      </div>
 
-          <nav>
-            <Link to="/" onClick={toggleMenu}>
-              {t("navBurger.home")}
-            </Link>
-            <Link to="/services" onClick={toggleMenu}>
-              {t("navBurger.services")}
-            </Link>
-            <Link to="/aboutus" onClick={toggleMenu}>
-              {t("navBurger.aboutUs")}
-            </Link>
-            <Link to="/tarifs" onClick={toggleMenu}>
-              {t("navBurger.tarifs")}
-            </Link>
+      <nav>
+        <Link to="/" onClick={toggleMenu}>{t("navBurger.home")}</Link>
+        <Link to="/services" onClick={toggleMenu}>{t("navBurger.services")}</Link>
+        <Link to="/aboutus" onClick={toggleMenu}>{t("navBurger.aboutUs")}</Link>
+        <Link to="/tarifs" onClick={toggleMenu}>{t("navBurger.tarifs")}</Link>
 
-            <div className="lang-switcher">
-              <button
-                className={currentLang === "fr" ? "active-lang" : "not-active-lang"}
-                onClick={() => changeLanguage("fr")}
-              >
-                FR
-              </button>
-              <button
-                className={currentLang === "en" ? "active-lang" : "not-active-lang"}
-                onClick={() => changeLanguage("en")}
-              >
-                EN
-              </button>
-              <button
-                className={currentLang === "ru" ? "active-lang" : "not-active-lang"}
-                onClick={() => changeLanguage("ru")}
-              >
-                RU
-              </button>
-            </div>
-          </nav>
+        <div className="lang-switcher">
+          <button
+            className={currentLang === "fr" ? "active-lang" : "not-active-lang"}
+            onClick={() => changeLanguage("fr")}
+          >FR</button>
+          <button
+            className={currentLang === "en" ? "active-lang" : "not-active-lang"}
+            onClick={() => changeLanguage("en")}
+          >EN</button>
+          <button
+            className={currentLang === "ru" ? "active-lang" : "not-active-lang"}
+            onClick={() => changeLanguage("ru")}
+          >RU</button>
         </div>
-      )}
+      </nav>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

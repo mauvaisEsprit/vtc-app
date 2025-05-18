@@ -73,6 +73,8 @@
 
   "form": {
     "ready": "PRÊT À VOYAGER AVEC STYLE?",
+     "estimatedPrice": "Prix estimé",
+     "reset": "Réinitialiser",
     "title": "Chauffeur Privé VTC 24/7",
     "description": "Réservez votre transfert privé VTC Nice en ligne 24h/7j.  Notre équipe dédiée assure un traitement rapide et soigné de chaque demande, pour un service de qualité qui s’adapte à vos besoins de transport sur toute la Côte d’Azur. Pour toute Réservation de chauffeur privé á Nice dans l’immédiat ou dans moins d’une heure, merci de nous contacter directement par téléphone ou par whatsapp au",
     "datePlaceholder": "Sélectionner date et heure *",
@@ -109,7 +111,7 @@
   "home": "Accueil",
   "about": "À propos",
   "services": "Services",
-  "tarifs": "Tarifs"
+  "tarifs": "Carte"
 }
 ,
 
@@ -122,7 +124,7 @@
   "home": "Accueil",
   "aboutUs": "À propos",
   "services": "Services",
-  "tarifs": "Tarifs",
+  "tarifs": "Carte",
   "followUs": "Suivez-nous",
   "rightsReserved": "Tous droits réservés."
 }
@@ -132,7 +134,7 @@
   "home": "Accueil",
   "services": "Services",
   "aboutUs": "À propos",
-  "tarifs": "Tarifs"
+  "tarifs": "Carte"
 }
 
 ,

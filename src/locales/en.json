@@ -68,6 +68,8 @@
 
   "form": {
     "ready": "READY TO TRAVEL IN STYLE?",
+    "reset": "Reset",
+    "estimatedPrice": "Estimated Price",
     "title": "Private Chauffeur VTC 24/7",
     "description": "Book your private VTC transfer in Nice online 24/7. Our dedicated team ensures fast and careful handling of each request for a quality service that adapts to your transportation needs across the French Riviera. For immediate bookings or rides in less than one hour, please contact us directly by phone or WhatsApp at",
     "datePlaceholder": "Select date and time *",
@@ -105,7 +107,7 @@
   "home": "Home",
   "about": "About Us",
   "services": "Services",
-  "tarifs": "Tariffs"
+  "tarifs": "Map"
 }
 ,
 
@@ -118,7 +120,7 @@
   "home": "Home",
   "aboutUs": "About Us",
   "services": "Services",
-  "tarifs": "Tariffs",
+  "tarifs": "Map",
   "followUs": "Follow Us",
   "rightsReserved": "All rights reserved."
 }
@@ -128,7 +130,7 @@
   "home": "Home",
   "services": "Services",
   "aboutUs": "About Us",
-  "tarifs": "Tariffs"
+  "tarifs": "Map"
 }
 
 ,
@@ -136,6 +138,7 @@
 
   "faq": {
     "heroText": "Frequently Asked Questions",
+    
     "heroButton": "Discover",
     "title": "FAQ - Frequently Asked Questions",
     "q1": "How can I book a transfer?",

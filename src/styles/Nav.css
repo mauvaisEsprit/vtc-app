@@ -70,11 +70,8 @@
 }
 
 .lang-switcher button.active-lang {
-  color: #ff0000; /* красный цвет для активного языка */
+  color: #ff7f50; 
   text-decoration: none;
 }
 
-.lang-switcher button.not-active-lang {
-  color: rgb(255, 255, 255); /* сделаем неактивный язык полупрозрачным, чтобы не было полной невидимости */
-  text-decoration: none;
-}
+

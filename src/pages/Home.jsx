@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import BookingForm from "../components/BookingForm";
 
+
 export default function Home() {
   const { t } = useTranslation();
   const location = useLocation();
@@ -40,6 +41,7 @@ export default function Home() {
       />
 
       <div id="booking" ref={bookingRef}>
+        
         <BookingForm />
       </div>
     </>

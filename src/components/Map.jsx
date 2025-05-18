@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import Hero from "../components/Hero";
+
 import "../styles/Tarifs.css";
 import { useTranslation } from 'react-i18next';
 
@@ -9,7 +9,7 @@ import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 
-export default function Tarifs() {
+export default function Map() {
   const { t, i18n } = useTranslation();
 
   const imageTarifs =
@@ -191,11 +191,6 @@ export default function Tarifs() {
 
    return (
     <div>
-      <Hero
-        image={imageTarifs}
-        text={t("tarifs.hero_title")}
-        buttonText={t("tarifs.hero_button")}
-      />
       <div id="tarifc">
         <h2>{t("tarifs.hero_title")}</h2>
         <input
