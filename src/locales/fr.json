@@ -1,19 +1,25 @@
 {
+  
   "tarifs": {
-  "calculate_price": "Calculez le tarif",
-  "calculate": "Calculer",
-  "from": "De",
-  "to": "À",
-  "reset": "Réinitialiser",
-  "distance": "Distance",
-  "duration": "Durée",
-  "price": "Prix",
-  "enter_both_addresses": "Veuillez entrer les deux adresses !",
-  "address_not_found": "Adresse introuvable !",
-  "route_error": "Erreur lors du calcul de l'itinéraire : {{error}}",
-  "route_not_found": "Itinéraire non trouvé.",
-  "geolocation_error": "Impossible de déterminer la position. Veuillez activer la géolocalisation."
+    "hero_title": "Calculez le prix de votre trajet",
+    "hero_button": "Calculer",
+    "from": "Départ",
+    "to": "Arrivée",
+    "calculate": "Calculer",
+    "reset": "Réinitialiser",
+    "distance": "Distance",
+    "duration": "Durée",
+    "price": "Prix"
+  },
+  "errors": {
+    "geolocation": "Impossible d’obtenir votre position.",
+    "enter_both_addresses": "Veuillez saisir les deux adresses.",
+    "address_not_found": "Adresse introuvable. Veuillez réessayer.",
+    "route_not_found": "Itinéraire introuvable.",
+    "route_error": "Une erreur est survenue lors de la récupération de l’itinéraire : {{error}}"
   }
+
+
 ,
 
 
@@ -68,7 +74,7 @@
   "form": {
     "ready": "PRÊT À VOYAGER AVEC STYLE?",
     "title": "Chauffeur Privé VTC 24/7",
-    "description": "Réservez votre transfert privé VTC Nice en ligne 24h/7j.  Notreéquipe dédiée assure un traitement rapide et soigné de chaque demande, pour un service de qualité qui s’adapte à vos besoins de transport sur toute la Côte d’Azur. Pour toute Réservation de chauffeur privé á Nice dans l’immédiat ou dans moins d’une heure, merci de nous contacter directement par téléphone ou par whatsapp au",
+    "description": "Réservez votre transfert privé VTC Nice en ligne 24h/7j.  Notre équipe dédiée assure un traitement rapide et soigné de chaque demande, pour un service de qualité qui s’adapte à vos besoins de transport sur toute la Côte d’Azur. Pour toute Réservation de chauffeur privé á Nice dans l’immédiat ou dans moins d’une heure, merci de nous contacter directement par téléphone ou par whatsapp au",
     "datePlaceholder": "Sélectionner date et heure *",
     "name": "Nom *",
     "adults": "Adultes *",
@@ -89,8 +95,15 @@
       "submit": "Erreur lors de l'envoi, veuillez réessayer.",
       "network": "Erreur réseau, veuillez réessayer."
     }
-  }
-  ,
+  },
+    "form2": {
+      "success": "Merci ! Votre message a été envoyé.",
+      "error": {
+      "submit": "Erreur lors de l'envoi, veuillez réessayer.",
+      "network": "Erreur réseau, veuillez réessayer."
+      }
+    
+  },
 
   "nav": {
   "home": "Accueil",
@@ -113,6 +126,67 @@
   "followUs": "Suivez-nous",
   "rightsReserved": "Tous droits réservés."
 }
+,
 
+"navBurger": {
+  "home": "Accueil",
+  "services": "Services",
+  "aboutUs": "À propos",
+  "tarifs": "Tarifs"
 }
+
+,
+
+
+  "faq": {
+    "heroText": "Foire aux questions",
+    "heroButton": "Découvrir",
+    "title": "FAQ - Questions fréquentes",
+    "q1": "Comment puis-je réserver un transfert ?",
+    "a1": "Vous pouvez réserver un transfert via notre calculateur en ligne ou nous contacter par téléphone/WhatsApp.",
+    "q2": "Puis-je modifier ou annuler une réservation ?",
+    "a2": "Oui, veuillez nous informer le plus tôt possible pour éviter des frais.",
+    "q3": "Comment le prix est-il calculé ?",
+    "a3": "Le prix dépend de la distance, du temps et du tarif choisi.",
+    "q4": "Quels moyens de paiement acceptez-vous ?",
+    "a4": "Nous acceptons les espèces, cartes bancaires et paiements en ligne.",
+    "q5": "Comment puis-je vous contacter pour plus d’informations ?",
+    "a5": "Vous pouvez nous joindre via la page Contactez-nous ou par téléphone/WhatsApp."
+  },
+  "contact": {
+    "heroText": "Contactez notre équipe",
+      "heroButton": "Contactez-nous",
+    "title": "Contactez-nous",
+    "desc": "Nous sommes à votre disposition pour répondre à toutes vos questions. Contactez-nous par téléphone, email ou via le formulaire ci-dessous.",
+    "phone": "Téléphone",
+    "email": "Email",
+    "name": "Nom",
+    "message": "Message",
+    "send": "Envoyer",
+    "thanks": "Merci pour votre message! Nous vous répondrons dès que possible.",
+     "form": {
+        "name": "Nom",
+        "email": "E-mail",
+        "message": "Message",
+        "submit": "Envoyer"
+      }
+    
+  },
+  "support": {
+    "heroText": "Besoin d'aide ?",
+    "heroButton": "Contactez-nous",
+    "title": "Support",
+    "needHelp": "Besoin d'aide ?",
+    "desc": "Nous sommes là pour vous aider à chaque étape de votre réservation et de votre trajet.",
+    "commonIssues": "Problèmes fréquents",
+    "issue1": "Comment modifier ma réservation ? - Contactez-nous au moins 24 heures avant le départ.",
+    "issue2": "Que faire en cas de retard du chauffeur ? - Appelez notre support immédiatement.",
+    "issue3": "Problèmes avec le paiement ? - Vérifiez vos informations bancaires ou contactez votre banque.",
+    "contactSupport": "Contact Support",
+    "phone": "Téléphone",
+    "email": "Email",
+    "responseTime": "Nous répondons habituellement dans l'heure pendant les heures ouvrables."
+  }
+}
+
 

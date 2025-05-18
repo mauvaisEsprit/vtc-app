@@ -38,7 +38,7 @@ export default function Tarifs() {
         const { latitude, longitude } = pos.coords;
         mapRef.current.setView([latitude, longitude], 13);
       },
-      () => alert(t("geolocation_error")) // добавь этот ключ в переводы
+      () => alert(t("errors.geolocation"))
     );
 
     delete L.Icon.Default.prototype._getIconUrl;
@@ -97,7 +97,7 @@ export default function Tarifs() {
 
   async function calculateRoute() {
     if (!from || !to) {
-      alert(t("enter_both_addresses"));
+      alert(t("errors.enter_both_addresses"));
       return;
     }
 
@@ -107,7 +107,7 @@ export default function Tarifs() {
     const toCoords = await forwardGeocode(to);
 
     if (!fromCoords || !toCoords) {
-      alert(t("address_not_found"));
+      alert(t("errors.address_not_found"));
       setLoading(false);
       return;
     }
@@ -131,7 +131,7 @@ export default function Tarifs() {
       const data = await res.json();
 
       if (!data.routes || data.routes.length === 0) {
-        throw new Error(t("route_not_found"));
+         throw new Error(t("errors.route_not_found"));
       }
 
       const route = data.routes[0].geometry;
@@ -162,7 +162,7 @@ export default function Tarifs() {
 
       mapRef.current.fitBounds(routeLayerRef.current.getBounds());
     } catch (err) {
-      alert(t("route_error", { error: err.message }));
+       alert(t("errors.route_error", { error: err.message }));
     } finally {
       setLoading(false);
     }
@@ -189,43 +189,41 @@ export default function Tarifs() {
     setPrice("");
   }
 
-  return (
+   return (
     <div>
       <Hero
         image={imageTarifs}
-        text={t("calculate_price")}
-        buttonText={t("calculate")}
+        text={t("tarifs.hero_title")}
+        buttonText={t("tarifs.hero_button")}
       />
       <div id="tarifc">
-        <h2>{t("calculate_price")}</h2>
+        <h2>{t("tarifs.hero_title")}</h2>
         <input
           type="text"
-          placeholder={t("from")}
+          placeholder={t("tarifs.from")}
           value={from}
           onChange={(e) => setFrom(e.target.value)}
           required
         />
         <input
           type="text"
-          placeholder={t("to")}
+          placeholder={t("tarifs.to")}
           value={to}
           onChange={(e) => setTo(e.target.value)}
           required
         />
         <button onClick={calculateRoute} disabled={loading}>
-          {t("calculate")}
+          {t("tarifs.calculate")}
         </button>
         <button onClick={resetMap} disabled={loading}>
-          {t("reset")}
+          {t("tarifs.reset")}
         </button>
         {loading && <div className="spinner"></div>}
-        {distance && <div id="distance">{t("distance")}: {distance}</div>}
-        {duration && <div id="duration">{t("duration")}: {duration}</div>}
-        {price && <div id="price">{t("price")}: {price}</div>}
+        {distance && <div id="distance">{t("tarifs.distance")}: {distance}</div>}
+        {duration && <div id="duration">{t("tarifs.duration")}: {duration}</div>}
+        {price && <div id="price">{t("tarifs.price")}: {price}</div>}
       </div>
       <div id="map" style={{ height: "400px", width: "100%" }}></div>
-
-    
     </div>
   );
 }

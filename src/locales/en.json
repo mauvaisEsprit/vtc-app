@@ -1,15 +1,25 @@
 {
-  "calculate_price": "Calculate the price",
-  "from": "From",
-  "to": "To",
-  "calculate": "Calculate",
-  "reset": "Reset",
-  "distance": "Distance",
-  "duration": "Duration",
-  "price": "Price",
-  "enter_both_addresses": "Please enter both addresses!",
-  "address_not_found": "Address not found!",
-  "route_error": "Error calculating route: {{error}}"
+  
+  "tarifs": {
+    "hero_title": "Calculate Your Trip Price",
+    "hero_button": "Calculate",
+    "from": "From",
+    "to": "To",
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "distance": "Distance",
+    "duration": "Duration",
+    "price": "Price"
+  },
+  "errors": {
+    "geolocation": "Unable to get your location.",
+    "enter_both_addresses": "Please enter both addresses.",
+    "address_not_found": "Address not found. Please try again.",
+    "route_not_found": "Route not found.",
+    "route_error": "An error occurred while fetching the route: {{error}}"
+  }
+
+
 ,
   "aboutUs": {
     "heroText": "About Us",
@@ -53,8 +63,7 @@
       "title": "Long-Distance Journeys",
       "description": "Need to travel to Monaco, Cannes, Marseille, or elsewhere? Enjoy a relaxed ride with a private driver."
     }
-  }
-,
+  },
 
 
   "form": {
@@ -81,8 +90,17 @@
       "submit": "Submission error. Please try again later.",
       "network": "Network error. Please try again later."
     }
-  }
-  ,
+  },
+
+    "form2": {
+      "success": "Thank you! Your message has been sent.",
+      "error": {
+        "submit": "Submission error. Please try again later.",
+        "network": "Network error. Please try again later."
+      }
+    },
+  
+  
   "nav": {
   "home": "Home",
   "about": "About Us",
@@ -104,7 +122,68 @@
   "followUs": "Follow Us",
   "rightsReserved": "All rights reserved."
 }
+,
 
+"navBurger": {
+  "home": "Home",
+  "services": "Services",
+  "aboutUs": "About Us",
+  "tarifs": "Tariffs"
 }
+
+,
+
+
+  "faq": {
+    "heroText": "Frequently Asked Questions",
+    "heroButton": "Discover",
+    "title": "FAQ - Frequently Asked Questions",
+    "q1": "How can I book a transfer?",
+    "a1": "You can book a transfer via our online calculator or contact us by phone/WhatsApp.",
+    "q2": "Can I modify or cancel my booking?",
+    "a2": "Yes, please notify us as soon as possible to avoid fees.",
+    "q3": "How is the price calculated?",
+    "a3": "The price depends on distance, time, and the chosen tariff.",
+    "q4": "What payment methods do you accept?",
+    "a4": "We accept cash, bank cards, and online payments.",
+    "q5": "How can I contact you for more information?",
+    "a5": "You can reach us via the Contact page or by phone/WhatsApp."
+  },
+  "contact": {
+    "heroText": "Contact Our Team",
+    "heroButton": "Get in Touch",
+    "title": "Contact Us",
+    "desc": "We are here to answer all your questions. Contact us by phone, email or via the form below.",
+    "phone": "Phone",
+    "email": "Email",
+    "name": "Name",
+    "message": "Message",
+    "send": "Send",
+    "thanks": "Thank you for your message! We will respond as soon as possible.",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "submit": "Send"
+  }
+  },
+
+  "support": {
+    "heroText": "Support",
+    "heroButton": "Contact",
+    "title": "Support",
+    "needHelp": "Need Help?",
+    "desc": "We are here to assist you at every step of your booking and journey.",
+    "commonIssues": "Common Issues",
+    "issue1": "How to modify my booking? - Contact us at least 24 hours before departure.",
+    "issue2": "What if the driver is late? - Call our support immediately.",
+    "issue3": "Payment issues? - Check your bank details or contact your bank.",
+    "contactSupport": "Contact Support",
+    "phone": "Phone",
+    "email": "Email",
+    "responseTime": "We usually respond within an hour during business hours."
+  }
+}
+
 
 

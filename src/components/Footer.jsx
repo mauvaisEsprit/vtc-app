@@ -13,13 +13,13 @@ export default function Footer() {
           <h3>{t("footer.linksTitle")}</h3>
           <ul>
             <li>
-              <a href="/faq">{t("footer.faq")}</a>
+              <NavLink to="/faq">{t("footer.faq")}</NavLink>
             </li>
             <li>
-              <a href="/contact">{t("footer.contact")}</a>
+              <NavLink to="/contact">{t("footer.contact")}</NavLink>
             </li>
             <li>
-              <a href="/support">{t("footer.support")}</a>
+              <NavLink to="/support">{t("footer.support")}</NavLink>
             </li>
           </ul>
         </div>

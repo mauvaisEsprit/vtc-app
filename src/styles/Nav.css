@@ -55,3 +55,26 @@
     display: none !important;
   }
 }
+
+
+
+.lang-switcher button {
+  margin: 0 4px;
+  padding: 4px 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.lang-switcher button.active-lang {
+  color: #ff0000; /* красный цвет для активного языка */
+  text-decoration: none;
+}
+
+.lang-switcher button.not-active-lang {
+  color: rgb(255, 255, 255); /* сделаем неактивный язык полупрозрачным, чтобы не было полной невидимости */
+  text-decoration: none;
+}

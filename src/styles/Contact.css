@@ -1,63 +1,70 @@
-/* Services.css */
-
-.services-page {
-  padding: 60px 20px;
-  background-color: #ffffff;
+.contact-page {
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto;
   font-family: "Space Grotesk", sans-serif;
   color: #222;
 }
 
-.services-page .container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.services-page h1 {
+.contact-page h1 {
   font-size: 36px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  text-align: center;
   color: #111;
-  text-align: center;
 }
 
-.service-section {
-  margin-bottom: 50px;
-  text-align: center;
-}
-
-.service-section h2 {
-  font-size: 26px;
-  margin-bottom: 15px;
-  color: #333;
-  text-align: center;
-}
-
-.service-section p {
+.contact-page p {
   font-size: 18px;
-  line-height: 1.8;
-  color: #333;
+  margin-bottom: 15px;
   text-align: center;
+  color: #333;
 }
 
-.service-button {
-  display: inline-block;
-  margin-top: 16px;
-  padding: clamp(10px, 2vh, 15px) clamp(25px, 6vw, 45px);
+.contact-page strong {
+  color: #333;
+}
+
+.contact-page form {
+  margin-top: 30px;
+}
+
+.contact-page label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
   font-size: 16px;
-  border: none;
+}
+
+.contact-page input,
+.contact-page textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  resize: vertical;
+}
+
+.contact-page button {
+  padding: 12px 25px;
+  font-size: 16px;
   border-radius: clamp(15px, 3vw, 25px);
   background: linear-gradient(90deg, rgb(144, 144, 144), rgb(0, 0, 0), rgb(144, 144, 144));
   background-size: 200% 200%;
+  padding: clamp(10px, 2vh, 15px) clamp(25px, 6vw, 45px);
   color: white;
-  text-decoration: none;
-  border-radius: 6px;
+  border: none;
+  font-weight: 600;
   font-family: "Space Grotesk", sans-serif;
   transition: 0.4s ease-in-out;
   text-align: center;
   cursor: pointer;
-
+  width: 100%;
 }
 
-.service-button:hover {
+.contact-page button:hover {
   animation: gold-flow 3s infinite linear;
 }
 
@@ -69,22 +76,12 @@
   100% { background-position: 100% 50%; }
 }
 
-
 /* Responsive */
 @media (max-width: 768px) {
-  .services-page {
-    padding: 40px 15px;
-  }
-
-  .services-page h1 {
+  .contact-page h1 {
     font-size: 28px;
   }
-
-  .service-section h2 {
-    font-size: 22px;
-  }
-
-  .service-section p {
+  .contact-page p {
     font-size: 16px;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink as Link, useLocation } from "react-router-dom";
 import "../styles/Nav.css";
 import BurgerMenu from "./BurgerMenu";
@@ -7,14 +7,6 @@ import { useTranslation } from "react-i18next";
 export default function Nav() {
   const { i18n, t } = useTranslation();
   const location = useLocation();
-  const currentLang = i18n.language;
-  const [lang, setLang] = useState(currentLang.toUpperCase());
-
-  const toggleLang = () => {
-    const newLang = currentLang === "fr" ? "en" : "fr";
-    setLang(newLang.toUpperCase());
-    i18n.changeLanguage(newLang);
-  };
 
   const pages = [
     { path: "/", label: t("nav.home") },
@@ -22,6 +14,16 @@ export default function Nav() {
     { path: "/services", label: t("nav.services") },
     { path: "/tarifs", label: t("nav.tarifs") },
   ];
+
+  const languages = [
+    { code: "fr", label: "FR" },
+    { code: "en", label: "EN" },
+    { code: "ru", label: "RU" },
+  ];
+
+  const handleLangChange = (code) => {
+    i18n.changeLanguage(code);
+  };
 
   return (
     <nav className="nav">
@@ -33,10 +35,17 @@ export default function Nav() {
               <Link to={page.path}>{page.label}</Link>
             </div>
           ))}
-        <div className="nav-item">
-          <button id="changeLang" onClick={toggleLang}>
-            {lang}
-          </button>
+
+        <div className="nav-item lang-switcher">
+          {languages.map((lang) => (
+            <button
+              key={lang.code}
+              onClick={() => handleLangChange(lang.code)}
+              className={i18n.language === lang.code ? "active-lang" : "not-active-lang"}
+            >
+              {lang.label}
+            </button>
+          ))}
         </div>
       </div>
 

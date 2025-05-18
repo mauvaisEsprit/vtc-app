@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function BurgerMenu() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Состояние языка только для кнопки, инициализируем из i18n.language
-  const [lang, setLang] = useState(i18n.language.startsWith("fr") ? "FR" : "EN");
+  const currentLang = i18n.language.startsWith("fr")
+    ? "fr"
+    : i18n.language.startsWith("ru")
+    ? "ru"
+    : "en";
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
@@ -19,11 +22,9 @@ export default function BurgerMenu() {
     };
   }, [isOpen]);
 
-  // При смене языка меняем и локальный стейт, и i18n язык
-  const toggleLang = () => {
-    const newLang = lang === "FR" ? "EN" : "FR";
-    setLang(newLang);
-    i18n.changeLanguage(newLang.toLowerCase());
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    toggleMenu();
   };
 
   return (
@@ -45,26 +46,38 @@ export default function BurgerMenu() {
 
           <nav>
             <Link to="/" onClick={toggleMenu}>
-              Home
+              {t("navBurger.home")}
             </Link>
             <Link to="/services" onClick={toggleMenu}>
-              Services
+              {t("navBurger.services")}
             </Link>
             <Link to="/aboutus" onClick={toggleMenu}>
-              About
+              {t("navBurger.aboutUs")}
             </Link>
             <Link to="/tarifs" onClick={toggleMenu}>
-              Tarifs
+              {t("navBurger.tarifs")}
             </Link>
-            <button
-              id="changeLang"
-              onClick={() => {
-                toggleLang();
-                toggleMenu();
-              }}
-            >
-              {lang}
-            </button>
+
+            <div className="lang-switcher">
+              <button
+                className={currentLang === "fr" ? "active-lang" : "not-active-lang"}
+                onClick={() => changeLanguage("fr")}
+              >
+                FR
+              </button>
+              <button
+                className={currentLang === "en" ? "active-lang" : "not-active-lang"}
+                onClick={() => changeLanguage("en")}
+              >
+                EN
+              </button>
+              <button
+                className={currentLang === "ru" ? "active-lang" : "not-active-lang"}
+                onClick={() => changeLanguage("ru")}
+              >
+                RU
+              </button>
+            </div>
           </nav>
         </div>
       )}
