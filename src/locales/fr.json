@@ -1,5 +1,4 @@
 {
-  
   "tarifs": {
     "hero_title": "Calculez le prix de votre trajet",
     "hero_button": "Calculer",
@@ -17,11 +16,7 @@
     "address_not_found": "Adresse introuvable. Veuillez réessayer.",
     "route_not_found": "Itinéraire introuvable.",
     "route_error": "Une erreur est survenue lors de la récupération de l’itinéraire : {{error}}"
-  }
-
-
-,
-
+  },
 
   "aboutUs": {
     "heroText": "À propos de nous",
@@ -35,17 +30,12 @@
     "commitment2": "Chauffeurs expérimentés et courtois",
     "commitment3": "Véhicules récents, confortables et climatisés",
     "commitment4": "Services personnalisés"
-  }
-,
-
-
+  },
   "home": {
-  "heroText": "Chauffeur VTC privé sur Nice et toute la Côte d’Azur",
-  "heroButton": "Réserver maintenant"
-  }
-,
+    "heroText": "Chauffeur VTC privé sur Nice et toute la Côte d’Azur",
+    "heroButton": "Réserver maintenant"
+  },
 
-  
   "services": {
     "heroText": "Nos services",
     "heroButton": "Découvrir",
@@ -67,18 +57,23 @@
       "title": "Longues distances",
       "description": "Besoin de vous rendre à Monaco, Cannes, Marseille ou ailleurs ? Profitez d’un trajet détendu avec un chauffeur privé."
     }
-  }
-
-,
+  },
 
   "form": {
     "ready": "PRÊT À VOYAGER AVEC STYLE?",
-     "estimatedPrice": "Prix estimé",
-     "reset": "Réinitialiser",
+    "estimatedPrice": "Prix estimé",
+    "reset": "Réinitialiser",
     "title": "Chauffeur Privé VTC 24/7",
     "description": "Réservez votre transfert privé VTC Nice en ligne 24h/7j.  Notre équipe dédiée assure un traitement rapide et soigné de chaque demande, pour un service de qualité qui s’adapte à vos besoins de transport sur toute la Côte d’Azur. Pour toute Réservation de chauffeur privé á Nice dans l’immédiat ou dans moins d’une heure, merci de nous contacter directement par téléphone ou par whatsapp au",
     "datePlaceholder": "Sélectionner date et heure *",
     "name": "Nom *",
+    "pickupLocation": "Lieu de prise en charge *",
+    "duration": "Durée (heures) *",
+    "titleDisposition": "Réservation à disposition",
+    "descriptionDisposition": "Réservez une voiture avec chauffeur à l'heure.",
+    "sending": "Envoi...",
+    "standard": "Trajet classique",
+    "disposition": "Mise à disposition",
     "adults": "Adultes *",
     "children": "Enfants",
     "phone": "Téléphone *",
@@ -91,54 +86,48 @@
     "submit": "Réserver",
     "success": "Merci ! Votre réservation a été envoyée.",
     "error": {
+      "tooFast": "Veuillez attendre avant de soumettre à nouveau.",
+      "tooMany": "Trop de personnes ! Maximum 4.",
+      "network": "Erreur réseau. Veuillez réessayer plus tard.",
       "tooManyPeople": "Trop de personnes ! Maximum 4.",
       "atLeastOneAdult": "Au moins 1 adulte est requis.",
       "invalidDate": "Sélectionnez une date/heure valide (au moins 1h après maintenant).",
+      "submit": "Erreur lors de l'envoi, veuillez réessayer."
+    }
+  },
+  "form2": {
+    "success": "Merci ! Votre message a été envoyé.",
+    "error": {
       "submit": "Erreur lors de l'envoi, veuillez réessayer.",
       "network": "Erreur réseau, veuillez réessayer."
     }
   },
-    "form2": {
-      "success": "Merci ! Votre message a été envoyé.",
-      "error": {
-      "submit": "Erreur lors de l'envoi, veuillez réessayer.",
-      "network": "Erreur réseau, veuillez réessayer."
-      }
-    
-  },
 
   "nav": {
-  "home": "Accueil",
-  "about": "À propos",
-  "services": "Services",
-  "tarifs": "Carte"
-}
-,
-
-"footer": {
-  "linksTitle": "Liens",
-  "faq": "FAQ",
-  "contact": "Contactez-nous",
-  "support": "Support",
-  "infoTitle": "Infos",
-  "home": "Accueil",
-  "aboutUs": "À propos",
-  "services": "Services",
-  "tarifs": "Carte",
-  "followUs": "Suivez-nous",
-  "rightsReserved": "Tous droits réservés."
-}
-,
-
-"navBurger": {
-  "home": "Accueil",
-  "services": "Services",
-  "aboutUs": "À propos",
-  "tarifs": "Carte"
-}
-
-,
-
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "tarifs": "Carte"
+  },
+  "footer": {
+    "linksTitle": "Liens",
+    "faq": "FAQ",
+    "contact": "Contactez-nous",
+    "support": "Support",
+    "infoTitle": "Infos",
+    "home": "Accueil",
+    "aboutUs": "À propos",
+    "services": "Services",
+    "tarifs": "Carte",
+    "followUs": "Suivez-nous",
+    "rightsReserved": "Tous droits réservés."
+  },
+  "navBurger": {
+    "home": "Accueil",
+    "services": "Services",
+    "aboutUs": "À propos",
+    "tarifs": "Carte"
+  },
 
   "faq": {
     "heroText": "Foire aux questions",
@@ -157,7 +146,7 @@
   },
   "contact": {
     "heroText": "Contactez notre équipe",
-      "heroButton": "Contactez-nous",
+    "heroButton": "Contactez-nous",
     "title": "Contactez-nous",
     "desc": "Nous sommes à votre disposition pour répondre à toutes vos questions. Contactez-nous par téléphone, email ou via le formulaire ci-dessous.",
     "phone": "Téléphone",
@@ -166,13 +155,12 @@
     "message": "Message",
     "send": "Envoyer",
     "thanks": "Merci pour votre message! Nous vous répondrons dès que possible.",
-     "form": {
-        "name": "Nom",
-        "email": "E-mail",
-        "message": "Message",
-        "submit": "Envoyer"
-      }
-    
+    "form": {
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "submit": "Envoyer"
+    }
   },
   "support": {
     "heroText": "Besoin d'aide ?",
@@ -190,5 +178,3 @@
     "responseTime": "Nous répondons habituellement dans l'heure pendant les heures ouvrables."
   }
 }
-
-

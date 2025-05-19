@@ -36,9 +36,13 @@
   }
 ,
 
+  
   "home": {
-  "heroText": "Private VTC driver in Nice and across the French Riviera",
-  "heroButton": "Book now"
+    "heroText": "Private VTC driver in Nice and all the French Riviera",
+    "heroButton": "Book now",
+    "form": {
+      
+    }
 }
 ,
   
@@ -84,6 +88,13 @@
     "comment": "Comment",
     "consent": "I agree that my submitted data will be collected and stored.",
     "submit": "Book",
+    
+      "standard": "Standard trip",
+      "disposition": "Hourly booking",
+      "titleDisposition": "Hourly Booking",
+      "descriptionDisposition": "Book a car with driver by the hour.",
+      "pickupLocation": "Pickup location *",
+      "duration": "Duration (hours) *",
     "success": "Thank you! Your booking has been submitted.",
     "error": {
       "tooManyPeople": "Too many people! Maximum 4 allowed.",

@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
+import { set } from "date-fns";
 
 export default function Tarifs() {
   const { t, i18n } = useTranslation();
@@ -94,6 +95,7 @@ export default function Tarifs() {
       return "";
     }
   }
+  const resultRef = useRef(null);
 
   async function calculateRoute() {
     if (!from || !to) {
@@ -111,6 +113,8 @@ export default function Tarifs() {
       setLoading(false);
       return;
     }
+
+
 
     if (fromMarkerRef.current) {
       mapRef.current.removeLayer(fromMarkerRef.current);
@@ -151,6 +155,14 @@ export default function Tarifs() {
       setDistance(`${distanceKm} km`);
       setDuration(`${hours}h ${minutes}m`);
       setPrice(`€${calculatedPrice}`);
+
+      setTimeout(() => {
+        if (resultRef.current) {
+          const offset = -120; // +30 для небольшого зазора
+          const top = resultRef.current.getBoundingClientRect().top + window.scrollY + offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }, 100);
 
       if (routeLayerRef.current) {
         mapRef.current.removeLayer(routeLayerRef.current);
@@ -196,6 +208,7 @@ export default function Tarifs() {
         text={t("tarifs.hero_title")}
         buttonText={t("tarifs.hero_button")}
       />
+        <div ref={resultRef}>
       <div id="tarifc">
         <h2>{t("tarifs.hero_title")}</h2>
         <input
@@ -218,12 +231,27 @@ export default function Tarifs() {
         <button onClick={resetMap} disabled={loading}>
           {t("tarifs.reset")}
         </button>
-        {loading && <div className="spinner"></div>}
-        {distance && <div id="distance">{t("tarifs.distance")}: {distance}</div>}
-        {duration && <div id="duration">{t("tarifs.duration")}: {duration}</div>}
-        {price && <div id="price">{t("tarifs.price")}: {price}</div>}
+       
+          {loading && <div className="spinner"></div>}
+          {distance && <div id="distance">{t("tarifs.distance")}: {distance}</div>}
+          {duration && <div id="duration">{t("tarifs.duration")}: {duration}</div>}
+          {price && <div id="price">{t("tarifs.price")}: {price}</div>}
+        </div>
       </div>
-      <div id="map" style={{ height: "400px", width: "100%" }}></div>
+      <div style={{ position: "relative" }}>
+  <div id="map" style={{ height: "400px", width: "100%" }}></div>
+
+  {fromMarkerRef.current && toMarkerRef.current && (
+    <div className="map-buttons">
+      <button onClick={calculateRoute} disabled={loading}>
+        {t("tarifs.calculate")}
+      </button>
+      <button onClick={resetMap} disabled={loading}>
+        {t("tarifs.reset")}
+      </button>
+    </div>
+  )}
+</div>
     </div>
   );
 }

@@ -1,18 +1,38 @@
 import { useState } from "react";
 import { useCallback } from "react";
 import "../styles/BookingForm.css";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useTranslation } from "react-i18next";
 import RouteMap from "./RouteMap";
 
+// Импорт локалей
+import en from "date-fns/locale/en-US";
+import fr from "date-fns/locale/fr";
+import ru from "date-fns/locale/ru";
+
+// Регистрация локалей
+registerLocale("en", en);
+registerLocale("fr", fr);
+registerLocale("ru", ru);
+
 export default function BookingForm() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(false);
+
+    const localeMap = {
+    "en": "en",
+    "en-US": "en",
+    "fr": "fr",
+    "fr-FR": "fr",
+    "ru": "ru",
+    "ru-RU": "ru",
+  };
+  const currentLocale = localeMap[i18n.language] || "en";
 
   const handlePriceCalculated = useCallback((newPrice) => {
     setPrice(newPrice);
@@ -168,16 +188,7 @@ export default function BookingForm() {
 
   return (
     <div className="booking-form-container">
-      <section className="booking">
-        <div className="text-booking">
-          <p className="p1">{t("form.ready")}</p>
-          <h2>{t("form.title")}</h2>
-          <p className="p2">{t("form.description")}</p>
-          <a href="tel:+33622649963" className="numberTelephone">
-            +33 6 22 64 99 63
-          </a>
-        </div>
-      </section>
+      
 
       <form className="booking-form" onSubmit={handleSubmit}>
         {/* Honeypot */}
@@ -193,6 +204,7 @@ export default function BookingForm() {
           Date
         </label>
         <DatePicker
+          locale={currentLocale}
           className="booking-datepicker"
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
@@ -230,8 +242,13 @@ export default function BookingForm() {
         <RouteMap
           from={from}
           to={to}
-          onPriceCalculated={handlePriceCalculated}
-          setLoading={handleLoading}
+          onPriceCalculated={(price) => {
+            setPrice(price);
+            if (price === null) {
+              setLoading(false); // чтобы точно остановить спиннер при ошибке
+            }
+          }}
+          setLoading={setLoading}
         />
 
         <input
@@ -314,10 +331,10 @@ export default function BookingForm() {
           <label htmlFor="garant">{t("form.consent")}</label>
         </div>
 
-        <button type="submit" disabled={isSubmitting || !!error}>
+        <button className="booking-form-button" type="submit" disabled={isSubmitting || !!error}>
           {isSubmitting ? t("form.sending", "Sending...") : t("form.submit")}
         </button>
-        <button type="reset" onClick={handleReset}>
+        <button  className="booking-form-button" type="reset" onClick={handleReset}>
           {t("form.reset")}
         </button>
       </form>

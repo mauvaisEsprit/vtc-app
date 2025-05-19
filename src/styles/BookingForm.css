@@ -4,6 +4,7 @@
   align-items: center;
   margin-top: 100px;
   padding-bottom: 90px;
+  justify-content: center;
  
 }
 
@@ -12,8 +13,9 @@
   flex-direction: column;
   gap: 10px;
   width: 35%;
-  margin-right: 200px;
+  
   align-self: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 25px;
   background: rgba(0, 0, 0, 0);
@@ -21,6 +23,11 @@
   text-align: center;
   font-family: "Space Grotesk", sans-serif;
 }
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
 
 
 .spinner1 {
@@ -41,6 +48,7 @@
 
 
 
+
 .booking-input {
   width: 100%;
   padding: 10px;
@@ -51,6 +59,9 @@
 }
 
 .booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
 #name,
 #phone,
 #date,
@@ -72,6 +83,9 @@
 }
 
 .booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
 #name,
 #phone,
 #date,
@@ -185,6 +199,10 @@ input:checked + .slider:before {
   border-radius: 10px;
 }
 
+.booking-form-button {
+  width: 60%;
+}
+
 
 #booking-form button:hover {
   animation: gold-flow 3s infinite linear;
@@ -250,9 +268,10 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-left: 170px;
+  align-items: center;
+  justify-content: center;
   color: rgba(0, 0, 0, 0.7);
-  text-align: start;
+  text-align: center;
   font-family: "Space Grotesk", sans-serif;
 }
 

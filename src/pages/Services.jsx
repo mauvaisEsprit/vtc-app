@@ -28,7 +28,7 @@ export default function Services() {
           <div className="service-section">
             <h2>{t("services.service2.title")}</h2>
             <p>{t("services.service2.description")}</p>
-            <Link to="/#booking">
+            <Link to="/#booking2">
               <button className="service-button">{t("services.bookButton")}</button>
             </Link>
           </div>
