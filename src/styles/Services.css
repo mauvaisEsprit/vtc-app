@@ -38,6 +38,10 @@
   text-align: center;
 }
 
+.services-page a {
+  text-decoration: none;
+}
+
 .service-button {
   display: inline-block;
   margin-top: 16px;

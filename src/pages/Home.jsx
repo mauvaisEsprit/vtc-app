@@ -19,32 +19,41 @@ export default function Home() {
   const textHome = t("home.heroText");
   const buttonTextHome = t("home.heroButton");
 
-  // Устанавливаем нужный тип формы
-  useEffect(() => {
-    if (location.hash === "#booking2") {
-      setBookingType("disposition");
-    } else if (location.hash === "#booking") {
-      setBookingType("standard");
+// Устанавливаем нужный тип формы
+useEffect(() => {
+  if (location.hash === "#booking2") {
+    setBookingType("disposition");
+  } else if (location.hash === "#booking") {
+    setBookingType("standard");
+  }
+}, [location.hash]);
+
+// Прокрутка после полной загрузки
+useEffect(() => {
+  const hash = location.hash;
+  if (!hash) return;
+
+  const scrollToHash = () => {
+    const element = document.querySelector(hash);
+    if (element) {
+      const offset = -200;
+      const top = element.getBoundingClientRect().top + window.scrollY + offset;
+      window.scrollTo({ top, behavior: "smooth" });
     }
-  }, [location.hash]);
+  };
 
-  // Прокрутка, когда bookingType и DOM готовы
-  useEffect(() => {
-    const hash = location.hash;
-    if (!hash) return;
+  const handleLoad = () => {
+    scrollToHash();
+  };
 
-    const scrollToHash = () => {
-      const element = document.querySelector(hash);
-      if (element) {
-        const offset = hash === "#booking2" ? -200 : -200;
-        const top = element.getBoundingClientRect().top + window.scrollY + offset;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    };
-
-    // немного подождать, чтобы элемент точно был в DOM
-    setTimeout(scrollToHash, 100);
-  }, [bookingType, location.hash]);
+  // Если страница уже загружена — прокручиваем сразу
+  if (document.readyState === "complete") {
+    scrollToHash();
+  } else {
+    window.addEventListener("load", handleLoad);
+    return () => window.removeEventListener("load", handleLoad);
+  }
+}, [bookingType, location.hash]);
 
   return (
     <>

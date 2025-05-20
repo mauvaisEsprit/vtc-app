@@ -67,7 +67,7 @@ export default function Contact() {
       <div className="contact-page" style={{ padding: '40px', maxWidth: '600px', margin: 'auto' }}>
         <h1>{t('contact.title', 'Contact Us')}</h1>
         <p>{t('contact.desc')}</p>
-        <p><strong>{t('contact.phone', 'Phone')}:</strong> +33 6 22 64 99 63</p>
+        <p><strong>{t('contact.phone', 'Phone')}:</strong>  <a href="tel:+33622649963"> +33 6 22 64 99 63</a></p>
         <p><strong>{t('contact.email', 'Email')}:</strong> info@bluecoastvtc.com</p>
 
         <form onSubmit={handleSubmit}>
