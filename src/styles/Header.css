@@ -5,7 +5,7 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.383);
+    background-color: rgba(0, 0, 0, 0.75);
     padding: 20px;
     text-align: center;
     position: fixed;
@@ -19,7 +19,8 @@ header {
 
 
 #logo a {
-    margin-left: 150px ;
+    margin: auto;
+    text-align: center;
     align-self: center;
     text-decoration: none;
     font-family: 'Space Grotesk', sans-serif;
@@ -31,7 +32,7 @@ header {
     header {
         display: flex;
         flex-wrap: wrap;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.75);
         padding: 20px;
         text-align: center;
         position: fixed;
@@ -42,6 +43,32 @@ header {
     }
     
     #logo a {
+        margin: auto;
+        text-align: center;
+        align-self: center;
+        color: white;
+        font-size: 24px;
+    }
+}
+@media (min-width: 769px) and ( max-width: 1400px) {
+   
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgba(0, 0, 0, 0.75);
+        padding: 20px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        height: 120px;
+        z-index: 1000;
+    }
+
+    #logo  {
+        width: 100%;
         margin: auto;
         text-align: center;
         align-self: center;

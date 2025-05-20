@@ -1,10 +1,20 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa"; 
-import { NavLink } from "react-router-dom";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import "../styles/Footer.css";
 import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const { t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLinkClick = (e, path) => {
+    if (location.pathname === path) {
+      e.preventDefault(); // уже на этой странице — просто скроллим вверх
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    // иначе NavLink сам сработает
+  };
 
   return (
     <footer className="footer">
@@ -13,71 +23,68 @@ export default function Footer() {
           <h3>{t("footer.linksTitle")}</h3>
           <ul>
             <li>
-              <NavLink to="/faq">{t("footer.faq")}</NavLink>
+              <NavLink to="/faq" onClick={(e) => handleLinkClick(e, "/faq")}>
+                {t("footer.faq")}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/contact">{t("footer.contact")}</NavLink>
+              <NavLink to="/contact" onClick={(e) => handleLinkClick(e, "/contact")}>
+                {t("footer.contact")}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/support">{t("footer.support")}</NavLink>
+              <NavLink to="/support" onClick={(e) => handleLinkClick(e, "/support")}>
+                {t("footer.support")}
+              </NavLink>
             </li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h3>{t("footer.infoTitle")}</h3>
           <ul>
             <li>
-              <NavLink to="/">{t("footer.home")}</NavLink>
+              <NavLink to="/" onClick={(e) => handleLinkClick(e, "/")}>
+                {t("footer.home")}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/aboutus">{t("footer.aboutUs")}</NavLink>
+              <NavLink to="/aboutus" onClick={(e) => handleLinkClick(e, "/aboutus")}>
+                {t("footer.aboutUs")}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/services">{t("footer.services")}</NavLink>
+              <NavLink to="/services" onClick={(e) => handleLinkClick(e, "/services")}>
+                {t("footer.services")}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/tarifs">{t("footer.tarifs")}</NavLink>
+              <NavLink to="/tarifs" onClick={(e) => handleLinkClick(e, "/tarifs")}>
+                {t("footer.tarifs")}
+              </NavLink>
             </li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h3>{t("footer.followUs")}</h3>
           <div className="social-icons">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FaFacebook />
             </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-            >
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <FaTwitter />
             </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <FaInstagram />
             </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-            >
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <FaYoutube />
             </a>
           </div>
         </div>
       </div>
+
       <div className="footer-bottom">
         <p>&copy; 2025 Vladyslav Petrenko. {t("footer.rightsReserved")}</p>
       </div>

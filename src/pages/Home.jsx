@@ -15,7 +15,6 @@ export default function Home() {
 
   const imageHome =
     "https://unpluggedperformance.com/wp-content/uploads/2024/09/2024-Tesla-Model-3-Performance-Black-19-inch-UP-05-Forged-Wheels-in-Satin-Titanium-Unplugged-Performance-1920px-Image-13.jpg";
-
   const textHome = t("home.heroText");
   const buttonTextHome = t("home.heroButton");
 
@@ -36,7 +35,9 @@ useEffect(() => {
   const scrollToHash = () => {
     const element = document.querySelector(hash);
     if (element) {
-      const offset = -200;
+       const headerHeight = window.innerWidth <= 768 ? 200 : 300;
+      const offset = -headerHeight ;
+      //const offset = -200;
       const top = element.getBoundingClientRect().top + window.scrollY + offset;
       window.scrollTo({ top, behavior: "smooth" });
     }

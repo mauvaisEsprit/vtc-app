@@ -4,7 +4,7 @@
 }
 
 /* Только для десктопа */
-@media (min-width: 1295px) {
+@media (min-width: 1400px) {
   .nav-menu {
     display: flex;
     gap: 35px;
@@ -50,7 +50,7 @@
 }
 
 /* Прячем .nav-menu на телефоне */
-@media (max-width: 1295px) {
+@media (max-width: 1400px) {
   .nav-menu {
     display: none !important;
   }
