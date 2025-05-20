@@ -1,6 +1,5 @@
 /* Контейнер секции бронирования */
-#booking {
-  padding: 60px 20px;
+#booking, #booking2 {
   background-color: #f5f5f5;
 }
 

@@ -36,7 +36,7 @@ export default function Home() {
     const scrollToHash = () => {
       const element = document.querySelector(hash);
       if (element) {
-        const offset = hash === "#booking2" ? -200 : -25;
+        const offset = hash === "#booking2" ? -200 : -200;
         const top = element.getBoundingClientRect().top + window.scrollY + offset;
         window.scrollTo({ top, behavior: "smooth" });
       }
@@ -56,7 +56,7 @@ export default function Home() {
       />
       <TextHome />
 
-      <div id="booking" ref={bookingRef}>
+      
         <div className="type-switch">
           <Link to="/#booking">
             <button
@@ -77,13 +77,14 @@ export default function Home() {
         </div>
 
         {bookingType === "standard" ? (
-          <BookingForm />
+          <div id="booking" ref={bookingRef}>
+            <BookingForm /> </div>
         ) : (
           <div id="booking2">
             <SecondForm />
           </div>
         )}
-      </div>
+      
     </>
   );
 }
