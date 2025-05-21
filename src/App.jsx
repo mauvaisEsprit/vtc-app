@@ -1,5 +1,5 @@
 // App.jsx
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -18,7 +18,7 @@ import Support from "./pages/Support";
 
 export default function App() {
   return (
-    <HashRouter basename="/">
+    <BrowserRouter basename="/">
       <Header />
       <ScrollToTop />
       <Routes>
@@ -32,6 +32,6 @@ export default function App() {
       </Routes>
       <ScrollToTopButton />
       <Footer />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
