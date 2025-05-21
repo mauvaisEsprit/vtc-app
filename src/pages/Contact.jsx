@@ -68,19 +68,19 @@ export default function Contact() {
         <h1>{t('contact.title', 'Contact Us')}</h1>
         <p>{t('contact.desc')}</p>
         <p><strong>{t('contact.phone', 'Phone')}:</strong>  <a href="tel:+33622649963"> +33 6 22 64 99 63</a></p>
-        <p><strong>{t('contact.email', 'Email')}:</strong> info@bluecoastvtc.com</p>
+        <p><strong>{t('contact.email', 'Email')}:</strong> <a href="mailto:legionvlad@icloud.com"> legionvlad@icloud.com</a></p>
 
         <form onSubmit={handleSubmit}>
           {/* Honeypot — скрытое поле */}
           <input type="text" name="website" style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
 
-          <label htmlFor="name">{t('contact.form.name', 'Name')}*</label><br />
+          <label htmlFor="name">{t('contact.form.name')}*</label><br />
           <input type="text" id="name" name="name" required /><br /><br />
 
-          <label htmlFor="email">{t('contact.form.email', 'Email')}*</label><br />
+          <label htmlFor="email">{t('contact.form.email')}*</label><br />
           <input type="email" id="email" name="email" required /><br /><br />
 
-          <label htmlFor="message">{t('contact.form.message', 'Message')}*</label><br />
+          <label htmlFor="message">{t('contact.form.message')}*</label><br />
           <textarea id="message" name="message" rows="5" required></textarea><br /><br />
 
           <div id="garant-container">
@@ -89,7 +89,7 @@ export default function Contact() {
         </div>
 
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? t('form.sending', 'Sending...') : t('contact.form.submit', 'Send')}
+            {isSubmitting ? t('form.sending') : t('contact.form.submit')}
           </button>
         </form>
       </div>

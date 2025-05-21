@@ -24,7 +24,7 @@ export default function Support() {
           </ul>
           <p><strong>{t('support.contactSupport')}:</strong></p>
           <p>{t('support.phone', 'Phone')}: <a href="tel:+33622649963"> +33 6 22 64 99 63</a></p>
-          <p>{t('support.email', 'Email')}: support@bluecoastvtc.com</p>
+          <p>{t('support.email', 'Email')}: <a href="mailto:legionvlad@icloud.com"> legionvlad@icloud.com</a></p>
           <p>{t('support.responseTime')}</p>
         </div>
     </div>

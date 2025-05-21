@@ -80,6 +80,7 @@
     "name": "Name *",
     "adults": "Adults *",
     "children": "Children",
+    "sending": "Sending...",
     "phone": "Phone *",
     "email": "E-mail *",
     "from": "From *",

@@ -121,7 +121,7 @@ export default function BookingForm() {
 
     const now = Date.now();
     if (now - lastSubmitTime < 30000) {
-      alert(t("form.error.tooFast", "Please wait before sending again."));
+      alert(t("form.error.tooFast"));
       return;
     }
 
@@ -142,7 +142,7 @@ export default function BookingForm() {
     // Проверка длины комментария, если введён
     const comment = formData.get("comment");
     if (comment && comment.length > 0 && comment.length < 3) {
-      alert(t("form.error.shortMessage", "Comment is too short."));
+      alert(t("form.error.shortMessage"));
       return;
     }
 
@@ -245,7 +245,7 @@ export default function BookingForm() {
           onPriceCalculated={(price) => {
             setPrice(price);
             if (price === null) {
-              setLoading(false); // чтобы точно остановить спиннер при ошибке
+              setLoading(false); // чтобы  остановить спиннер при ошибке
             }
           }}
           setLoading={setLoading}
@@ -332,7 +332,7 @@ export default function BookingForm() {
         </div>
 
         <button className="booking-form-button" type="submit" disabled={isSubmitting || !!error}>
-          {isSubmitting ? t("form.sending", "Sending...") : t("form.submit")}
+          {isSubmitting ? t("form.sending") : t("form.submit")}
         </button>
         <button  className="booking-form-button" type="reset" onClick={handleReset}>
           {t("form.reset")}
