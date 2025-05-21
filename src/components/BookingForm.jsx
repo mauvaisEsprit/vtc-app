@@ -24,7 +24,7 @@ export default function BookingForm() {
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(false);
 
-    const localeMap = {
+  const localeMap = {
     "en": "en",
     "en-US": "en",
     "fr": "fr",
@@ -188,7 +188,7 @@ export default function BookingForm() {
 
   return (
     <div className="booking-form-container">
-      
+
 
       <form className="booking-form" onSubmit={handleSubmit}>
         {/* Honeypot */}
@@ -211,8 +211,8 @@ export default function BookingForm() {
           showTimeSelect
           timeIntervals={15}
           minDate={minDateTime}
-          minTime={getMinTime(selectedDate)}
-          maxTime={getMaxTime(selectedDate)}
+          minTime={selectedDate ? getMinTime(selectedDate) : undefined}
+          maxTime={selectedDate ? getMaxTime(selectedDate) : undefined}
           placeholderText={t("form.datePlaceholder")}
           dateFormat="dd/MM/yyyy HH:mm"
           timeFormat="HH:mm"
@@ -334,7 +334,7 @@ export default function BookingForm() {
         <button className="booking-form-button" type="submit" disabled={isSubmitting || !!error}>
           {isSubmitting ? t("form.sending") : t("form.submit")}
         </button>
-        <button  className="booking-form-button" type="reset" onClick={handleReset}>
+        <button className="booking-form-button" type="reset" onClick={handleReset}>
           {t("form.reset")}
         </button>
       </form>
