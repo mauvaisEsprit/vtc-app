@@ -24,6 +24,16 @@ export default function BookingForm() {
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [adults, setAdults] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [children, setChildren] = useState("");
+  const [error, setError] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
+
   const localeMap = {
     "en": "en",
     "en-US": "en",
@@ -33,6 +43,10 @@ export default function BookingForm() {
     "ru-RU": "ru",
   };
   const currentLocale = localeMap[i18n.language] || "en";
+  
+  
+  
+
 
   const handlePriceCalculated = useCallback((newPrice) => {
     setPrice(newPrice);
@@ -42,12 +56,9 @@ export default function BookingForm() {
     setLoading(value);
   }, []);
 
-  const [adults, setAdults] = useState("");
-  const [children, setChildren] = useState("");
-  const [error, setError] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [lastSubmitTime, setLastSubmitTime] = useState(0);
+
+
+
 
   const handleAdultsChange = (e) => {
     const val = e.target.value;
@@ -177,88 +188,121 @@ export default function BookingForm() {
   };
 
   const handleReset = () => {
-    setFrom("");
-    setTo("");
-    setPrice(null);
-    setAdults("");
-    setChildren("");
-    setSelectedDate(null);
-    setError("");
-  };
+  setFrom("");
+  setTo("");
+  setPrice(null);
+  setAdults(1);
+  setChildren(0);
+  setSelectedDate(null);
+  setError("");
+  setName("");
+  setPhone("");
+  setEmail("");
+};
 
-  return (
-    <div className="booking-form-container">
 
+return (
+  <div className="booking-form-container">
+    <form className="booking-form" onSubmit={handleSubmit}>
+      {/* Honeypot */}
+      <input
+        type="text"
+        name="website"
+        style={{ display: "none" }}
+        tabIndex="-1"
+        autoComplete="off"
+      />
 
-      <form className="booking-form" onSubmit={handleSubmit}>
-        {/* Honeypot */}
-        <input
-          type="text"
-          name="website"
-          style={{ display: "none" }}
-          tabIndex="-1"
-          autoComplete="off"
-        />
+      {/* Шаг 1: Дата, откуда, куда, карта */}
+      <label htmlFor="date" className="visually-hidden">Date</label>
+      <DatePicker
+        locale={currentLocale}
+        className="booking-datepicker"
+        selected={selectedDate}
+        onChange={(date) => setSelectedDate(date)}
+        showTimeSelect
+        timeIntervals={15}
+        minDate={minDateTime}
+        minTime={selectedDate ? getMinTime(selectedDate) : undefined}
+        maxTime={selectedDate ? getMaxTime(selectedDate) : undefined}
+        placeholderText={t("form.datePlaceholder")}
+        dateFormat="dd/MM/yyyy HH:mm"
+        timeFormat="HH:mm"
+        name="date"
+        required
+      />
 
-        <label htmlFor="date" className="visually-hidden">
-          Date
-        </label>
-        <DatePicker
-          locale={currentLocale}
-          className="booking-datepicker"
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          showTimeSelect
-          timeIntervals={15}
-          minDate={minDateTime}
-          minTime={selectedDate ? getMinTime(selectedDate) : undefined}
-          maxTime={selectedDate ? getMaxTime(selectedDate) : undefined}
-          placeholderText={t("form.datePlaceholder")}
-          dateFormat="dd/MM/yyyy HH:mm"
-          timeFormat="HH:mm"
-          name="date"
-          required
-        />
+      <input
+        type="text"
+        id="from"
+        name="from"
+        placeholder={t("form.from")}
+        required
+        value={from}
+        onChange={(e) => setFrom(e.target.value)}
+      />
 
-        <input
-          type="text"
-          id="from"
-          name="from"
-          placeholder={t("form.from")}
-          required
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-        />
+      <input
+        type="text"
+        id="to"
+        name="to"
+        placeholder={t("form.to")}
+        required
+        value={to}
+        onChange={(e) => setTo(e.target.value)}
+      />
 
-        <input
-          type="text"
-          id="to"
-          name="to"
-          placeholder={t("form.to")}
-          required
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-        />
-        <RouteMap
-          from={from}
-          to={to}
-          onPriceCalculated={(price) => {
-            setPrice(price);
-            if (price === null) {
-              setLoading(false); // чтобы  остановить спиннер при ошибке
-            }
-          }}
-          setLoading={setLoading}
-        />
+      <RouteMap
+        from={from}
+        to={to}
+        onPriceCalculated={(price) => {
+          setPrice(price);
+          if (price === null) setLoading(false);
+        }}
+        setLoading={setLoading}
+      />
 
+      {/* Шаг 2: Имя */}
+      <div className={`step-transition ${selectedDate && from && to  ? "show" : ""}`}>
         <input
           type="text"
           id="name"
           name="name"
           placeholder={t("form.name")}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        </div>
+
+      {/* Шаг 3: Телефон и email */}
+      <div className={`step-transition ${selectedDate && from && to && name ? "show" : ""}`}>
+      
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder={t("form.phone")}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           required
         />
 
+        {/* Шаг 4: email */}
+         <div className={`step-transition ${selectedDate && from && to && name && phone ? "show" : ""}`}></div>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder={t("form.email")}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+
+        {/* Шаг 5: Взрослые и дети */}
+        <div className={`step-transition ${selectedDate && from && to  && !error && name && phone && email ? "show" : ""}`}>
         <input
           type="number"
           id="adults"
@@ -283,27 +327,13 @@ export default function BookingForm() {
         />
 
         {error && (
-          <p id="error-message" style={{ color: "red" }}>
-            {error}
-          </p>
+          <p id="error-message" style={{ color: "red" }}>{error}</p>
         )}
+      </div>
 
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder={t("form.phone")}
-          required
-        />
 
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder={t("form.email")}
-          required
-        />
-
+      {/* Шаг 6: Прочее */}
+      <div className={`step-transition ${selectedDate && from && to  && adults && !error  && name && phone && email ? "show" : ""}`}>
         <div id="baggage-container">
           <label htmlFor="baggage">{t("form.baggage")}</label>
           <label className="switch">
@@ -321,23 +351,32 @@ export default function BookingForm() {
 
         {loading && <div className="spinner1"></div>}
         {!loading && price && (
-          <p>
-            {t("form.estimatedPrice")}: <strong>{price}</strong>
-          </p>
+          <p>{t("form.estimatedPrice")}: <strong>{price}</strong></p>
         )}
 
         <div id="garant-container">
           <input type="checkbox" id="garant" name="garant" required />
           <label htmlFor="garant">{t("form.consent")}</label>
         </div>
-
-        <button className="booking-form-button" type="submit" disabled={isSubmitting || !!error}>
+        </div>
+        <button
+          className="booking-form-button"
+          type="submit"
+          disabled={isSubmitting || !!error}
+        >
           {isSubmitting ? t("form.sending") : t("form.submit")}
         </button>
-        <button className="booking-form-button" type="reset" onClick={handleReset}>
+
+        <button
+          className="booking-form-button"
+          type="reset"
+          onClick={handleReset}
+        >
           {t("form.reset")}
         </button>
-      </form>
-    </div>
-  );
+      
+    </form>
+  </div>
+);
+
 }

@@ -8,6 +8,1133 @@
  
 }
 
+.booking-form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 100px;
+  padding-bottom: 90px;
+  justify-content: center;
+ 
+}
+
+.step-transition {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.step-transition.show {
+  opacity: 1;
+  max-height: 2000px; /* Любое достаточно большое значение */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 35%;
+  
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+
+
+.spinner1 {
+  margin: 10px auto;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #333; /* зеленый цвет */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+.booking-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
+#name,
+#phone,
+#date,
+#from,
+#to,
+#comment,
+#garant,
+#adults,
+#children,
+#email {
+  width: 100%;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.503);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
+#name,
+#phone,
+#date,
+#from,
+#to,
+#comment,
+#garant,
+#adults,
+#children,
+#email::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  
+}
+
+.booking-datepicker {
+  width: 100%;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.503);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Space Grotesk", sans-serif;
+  box-sizing: border-box;
+}
+
+.booking-datepicker::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  /*font-family: "Space Grotesk", sans-serif;*/
+}
+
+.react-datepicker  button{
+  height: 24px;
+}
+
+
+.react-datepicker__navigation-icon::before {
+  border-width: 2px 2px 0 0;
+  width: 6px;
+  height: 6px;
+}
+
+#baggage-container {
+  color: black;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+  align-self: flex-start;
+  margin-left: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #4caf50;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+  .booking-form button {
+  
+  padding: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    120deg,
+    rgb(144, 144, 144),
+    rgb(0, 0, 0),
+    rgb(144, 144, 144)
+  );
+  background-size: 200% 200%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.booking-form-button {
+  width: 60%;
+}
+
+
+#booking-form button:hover {
+  animation: gold-flow 3s infinite linear;
+}
+
+.error {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.error-message {
+  display: none;
+  color: red;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+#garant-container {
+  display: flex;
+  align-items: center;
+}
+
+#garant-container input {
+  height: 80%;
+  width: 5%;
+  align-self: center;
+  margin-left: 15px;
+}
+
+#garant-container label {
+  width: 95%;
+  color: black;
+  font-size: 18px;
+  align-self: flex-start;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.booking {
+  display: flex;
+  width: 70%;
+  margin-right: 25px;
+  align-self: flex-start;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.text-booking {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.text-booking h2 {
+  font-size: 32px;
+}
+
+.text-booking #p2 {
+  max-width: 850px;
+  font-size: 22px;
+}
+
+.numberTelephone {
+  display: inline-flex;
+  text-decoration: none;
+  text-align: center;
+  width: fit-content;
+  white-space: nowrap;
+  padding: 5px 45px;
+  border-radius: 27px;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgb(129, 129, 129),
+    rgb(0, 0, 0),
+    rgb(255, 255, 255)
+  );
+  background-size: 200% 200%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.numberTelephone:hover {
+  animation: gold-flow 3s infinite linear;
+}
+
+@keyframes gold-flow {
+  0% {
+    background-position: 100% 50%;
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-form-container {
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  gap: 55px;
+  justify-content: center;
+}
+
+  .booking {
+  width: 100%;
+  margin-right: 0;
+}
+
+  .text-booking {
+  width: 100%;
+  padding: 0 20px;
+  align-items: center;
+  text-align: center;
+  margin-left: 0;
+}
+
+
+  .text-booking h2 {
+    font-size: 24px;
+  }
+
+  .text-booking #p2 {
+    font-size: 18px;
+  }
+
+  .booking-form {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+}
+.booking-form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 100px;
+  padding-bottom: 90px;
+  justify-content: center;
+ 
+}
+
+
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 35%;
+  
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+
+
+.spinner1 {
+  margin: 10px auto;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #333; /* зеленый цвет */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+.booking-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
+#name,
+#phone,
+#date,
+#from,
+#to,
+#comment,
+#garant,
+#adults,
+#children,
+#email {
+  width: 100%;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.503);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
+#name,
+#phone,
+#date,
+#from,
+#to,
+#comment,
+#garant,
+#adults,
+#children,
+#email::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  
+}
+
+.booking-datepicker {
+  width: 100%;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.503);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Space Grotesk", sans-serif;
+  box-sizing: border-box;
+}
+
+.booking-datepicker::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  /*font-family: "Space Grotesk", sans-serif;*/
+}
+
+.react-datepicker  button{
+  height: 24px;
+}
+
+
+.react-datepicker__navigation-icon::before {
+  border-width: 2px 2px 0 0;
+  width: 6px;
+  height: 6px;
+}
+
+#baggage-container {
+  color: black;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+  align-self: flex-start;
+  margin-left: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #4caf50;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+  .booking-form button {
+  
+  padding: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    120deg,
+    rgb(144, 144, 144),
+    rgb(0, 0, 0),
+    rgb(144, 144, 144)
+  );
+  background-size: 200% 200%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.booking-form-button {
+  width: 60%;
+}
+
+
+#booking-form button:hover {
+  animation: gold-flow 3s infinite linear;
+}
+
+.error {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.error-message {
+  display: none;
+  color: red;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+#garant-container {
+  display: flex;
+  align-items: center;
+}
+
+#garant-container input {
+  height: 80%;
+  width: 5%;
+  align-self: center;
+  margin-left: 15px;
+}
+
+#garant-container label {
+  width: 95%;
+  color: black;
+  font-size: 18px;
+  align-self: flex-start;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.booking {
+  display: flex;
+  width: 70%;
+  margin-right: 25px;
+  align-self: flex-start;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.text-booking {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.text-booking h2 {
+  font-size: 32px;
+}
+
+.text-booking #p2 {
+  max-width: 850px;
+  font-size: 22px;
+}
+
+.numberTelephone {
+  display: inline-flex;
+  text-decoration: none;
+  text-align: center;
+  width: fit-content;
+  white-space: nowrap;
+  padding: 5px 45px;
+  border-radius: 27px;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgb(129, 129, 129),
+    rgb(0, 0, 0),
+    rgb(255, 255, 255)
+  );
+  background-size: 200% 200%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.numberTelephone:hover {
+  animation: gold-flow 3s infinite linear;
+}
+
+@keyframes gold-flow {
+  0% {
+    background-position: 100% 50%;
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-form-container {
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  gap: 55px;
+  justify-content: center;
+}
+
+  .booking {
+  width: 100%;
+  margin-right: 0;
+}
+
+  .text-booking {
+  width: 100%;
+  padding: 0 20px;
+  align-items: center;
+  text-align: center;
+  margin-left: 0;
+}
+
+
+  .text-booking h2 {
+    font-size: 24px;
+  }
+
+  .text-booking #p2 {
+    font-size: 18px;
+  }
+
+  .booking-form {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+}
+.booking-form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 100px;
+  padding-bottom: 90px;
+  justify-content: center;
+ 
+}
+
+
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 35%;
+  
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+
+
+.spinner1 {
+  margin: 10px auto;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #333; /* зеленый цвет */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+.booking-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
+#name,
+#phone,
+#date,
+#from,
+#to,
+#comment,
+#garant,
+#adults,
+#children,
+#email {
+  width: 100%;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.503);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.booking-input,
+#pickupLocation,
+#durationSeconds,
+#tripPurpose,
+#name,
+#phone,
+#date,
+#from,
+#to,
+#comment,
+#garant,
+#adults,
+#children,
+#email::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  
+}
+
+.booking-datepicker {
+  width: 100%;
+  padding: 15px;
+  color: rgba(0, 0, 0, 0.503);
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Space Grotesk", sans-serif;
+  box-sizing: border-box;
+}
+
+.booking-datepicker::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  /*font-family: "Space Grotesk", sans-serif;*/
+}
+
+.react-datepicker  button{
+  height: 24px;
+}
+
+
+.react-datepicker__navigation-icon::before {
+  border-width: 2px 2px 0 0;
+  width: 6px;
+  height: 6px;
+}
+
+#baggage-container {
+  color: black;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+  align-self: flex-start;
+  margin-left: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #4caf50;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+  .booking-form button {
+  
+  padding: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    120deg,
+    rgb(144, 144, 144),
+    rgb(0, 0, 0),
+    rgb(144, 144, 144)
+  );
+  background-size: 200% 200%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.booking-form-button {
+  width: 60%;
+}
+
+
+#booking-form button:hover {
+  animation: gold-flow 3s infinite linear;
+}
+
+.error {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.error-message {
+  display: none;
+  color: red;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+#garant-container {
+  display: flex;
+  align-items: center;
+}
+
+#garant-container input {
+  height: 80%;
+  width: 5%;
+  align-self: center;
+  margin-left: 15px;
+}
+
+#garant-container label {
+  width: 95%;
+  color: black;
+  font-size: 18px;
+  align-self: flex-start;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.booking {
+  display: flex;
+  width: 70%;
+  margin-right: 25px;
+  align-self: flex-start;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.text-booking {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.text-booking h2 {
+  font-size: 32px;
+}
+
+.text-booking #p2 {
+  max-width: 850px;
+  font-size: 22px;
+}
+
+.numberTelephone {
+  display: inline-flex;
+  text-decoration: none;
+  text-align: center;
+  width: fit-content;
+  white-space: nowrap;
+  padding: 5px 45px;
+  border-radius: 27px;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgb(129, 129, 129),
+    rgb(0, 0, 0),
+    rgb(255, 255, 255)
+  );
+  background-size: 200% 200%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.numberTelephone:hover {
+  animation: gold-flow 3s infinite linear;
+}
+
+@keyframes gold-flow {
+  0% {
+    background-position: 100% 50%;
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-form-container {
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  gap: 55px;
+  justify-content: center;
+}
+
+  .booking {
+  width: 100%;
+  margin-right: 0;
+}
+
+  .text-booking {
+  width: 100%;
+  padding: 0 20px;
+  align-items: center;
+  text-align: center;
+  margin-left: 0;
+}
+
+
+  .text-booking h2 {
+    font-size: 24px;
+  }
+
+  .text-booking #p2 {
+    font-size: 18px;
+  }
+
+  .booking-form {
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+}
+
+
 .booking-form {
   display: flex;
   flex-direction: column;
