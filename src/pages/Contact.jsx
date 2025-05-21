@@ -18,7 +18,7 @@ export default function Contact() {
 
     const now = Date.now();
     if (now - lastSubmitTime < 30000) {
-      alert(t("form2.error.tooFast", "Please wait before sending again."));
+      alert(t("form.error.tooFast"));
       return;
     }
 
@@ -32,7 +32,7 @@ export default function Contact() {
 
     const message = formData.get("message");
     if (!message || message.length < 10) {
-      alert(t("form2.error.shortMessage", "Message is too short."));
+      alert(t("form.error.shortMessage"));
       return;
     }
 
@@ -48,14 +48,14 @@ export default function Contact() {
       });
 
       if (response.ok) {
-        alert(t("form2.success", "Message sent successfully!"));
+        alert(t("form2.success"));
         e.target.reset();
         setLastSubmitTime(now);
       } else {
-        alert(t("form2.error.submit", "Failed to send. Try again later."));
+        alert(t("form.error.submit"));
       }
     } catch (error) {
-      alert(t("form2.error.network", "Network error. Try again later."));
+      alert(t("form.error.network"));
     } finally {
       setIsSubmitting(false);
     }
@@ -89,7 +89,7 @@ export default function Contact() {
         </div>
 
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? t('form2.sending', 'Sending...') : t('contact.form.submit', 'Send')}
+            {isSubmitting ? t('form.sending', 'Sending...') : t('contact.form.submit', 'Send')}
           </button>
         </form>
       </div>

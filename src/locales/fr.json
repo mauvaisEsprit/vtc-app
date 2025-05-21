@@ -87,6 +87,7 @@
     "success": "Merci ! Votre réservation a été envoyée.",
     "error": {
       "tooFast": "Veuillez attendre avant de soumettre à nouveau.",
+      "shortMessage": "Le message est trop court.",
       "tooMany": "Trop de personnes ! Maximum 4.",
       "network": "Erreur réseau. Veuillez réessayer plus tard.",
       "tooManyPeople": "Trop de personnes ! Maximum 4.",
@@ -96,10 +97,25 @@
     }
   },
   "form2": {
-    "success": "Merci ! Votre message a été envoyé.",
-    "error": {
-      "submit": "Erreur lors de l'envoi, veuillez réessayer.",
-      "network": "Erreur réseau, veuillez réessayer."
+    "success": "Merci ! Votre message a été envoyé."
+  },
+  
+    "contact": {
+    "heroText": "Contactez notre équipe",
+    "heroButton": "Contactez-nous",
+    "title": "Contactez-nous",
+    "desc": "Nous sommes à votre disposition pour répondre à toutes vos questions. Contactez-nous par téléphone, email ou via le formulaire ci-dessous.",
+    "phone": "Téléphone",
+    "email": "Email",
+    "name": "Nom",
+    "message": "Message",
+    "send": "Envoyer",
+    "thanks": "Merci pour votre message! Nous vous répondrons dès que possible.",
+    "form": {
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "submit": "Envoyer"
     }
   },
 
@@ -144,24 +160,7 @@
     "q5": "Comment puis-je vous contacter pour plus d’informations ?",
     "a5": "Vous pouvez nous joindre via la page Contactez-nous ou par téléphone/WhatsApp."
   },
-  "contact": {
-    "heroText": "Contactez notre équipe",
-    "heroButton": "Contactez-nous",
-    "title": "Contactez-nous",
-    "desc": "Nous sommes à votre disposition pour répondre à toutes vos questions. Contactez-nous par téléphone, email ou via le formulaire ci-dessous.",
-    "phone": "Téléphone",
-    "email": "Email",
-    "name": "Nom",
-    "message": "Message",
-    "send": "Envoyer",
-    "thanks": "Merci pour votre message! Nous vous répondrons dès que possible.",
-    "form": {
-      "name": "Nom",
-      "email": "E-mail",
-      "message": "Message",
-      "submit": "Envoyer"
-    }
-  },
+
   "support": {
     "heroText": "Besoin d'aide ?",
     "heroButton": "Contactez-nous",

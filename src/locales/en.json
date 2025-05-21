@@ -97,6 +97,9 @@
       "duration": "Duration (hours) *",
     "success": "Thank you! Your booking has been submitted.",
     "error": {
+      "tooFast": "Please wait before submitting again.",
+      "shortMessage": "The message is too short.",
+      "tooMany": "Too many people! Maximum 4 allowed.",
       "tooManyPeople": "Too many people! Maximum 4 allowed.",
       "atLeastOneAdult": "At least 1 adult is required.",
       "invalidDate": "Please select a valid date and time (at least 1 hour from now).",
@@ -106,11 +109,7 @@
   },
 
     "form2": {
-      "success": "Thank you! Your message has been sent.",
-      "error": {
-        "submit": "Submission error. Please try again later.",
-        "network": "Network error. Please try again later."
-      }
+      "success": "Thank you! Your message has been sent."
     },
   
   
