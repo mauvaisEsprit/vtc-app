@@ -1,8 +1,7 @@
-// FAQ.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Hero from "../components/Hero";
-import '../styles/FAQ.css'
+import "../styles/FAQ.css";
 
 export default function FAQ() {
   const { t } = useTranslation();
@@ -10,22 +9,41 @@ export default function FAQ() {
   const textFAQ = t("faq.heroText");
   const buttonTextFAQ = t("faq.heroButton");
 
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  const faqItems = Array.from({ length: 10 }, (_, i) => ({
+    question: t(`faq.q${i + 1}`),
+    answer: t(`faq.a${i + 1}`),
+  }));
+
   return (
     <div>
-        <Hero image={imageFAQ} text={textFAQ} buttonText={buttonTextFAQ} />
-        <div className="faq-page" style={{ padding: 40, maxWidth: 800, margin: "auto" }}>
-          <h1>{t("faq.title")}</h1>
-          <h2>{t("faq.q1")}</h2>
-          <p>{t("faq.a1")}</p>
-          <h2>{t("faq.q2")}</h2>
-          <p>{t("faq.a2")}</p>
-          <h2>{t("faq.q3")}</h2>
-          <p>{t("faq.a3")}</p>
-          <h2>{t("faq.q4")}</h2>
-          <p>{t("faq.a4")}</p>
-          <h2>{t("faq.q5")}</h2>
-          <p>{t("faq.a5")}</p>
+      <Hero image={imageFAQ} text={textFAQ} buttonText={buttonTextFAQ} />
+
+      <div className="faq-page">
+        <h1>{t("faq.title")}</h1>
+        <div className="accordion">
+          {faqItems.map((item, index) => (
+            <div key={index} className="accordion-item">
+              <button
+                className={`accordion-question ${activeIndex === index ? "active" : ""}`}
+                onClick={() => toggleAccordion(index)}
+              >
+                {item.question}
+              </button>
+              <div
+  className={`accordion-answer ${activeIndex === index ? "open" : ""}`}
+>
+  <p>{item.answer}</p>
+</div>
+            </div>
+          ))}
         </div>
+      </div>
     </div>
   );
 }

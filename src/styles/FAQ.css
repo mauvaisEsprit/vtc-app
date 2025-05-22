@@ -1,53 +1,126 @@
 .faq-page {
-  padding: 40px 20px;
-  max-width: 800px;
+  padding: 60px 24px;
+  max-width: 860px;
   margin: 0 auto;
   font-family: "Space Grotesk", sans-serif;
   color: #222;
-}
-
-.faq-page {
   animation: fadeIn 0.5s ease-in;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 
 .faq-page h1 {
-  font-size: 36px;
-  margin-bottom: 30px;
+  font-size: 40px;
+  margin-bottom: 40px;
   text-align: center;
   color: #111;
+  position: relative;
 }
 
+.faq-page h1::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #007BFF;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+
+
+
 .faq-page section {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+  background: #f9f9f9;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.faq-page section:hover {
+  transform: translateY(-2px);
 }
 
 .faq-page h2 {
-  font-size: 24px;
-  margin-bottom: 8px;
-  color: #333;
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #007BFF;
 }
 
 .faq-page p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #333;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #444;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
+  .faq-page {
+    padding: 40px 16px;
+  }
+
   .faq-page h1 {
-    font-size: 28px;
+    font-size: 30px;
   }
+
   .faq-page h2 {
-    font-size: 20px;
+    font-size: 18px;
   }
+
   .faq-page p {
-    font-size: 16px;
+    font-size: 15px;
   }
+}
+
+
+
+.accordion {
+  margin-top: 20px;
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion-question {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
+  padding: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #111;
+  transition: background 0.2s;
+}
+
+.accordion-question:hover {
+  background-color: #f0f0f0;
+}
+
+.accordion-question.active {
+  color: #007BFF;
+}
+
+.accordion-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  opacity: 0;
+  padding: 0 15px;
+  visibility: hidden;
+}
+
+.accordion-answer.open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 10px 15px 15px;
+  visibility: visible;
 }

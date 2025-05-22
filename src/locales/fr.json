@@ -147,19 +147,30 @@
   },
 
   "faq": {
-    "heroText": "Foire aux questions",
-    "heroButton": "Découvrir",
-    "title": "FAQ - Questions fréquentes",
-    "q1": "Comment puis-je réserver un transfert ?",
-    "a1": "Vous pouvez réserver un transfert via notre calculateur en ligne ou nous contacter par téléphone/WhatsApp.",
-    "q2": "Puis-je modifier ou annuler une réservation ?",
-    "a2": "Oui, veuillez nous informer le plus tôt possible pour éviter des frais.",
-    "q3": "Comment le prix est-il calculé ?",
-    "a3": "Le prix dépend de la distance, du temps et du tarif choisi.",
-    "q4": "Quels moyens de paiement acceptez-vous ?",
-    "a4": "Nous acceptons les espèces, cartes bancaires et paiements en ligne.",
-    "q5": "Comment puis-je vous contacter pour plus d’informations ?",
-    "a5": "Vous pouvez nous joindre via la page Contactez-nous ou par téléphone/WhatsApp."
+  "title": "Questions fréquemment posées",
+  "heroText": "Trouvez des réponses aux questions les plus fréquentes sur nos services.",
+  "heroButton": "Nous contacter",
+  "q1": "Comment réserver une course ?",
+  "a1": "Vous pouvez réserver via notre site internet ou en appelant le numéro indiqué.",
+  "q2": "Puis-je annuler ma réservation ?",
+  "a2": "Oui, vous pouvez annuler jusqu'à 24 heures à l'avance sans frais.",
+  "q3": "Quels moyens de paiement acceptez-vous ?",
+  "a3": "Nous acceptons les cartes bancaires, Apple Pay et les espèces.",
+  "q4": "Proposez-vous des sièges enfants ?",
+  "a4": "Oui, vous pouvez en faire la demande lors de la réservation.",
+  "q5": "Puis-je prévoir plusieurs arrêts ?",
+  "a5": "Oui, indiquez simplement toutes les adresses nécessaires lors de la réservation.",
+  "q6": "Êtes-vous disponible la nuit ?",
+  "a6": "Oui, nos services sont disponibles 24h/24 et 7j/7.",
+  "q7": "Puis-je estimer le prix à l'avance ?",
+  "a7": "Bien sûr ! Indiquez vos adresses de départ et d’arrivée pour obtenir un tarif.",
+  "q8": "Quels types de véhicules proposez-vous ?",
+  "a8": "Nous proposons une large gamme de véhicules — de la berline au haut de gamme.",
+  "q9": "Puis-je réserver une voiture à une heure précise ?",
+  "a9": "Oui, vous pouvez choisir la date et l’heure exactes lors de la réservation.",
+  "q10": "Vos chauffeurs sont-ils agréés ?",
+  "a10": "Tous nos chauffeurs sont titulaires d’une licence VTC et sont régulièrement contrôlés."
+
   },
 
   "support": {

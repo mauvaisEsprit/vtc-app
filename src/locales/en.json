@@ -148,21 +148,31 @@
 
 
   "faq": {
-    "heroText": "Frequently Asked Questions",
-    
-    "heroButton": "Discover",
-    "title": "FAQ - Frequently Asked Questions",
-    "q1": "How can I book a transfer?",
-    "a1": "You can book a transfer via our online calculator or contact us by phone/WhatsApp.",
-    "q2": "Can I modify or cancel my booking?",
-    "a2": "Yes, please notify us as soon as possible to avoid fees.",
-    "q3": "How is the price calculated?",
-    "a3": "The price depends on distance, time, and the chosen tariff.",
-    "q4": "What payment methods do you accept?",
-    "a4": "We accept cash, bank cards, and online payments.",
-    "q5": "How can I contact you for more information?",
-    "a5": "You can reach us via the Contact page or by phone/WhatsApp."
-  },
+  "title": "Frequently Asked Questions",
+  "heroText": "Find answers to the most common questions about our services.",
+  "heroButton": "Contact us",
+  "q1": "How do I book a ride?",
+  "a1": "You can book a ride through our website or by calling the provided number.",
+  "q2": "Can I cancel my reservation?",
+  "a2": "Yes, you can cancel up to 24 hours before the ride without any fees.",
+  "q3": "What payment methods are accepted?",
+  "a3": "We accept credit cards, Apple Pay, and cash.",
+  "q4": "Do you provide child seats?",
+  "a4": "Yes, you can request a child seat during the booking process.",
+  "q5": "Can I request multiple stops?",
+  "a5": "Yes, simply enter all required addresses when booking.",
+  "q6": "Are your services available at night?",
+  "a6": "Yes, we operate 24/7 with no days off.",
+  "q7": "Can I estimate the price in advance?",
+  "a7": "Of course! Enter your pickup and drop-off locations to calculate the fare.",
+  "q8": "What kind of vehicles do you offer?",
+  "a8": "We offer a wide range of vehicles — from sedans to premium cars.",
+  "q9": "Can I book a car for a specific time?",
+  "a9": "Yes, you can choose the exact date and time during booking.",
+  "q10": "Are your drivers licensed?",
+  "a10": "All of our drivers are VTC-licensed and undergo regular checks."
+}
+,
   "contact": {
     "heroText": "Contact Our Team",
     "heroButton": "Get in Touch",
