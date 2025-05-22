@@ -11,6 +11,16 @@
   
 }
 
+.teslaImage {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.9; }
+  to { opacity: 1; }
+}
+
+
 .teslaImage img {
   width: 100%;
   height: 100%;

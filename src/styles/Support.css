@@ -6,6 +6,16 @@
   color: #222;
 }
 
+.support-page{
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
 .support-page h1 {
   font-size: 36px;
   margin-bottom: 25px;
