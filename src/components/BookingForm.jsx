@@ -204,6 +204,11 @@ export default function BookingForm() {
 return (
   <div className="booking-form-container">
     <form className="booking-form" onSubmit={handleSubmit}>
+      <div className="booking-form-header">
+  <h2>{t("form.title1") || "Бронирование поездки"}</h2>
+  <p>{t("form.description1") || "Пожалуйста, заполните форму, чтобы заказать поездку с нашим сервисом VTC. Выберите дату, маршрут и укажите данные для связи."}</p>
+</div>
+
       {/* Honeypot */}
       <input
         type="text"

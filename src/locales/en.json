@@ -1,5 +1,4 @@
 {
-  
   "tarifs": {
     "hero_title": "Calculate Your Trip Price",
     "hero_button": "Calculate",
@@ -17,34 +16,74 @@
     "address_not_found": "Address not found. Please try again.",
     "route_not_found": "Route not found.",
     "route_error": "An error occurred while fetching the route: {{error}}"
-  }
-
-
-,
+  },
   "aboutUs": {
-    "heroText": "About Us",
-    "heroButton": "Discover",
-    "title": "Your private driver on the French Riviera",
-    "paragraph1": "Our VTC company was born from a passion for quality service, comfort, and punctuality. Based in Nice, we offer premium private transport services for individuals and professionals alike.",
-    "paragraph2": "With many years of experience, we provide professional, discreet, bilingual drivers and well-maintained premium vehicles.",
-    "paragraph3": "Whether for airport transfers, business trips, or private events, we guarantee a tailored, reliable, and elegant service.",
-    "commitmentsTitle": "Our commitments",
-    "commitment1": "24/7 availability",
-    "commitment2": "Experienced and courteous drivers",
-    "commitment3": "Recent, comfortable, and air-conditioned vehicles",
-    "commitment4": "Personalized services"
+    
+  "heroText": "Discover who we are and what drives us.",
+  "heroButton": "Learn More",
+  "title": "About Us",
+  "paragraph1": "We are committed to providing high-quality, reliable VTC services tailored to your needs.",
+  "paragraph2": "Our experienced drivers and modern fleet ensure your comfort and safety.",
+  "paragraph3": "We believe in excellence, transparency, and customer satisfaction.",
+  "missionTitle": "Our Mission",
+  "missionText": "To offer outstanding transport services by combining professionalism, punctuality, and care.",
+  "visionTitle": "Our Vision",
+  "visionText": "To become the leading VTC service provider recognized for quality and innovation.",
+  "commitmentsTitle": "Our Commitments",
+  "commitment1": "24/7 availability",
+  "commitment2": "Fixed transparent pricing",
+  "commitment3": "Comfortable and clean vehicles",
+  "commitment4": "Professional and courteous drivers",
+  "commitment5": "Punctuality and reliability",
+  "commitment6": "Easy and secure booking",
+  "whyChooseUsTitle": "Why Choose Us",
+  "reason1": "Trusted by hundreds of clients",
+  "reason2": "Quick and simple booking",
+  "reason3": "Excellent customer service",
+  "reason4": "Multilingual drivers",
+  "reason5": "Flexible payment options",
+  "testimonialsTitle": "What Our Clients Say",
+  "testimonial1": {
+    "text": "The best ride experience I've ever had. Professional and smooth.",
+    "author": "Anna K."
+  },
+  "testimonial2": {
+    "text": "Always on time and friendly. Highly recommended!",
+    "author": "Marc D."
+  },
+  "testimonial3": {
+    "text": "Excellent service and clean vehicles. I use them every week.",
+    "author": "Laura B."
+  },
+  "galleryTitle": "Our Gallery"
   }
-,
+  
+  ,
 
+  
   
   "home": {
     "heroText": "Private VTC driver in Nice and all the French Riviera",
     "heroButton": "Book now",
-    "form": {
-      
-    }
-}
-,
+     "whyChooseUsTitle": "Why Choose Us?",
+    "why1": "Experienced professional drivers",
+    "why2": "Comfortable and clean vehicles",
+    "why3": "Punctual and reliable service",
+    "why4": "24/7 customer support",
+    "why5": "Transparent pricing without hidden fees",
+
+    "testimonialsTitle": "What Our Clients Say",
+    "testimonial1": {
+      "text": "The ride was smooth and the driver was very polite.",
+      "author": "John D."
+    },
+    "testimonial2": {
+      "text": "Excellent service, punctual and professional.",
+      "author": "Sophia L."
+    },
+
+    "galleryTitle": "Our Fleet and Service Moments"
+  },
   
   "services": {
     "heroText": "Our Services",
@@ -68,14 +107,14 @@
       "description": "Need to travel to Monaco, Cannes, Marseille, or elsewhere? Enjoy a relaxed ride with a private driver."
     }
   },
-
-
   "form": {
     "ready": "READY TO TRAVEL IN STYLE?",
     "reset": "Reset",
     "estimatedPrice": "Estimated Price",
     "title": "Private Chauffeur VTC 24/7",
+    "title1": "Book Your Trip",
     "description": "Book your private VTC transfer in Nice online 24/7. Our dedicated team ensures fast and careful handling of each request for a quality service that adapts to your transportation needs across the French Riviera. For immediate bookings or rides in less than one hour, please contact us directly by phone or WhatsApp at",
+     "description1": "Please fill out the form to book your trip with our VTC service. Select the date, route, and provide your contact details.",
     "datePlaceholder": "Select date and time *",
     "name": "Name *",
     "adults": "Adults *",
@@ -89,13 +128,12 @@
     "comment": "Comment",
     "consent": "I agree that my submitted data will be collected and stored.",
     "submit": "Book",
-    
-      "standard": "Standard trip",
-      "disposition": "Hourly booking",
-      "titleDisposition": "Hourly Booking",
-      "descriptionDisposition": "Book a car with driver by the hour.",
-      "pickupLocation": "Pickup location *",
-      "duration": "Duration (hours) *",
+    "standard": "Standard trip",
+    "disposition": "Hourly booking",
+    "titleDisposition": "Hourly Booking",
+    "descriptionDisposition": "Book a car with driver by the hour.",
+    "pickupLocation": "Pickup location *",
+    "duration": "Duration (hours) *",
     "success": "Thank you! Your booking has been submitted.",
     "error": {
       "tooFast": "Please wait before submitting again.",
@@ -108,71 +146,59 @@
       "network": "Network error. Please try again later."
     }
   },
-
-    "form2": {
-      "success": "Thank you! Your message has been sent."
-    },
-  
-  
+  "form2": {
+    "success": "Thank you! Your message has been sent."
+  },
   "nav": {
-  "home": "Home",
-  "about": "About Us",
-  "services": "Services",
-  "tarifs": "Map"
-}
-,
-
-"footer": {
-  "linksTitle": "Links",
-  "faq": "FAQ",
-  "contact": "Contact Us",
-  "support": "Support",
-  "infoTitle": "Info",
-  "home": "Home",
-  "aboutUs": "About Us",
-  "services": "Services",
-  "tarifs": "Map",
-  "followUs": "Follow Us",
-  "rightsReserved": "All rights reserved."
-}
-,
-
-"navBurger": {
-  "home": "Home",
-  "services": "Services",
-  "aboutUs": "About Us",
-  "tarifs": "Map"
-}
-
-,
-
-
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "tarifs": "Map"
+  },
+  "footer": {
+    "linksTitle": "Links",
+    "faq": "FAQ",
+    "contact": "Contact Us",
+    "support": "Support",
+    "infoTitle": "Info",
+    "home": "Home",
+    "aboutUs": "About Us",
+    "services": "Services",
+    "tarifs": "Map",
+    "followUs": "Follow Us",
+    "rightsReserved": "All rights reserved."
+  },
+  "navBurger": {
+    "home": "Home",
+    "services": "Services",
+    "aboutUs": "About Us",
+    "tarifs": "Map"
+  },
   "faq": {
-  "title": "Frequently Asked Questions",
-  "heroText": "Find answers to the most common questions about our services.",
-  "heroButton": "Contact us",
-  "q1": "How do I book a ride?",
-  "a1": "You can book a ride through our website or by calling the provided number.",
-  "q2": "Can I cancel my reservation?",
-  "a2": "Yes, you can cancel up to 24 hours before the ride without any fees.",
-  "q3": "What payment methods are accepted?",
-  "a3": "We accept credit cards, Apple Pay, and cash.",
-  "q4": "Do you provide child seats?",
-  "a4": "Yes, you can request a child seat during the booking process.",
-  "q5": "Can I request multiple stops?",
-  "a5": "Yes, simply enter all required addresses when booking.",
-  "q6": "Are your services available at night?",
-  "a6": "Yes, we operate 24/7 with no days off.",
-  "q7": "Can I estimate the price in advance?",
-  "a7": "Of course! Enter your pickup and drop-off locations to calculate the fare.",
-  "q8": "What kind of vehicles do you offer?",
-  "a8": "We offer a wide range of vehicles — from sedans to premium cars.",
-  "q9": "Can I book a car for a specific time?",
-  "a9": "Yes, you can choose the exact date and time during booking.",
-  "q10": "Are your drivers licensed?",
-  "a10": "All of our drivers are VTC-licensed and undergo regular checks."
-}
-,
+    "title": "Frequently Asked Questions",
+    "heroText": "Find answers to the most common questions about our services.",
+    "heroButton": "Contact us",
+    "q1": "How do I book a ride?",
+    "a1": "You can book a ride through our website or by calling the provided number.",
+    "q2": "Can I cancel my reservation?",
+    "a2": "Yes, you can cancel up to 24 hours before the ride without any fees.",
+    "q3": "What payment methods are accepted?",
+    "a3": "We accept credit cards, Apple Pay, and cash.",
+    "q4": "Do you provide child seats?",
+    "a4": "Yes, you can request a child seat during the booking process.",
+    "q5": "Can I request multiple stops?",
+    "a5": "Yes, simply enter all required addresses when booking.",
+    "q6": "Are your services available at night?",
+    "a6": "Yes, we operate 24/7 with no days off.",
+    "q7": "Can I estimate the price in advance?",
+    "a7": "Of course! Enter your pickup and drop-off locations to calculate the fare.",
+    "q8": "What kind of vehicles do you offer?",
+    "a8": "We offer a wide range of vehicles — from sedans to premium cars.",
+    "q9": "Can I book a car for a specific time?",
+    "a9": "Yes, you can choose the exact date and time during booking.",
+    "q10": "Are your drivers licensed?",
+    "a10": "All of our drivers are VTC-licensed and undergo regular checks."
+  },
   "contact": {
     "heroText": "Contact Our Team",
     "heroButton": "Get in Touch",
@@ -184,15 +210,14 @@
     "message": "Message",
     "send": "Send",
     "thanks": "Thank you for your message! We will respond as soon as possible.",
-      "form": {
-        "name": "Name",
-        "email": "Email",
-        "message": "Message",
-        "submit": "Send",
-        "reset": "Reset"
-  }
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send",
+      "reset": "Reset"
+    }
   },
-
   "support": {
     "heroText": "Support",
     "heroButton": "Contact",
@@ -209,6 +234,3 @@
     "responseTime": "We usually respond within an hour during business hours."
   }
 }
-
-
-

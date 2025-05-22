@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaTiktok, FaTelegram } from "react-icons/fa";
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import "../styles/Footer.css";
 import { useTranslation } from "react-i18next";
@@ -80,6 +80,12 @@ export default function Footer() {
             </a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <FaYoutube />
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <FaTiktok />
+            </a>
+            <a href="https://telegram.com" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+              <FaTelegram />
             </a>
           </div>
         </div>

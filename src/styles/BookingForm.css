@@ -354,3 +354,9 @@ input:checked + .slider:before {
     margin: 0 auto;
   }
 }
+
+.booking-form-header h2 {
+  margin-bottom: 10px;
+  font-size: 32px;
+  color: #333;
+}

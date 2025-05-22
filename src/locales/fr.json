@@ -19,22 +19,68 @@
   },
 
   "aboutUs": {
-    "heroText": "À propos de nous",
-    "heroButton": "Découvrir",
-    "title": "Votre chauffeur privé sur la Côte d’Azur",
-    "paragraph1": "Notre entreprise de VTC est née de la passion pour le service de qualité, le confort et la ponctualité. Basés à Nice, nous proposons un service de transport privé haut de gamme, dédié aux particuliers comme aux professionnels.",
-    "paragraph2": "Avec plusieurs années d’expérience, nous mettons à votre disposition des chauffeurs professionnels, discrets et bilingues, ainsi que des véhicules haut de gamme parfaitement entretenus.",
-    "paragraph3": "Que ce soit pour vos trajets aéroport, vos déplacements professionnels ou vos événements privés, nous vous garantissons un service sur mesure, fiable et élégant.",
-    "commitmentsTitle": "Nos engagements",
-    "commitment1": "Disponibilité 24/7",
-    "commitment2": "Chauffeurs expérimentés et courtois",
-    "commitment3": "Véhicules récents, confortables et climatisés",
-    "commitment4": "Services personnalisés"
+  "heroText": "Découvrez qui nous sommes et ce qui nous motive.",
+  "heroButton": "En savoir plus",
+  "title": "À propos de nous",
+  "paragraph1": "Nous nous engageons à offrir des services VTC de haute qualité, fiables et adaptés à vos besoins.",
+  "paragraph2": "Nos chauffeurs expérimentés et notre flotte moderne garantissent votre confort et votre sécurité.",
+  "paragraph3": "Nous croyons en l'excellence, la transparence et la satisfaction client.",
+  "missionTitle": "Notre mission",
+  "missionText": "Offrir des services de transport exceptionnels alliant professionnalisme, ponctualité et attention.",
+  "visionTitle": "Notre vision",
+  "visionText": "Devenir le leader des services VTC reconnu pour sa qualité et son innovation.",
+  "commitmentsTitle": "Nos engagements",
+  "commitment1": "Disponibilité 24h/24 et 7j/7",
+  "commitment2": "Tarifs fixes et transparents",
+  "commitment3": "Véhicules confortables et propres",
+  "commitment4": "Chauffeurs professionnels et courtois",
+  "commitment5": "Ponctualité et fiabilité",
+  "commitment6": "Réservation facile et sécurisée",
+  "whyChooseUsTitle": "Pourquoi nous choisir",
+  "reason1": "Recommandé par des centaines de clients",
+  "reason2": "Réservation rapide et simple",
+  "reason3": "Service client excellent",
+  "reason4": "Chauffeurs multilingues",
+  "reason5": "Options de paiement flexibles",
+  "testimonialsTitle": "Témoignages de nos clients",
+  "testimonial1": {
+    "text": "La meilleure expérience de trajet que j’ai eue. Professionnel et fluide.",
+    "author": "Anna K."
   },
+  "testimonial2": {
+    "text": "Toujours à l’heure et sympathique. Je recommande fortement !",
+    "author": "Marc D."
+  },
+  "testimonial3": {
+    "text": "Service excellent et véhicules propres. Je les utilise chaque semaine.",
+    "author": "Laura B."
+  },
+  "galleryTitle": "Notre galerie"
+}
+,
   "home": {
     "heroText": "Chauffeur VTC privé sur Nice et toute la Côte d’Azur",
-    "heroButton": "Réserver maintenant"
+    "heroButton": "Réserver maintenant",
+      "whyChooseUsTitle": "Pourquoi nous choisir ?",
+    "why1": "Chauffeurs professionnels expérimentés",
+    "why2": "Véhicules confortables et propres",
+    "why3": "Service ponctuel et fiable",
+    "why4": "Assistance client 24h/24 et 7j/7",
+    "why5": "Tarifs transparents sans frais cachés",
+
+    "testimonialsTitle": "Ce que disent nos clients",
+    "testimonial1": {
+      "text": "Le trajet était agréable et le chauffeur très courtois.",
+      "author": "Jean D."
+    },
+    "testimonial2": {
+      "text": "Excellent service, ponctuel et professionnel.",
+      "author": "Sophie L."
+    },
+
+    "galleryTitle": "Notre flotte et moments de service"
   },
+  
 
   "services": {
     "heroText": "Nos services",
@@ -65,6 +111,8 @@
     "reset": "Réinitialiser",
     "title": "Chauffeur Privé VTC 24/7",
     "description": "Réservez votre transfert privé VTC Nice en ligne 24h/7j.  Notre équipe dédiée assure un traitement rapide et soigné de chaque demande, pour un service de qualité qui s’adapte à vos besoins de transport sur toute la Côte d’Azur. Pour toute Réservation de chauffeur privé á Nice dans l’immédiat ou dans moins d’une heure, merci de nous contacter directement par téléphone ou par whatsapp au",
+    "title1": "Réservez votre trajet",
+    "description1": "Veuillez remplir le formulaire pour réserver votre trajet avec notre service VTC. Sélectionnez la date, l'itinéraire et fournissez vos coordonnées.",  
     "datePlaceholder": "Sélectionner date et heure *",
     "name": "Nom *",
     "pickupLocation": "Lieu de prise en charge *",

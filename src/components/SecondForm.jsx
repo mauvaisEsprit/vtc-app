@@ -99,6 +99,12 @@ export default function SecondForm() {
   return (
     <div className="booking-form-container">
       <form className="booking-form" id="booking-form2" onSubmit={handleSubmit}>
+
+        <div className="booking-form-header">
+  <h2>{t("form.title") || "Бронирование поездки"}</h2>
+  <p>{t("form.description") || "Пожалуйста, заполните форму, чтобы заказать поездку с нашим сервисом VTC. Выберите дату, маршрут и укажите данные для связи."}</p>
+</div>
+
         <input
           type="text"
           name="website"

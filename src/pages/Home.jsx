@@ -6,6 +6,7 @@ import BookingForm from "../components/BookingForm";
 import SecondForm from "../components/SecondForm";
 import "../styles/Home.css";
 import TextHome from "../components/TextHome";
+import GalleryCarousel from "../components/GalleryCarousel";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -35,7 +36,7 @@ useEffect(() => {
   const scrollToHash = () => {
     const element = document.querySelector(hash);
     if (element) {
-       const headerHeight = window.innerWidth <= 768 ? 230 : 300;
+       const headerHeight = window.innerWidth <= 768 ? 270 : 300;
       const offset = -headerHeight ;
       const top = element.getBoundingClientRect().top + window.scrollY + offset;
       window.scrollTo({ top, behavior: "smooth" });
@@ -93,7 +94,32 @@ useEffect(() => {
             <SecondForm />
           </div>
         )}
-      
+      <section className="why-choose-us">
+  <h2>{t("home.whyChooseUsTitle")}</h2>
+  <ul>
+    <li>{t("home.why1")}</li>
+    <li>{t("home.why2")}</li>
+    <li>{t("home.why3")}</li>
+    <li>{t("home.why4")}</li>
+    <li>{t("home.why5")}</li>
+  </ul>
+</section>
+<section className="testimonials">
+  <h2>{t("home.testimonialsTitle")}</h2>
+  <div className="testimonial">
+    <blockquote>“{t("home.testimonial1.text")}”</blockquote>
+    <footer>— {t("home.testimonial1.author")}</footer>
+  </div>
+  <div className="testimonial">
+    <blockquote>“{t("home.testimonial2.text")}”</blockquote>
+    <footer>— {t("home.testimonial2.author")}</footer>
+  </div>
+</section>
+
+  <GalleryCarousel />
+
+
+
     </>
   );
 }
