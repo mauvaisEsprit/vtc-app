@@ -4,6 +4,8 @@ import "../styles/Nav.css";
 import BurgerMenu from "./BurgerMenu";
 import { useTranslation } from "react-i18next";
 
+
+
 export default function Nav() {
   const { i18n, t } = useTranslation();
   const location = useLocation();
@@ -16,10 +18,11 @@ export default function Nav() {
   ];
 
   const languages = [
-    { code: "fr", label: "FR" },
-    { code: "en", label: "EN" },
-    { code: "ru", label: "RU" },
-  ];
+  { code: "fr", img: "/flags/fr.svg" },
+  { code: "en", img: "/flags/gb.svg" },
+  { code: "ru", img: "/flags/ru.svg" },
+];
+
 
   const handleLangChange = (code) => {
     i18n.changeLanguage(code);
@@ -41,12 +44,17 @@ export default function Nav() {
         <div className="nav-item lang-switcher">
           {languages.map((lang) => (
             <button
-              key={lang.code}
-              onClick={() => handleLangChange(lang.code)}
-              className={i18n.language === lang.code ? "active-lang" : "not-active-lang"}
-            >
-              {lang.label}
-            </button>
+  key={lang.code}
+  onClick={() => handleLangChange(lang.code)}
+  className={i18n.language === lang.code ? "active-lang" : "not-active-lang"}
+>
+  <img
+    src={lang.img}
+    alt={lang.code}
+    style={{ width: "24px", height: "24px", borderRadius: "4px" }}
+  />
+</button>
+
           ))}
           </div>
       </div>

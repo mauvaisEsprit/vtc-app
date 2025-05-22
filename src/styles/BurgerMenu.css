@@ -261,3 +261,33 @@
     transform: rotate(-45deg);
   }
 }
+
+.lang-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.lang-switcher button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.lang-switcher button img {
+  width: 34px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.lang-switcher button.active-lang img {
+  outline-offset: 2px;
+}
+
+.lang-switcher button:hover {
+  transform: scale(1.1);
+}
