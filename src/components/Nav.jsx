@@ -27,7 +27,8 @@ export default function Nav() {
 
   return (
     <nav className="nav">
-      <div className="nav-menu">
+      <div className="nav-container">
+        <div className="nav-menu">
         {pages
           .filter((page) => page.path !== location.pathname)
           .map((page) => (
@@ -35,6 +36,7 @@ export default function Nav() {
               <Link to={page.path}>{page.label}</Link>
             </div>
           ))}
+          </div>
 
         <div className="nav-item lang-switcher">
           {languages.map((lang) => (
@@ -46,7 +48,7 @@ export default function Nav() {
               {lang.label}
             </button>
           ))}
-        </div>
+          </div>
       </div>
 
       <BurgerMenu />

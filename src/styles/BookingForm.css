@@ -186,8 +186,9 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-.booking-form button {
+.booking-form-button {
   padding: 15px;
+  width: 60%;
   border: 1px solid white;
   color: rgb(255, 255, 255);
   background: linear-gradient(120deg, rgb(144, 144, 144), rgb(0, 0, 0), rgb(144, 144, 144));
@@ -199,11 +200,7 @@ input:checked + .slider:before {
   border-radius: 10px;
 }
 
-.booking-form-button {
-  width: 60%;
-}
-
-#booking-form button:hover {
+.booking-form-button:hover {
   animation: gold-flow 3s infinite linear;
 }
 

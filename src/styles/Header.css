@@ -41,6 +41,8 @@ header {
         height: 75px;
         z-index: 1000;
     }
+
+    
     
     #logo a {
         margin: auto;
@@ -48,6 +50,7 @@ header {
         align-self: center;
         color: white;
         font-size: 24px;
+        
     }
 }
 @media (min-width: 769px) and ( max-width: 1400px) {
