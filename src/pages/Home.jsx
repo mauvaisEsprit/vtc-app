@@ -35,9 +35,8 @@ useEffect(() => {
   const scrollToHash = () => {
     const element = document.querySelector(hash);
     if (element) {
-       const headerHeight = window.innerWidth <= 768 ? 200 : 280;
+       const headerHeight = window.innerWidth <= 768 ? 230 : 300;
       const offset = -headerHeight ;
-      //const offset = -200;
       const top = element.getBoundingClientRect().top + window.scrollY + offset;
       window.scrollTo({ top, behavior: "smooth" });
     }
