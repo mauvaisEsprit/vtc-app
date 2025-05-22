@@ -183,15 +183,18 @@ export default function SecondForm() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        </div>
+
+        {/* Шаг 6: Подтверждение */}
+        <div className={`step-transition ${selectedDate && pickupLocation && duration && name && phone && email ? "show" : ""}`}>
         <textarea
           id="tripPurpose"
           name="tripPurpose"
           rows="3"
           placeholder={t("form.comment")}
         ></textarea>
-        </div>
-        {/* Шаг 6: Подтверждение */}
-        <div className={`step-transition ${selectedDate && pickupLocation && duration && name && phone && email ? "show" : ""}`}>
+        
+        
         <div className="price-summary">
           <p>
             {t("form.estimatedPrice")}: <strong>{totalPrice} €</strong>

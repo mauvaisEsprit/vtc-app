@@ -115,7 +115,8 @@
       "name": "Nom",
       "email": "E-mail",
       "message": "Message",
-      "submit": "Envoyer"
+      "submit": "Envoyer",
+      "reset": "Réinitialiser"
     }
   },
 

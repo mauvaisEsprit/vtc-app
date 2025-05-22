@@ -70,7 +70,7 @@ useEffect(() => {
         <div className="type-switch">
           <Link to="/#booking">
             <button
-              className={bookingType === "standard" ? "active" : ""}
+              className={bookingType === "standard" ? "active" : "not-active"}
               onClick={() => setBookingType("standard")}
             >
               {t("form.standard")}
@@ -78,7 +78,7 @@ useEffect(() => {
           </Link>
           <Link to="/#booking2">
             <button
-              className={bookingType === "disposition" ? "active" : ""}
+              className={bookingType === "disposition" ? "active" : "not-active"}
               onClick={() => setBookingType("disposition")}
             >
               {t("form.disposition")}

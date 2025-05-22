@@ -74,11 +74,10 @@
   transition: 0.4s ease-in-out;
   text-align: center;
   text-decoration: none;
+  animation: gold-flow 6s linear infinite;
 }
 
-.buttonRes:hover {
-  animation: gold-flow 3s infinite linear;
-}
+
 
 @keyframes gold-flow {
   0% { background-position: 100% 50%; }

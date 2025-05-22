@@ -88,9 +88,11 @@ export default function Contact() {
           <label htmlFor="garant">{t("form.consent")}</label>
         </div>
 
-          <button type="submit" disabled={isSubmitting}>
+          <button className='booking-form-button' type="submit" disabled={isSubmitting}>
             {isSubmitting ? t('form.sending') : t('contact.form.submit')}
           </button>
+
+          <button className='booking-form-button' type='reset'>{t('contact.form.reset')}</button>
         </form>
       </div>
     </div>

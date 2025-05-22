@@ -192,6 +192,7 @@ input:checked + .slider:before {
   color: rgb(255, 255, 255);
   background: linear-gradient(120deg, rgb(144, 144, 144), rgb(0, 0, 0), rgb(144, 144, 144));
   background-size: 200% 200%;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.4s ease-in-out;
   font-family: "Space Grotesk", sans-serif;

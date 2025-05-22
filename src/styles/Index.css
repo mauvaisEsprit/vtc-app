@@ -21,3 +21,36 @@ body {
     }
 }
 
+button {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: "Space Grotesk", sans-serif;
+}
+::placeholder {
+    color: rgba(0, 0, 0, 1);
+    font-size: 0.9rem;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}

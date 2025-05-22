@@ -178,7 +178,8 @@
         "name": "Name",
         "email": "Email",
         "message": "Message",
-        "submit": "Send"
+        "submit": "Send",
+        "reset": "Reset"
   }
   },
 
