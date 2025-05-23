@@ -84,7 +84,7 @@ export default function Footer() {
             <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
               <FaTiktok />
             </a>
-            <a href="https://telegram.com" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
               <FaTelegram />
             </a>
           </div>
