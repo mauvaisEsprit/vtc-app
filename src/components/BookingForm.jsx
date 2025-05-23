@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useCallback } from "react";
+import { useState, useEffect } from "react";
 import "../styles/BookingForm.css";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -23,7 +22,7 @@ export default function BookingForm() {
   const [to, setTo] = useState("");
   const [price, setPrice] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [isRoundTrip, setIsRoundTrip] = useState(false); // новое состояние
   const [adults, setAdults] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -33,6 +32,26 @@ export default function BookingForm() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  // если хочешь, добавь стейт для даты обратного пути:
+  const [selectedReturnDate, setSelectedReturnDate] = useState(null);
+
+
+
+  useEffect(() => {
+    if (
+      isRoundTrip &&
+      selectedDate &&
+      selectedReturnDate &&
+      selectedReturnDate < selectedDate
+    ) {
+      // Корректируем: делаем дату возврата на 15 минут позже даты туда
+      const adjustedReturn = new Date(selectedDate.getTime() + 15 * 60 * 1000);
+      setSelectedReturnDate(adjustedReturn);
+    }
+  }, [selectedDate, selectedReturnDate, isRoundTrip]);
+
+
+
 
   const localeMap = {
     "en": "en",
@@ -45,16 +64,16 @@ export default function BookingForm() {
   const currentLocale = localeMap[i18n.language] || "en";
 
 
+  const handleRoundTripChange = (e) => {
+    setIsRoundTrip(e.target.checked);
+    if (!e.target.checked) {
+      // если переключаем в "Туда" — можно очистить дату обратного пути, если есть
+      // например, если добавишь selectedReturnDate
+    }
+  };
 
 
 
-  const handlePriceCalculated = useCallback((newPrice) => {
-    setPrice(newPrice);
-  }, []);
-
-  const handleLoading = useCallback((value) => {
-    setLoading(value);
-  }, []);
 
 
 
@@ -174,6 +193,14 @@ export default function BookingForm() {
         alert(t("form.success"));
         setAdults("");
         setChildren("");
+        setFrom("");
+        setTo("");
+        setPrice(null);
+        setSelectedReturnDate(null);
+        setError("");
+        setName("");
+        setPhone("");
+        setEmail("");
         setSelectedDate(null);
         e.target.reset();
         setLastSubmitTime(now);
@@ -198,15 +225,20 @@ export default function BookingForm() {
     setName("");
     setPhone("");
     setEmail("");
+    setSelectedReturnDate(null);
   };
 
+  const numericPrice = Number(price);
+  const adjustedPrice = !isNaN(numericPrice)
+    ? (isRoundTrip ? numericPrice * 1.9 : numericPrice)
+    : null;
 
   return (
     <div className="booking-form-container">
       <form className="booking-form" onSubmit={handleSubmit}>
         <div className="booking-form-header">
-          <h2>{t("form.title1") || "Бронирование поездки"}</h2>
-          <p>{t("form.description1") || "Пожалуйста, заполните форму, чтобы заказать поездку с нашим сервисом VTC. Выберите дату, маршрут и укажите данные для связи."}</p>
+          <h2>{t("form.title1")}</h2>
+          <p>{t("form.description1")}</p>
         </div>
 
         {/* Honeypot */}
@@ -217,6 +249,22 @@ export default function BookingForm() {
           tabIndex="-1"
           autoComplete="off"
         />
+
+        {/* Добавляем переключатель */}
+        <div className="trip-type-toggle">
+          <input
+            type="checkbox"
+            id="tripTypeToggle"
+            checked={isRoundTrip}
+            onChange={handleRoundTripChange}
+          />
+          <label htmlFor="tripTypeToggle"></label>
+          <span className="label-text">{t("form.roundTrip")}</span>
+        </div>
+
+
+
+
 
         {/* Шаг 1: Дата, откуда, куда, карта */}
         <label htmlFor="date" className="visually-hidden">Date</label>
@@ -236,6 +284,42 @@ export default function BookingForm() {
           name="date"
           required
         />
+
+        {/* Если выбран round trip — показываем дату обратного пути */}
+        {isRoundTrip && (
+          <>
+            <label htmlFor="returnDate" className="visually-hidden">
+              Return Date
+            </label>
+            <DatePicker
+              locale={currentLocale}
+              className="booking-datepicker"
+              selected={selectedReturnDate}
+              onChange={(date) => setSelectedReturnDate(date)}
+              showTimeSelect
+              timeIntervals={15}
+              minDate={selectedDate || minDateTime} // минимум — дата туда
+              minTime={
+                selectedReturnDate &&
+                  selectedDate &&
+                  selectedReturnDate.toDateString() === selectedDate.toDateString()
+                  ? getMinTime(selectedDate)
+                  : new Date(0, 0, 0, 0, 0) // иначе любое время
+              }
+              maxTime={new Date(0, 0, 0, 23, 45)}
+              placeholderText={t("form.returnDatePlaceholder")}
+              dateFormat="dd/MM/yyyy HH:mm"
+              timeFormat="HH:mm"
+              name="returnDate"
+              required={isRoundTrip}
+            />
+
+
+
+
+          </>
+        )}
+
 
         <input
           type="text"
@@ -340,12 +424,14 @@ export default function BookingForm() {
         {/* Шаг 6: Прочее */}
         <div className={`step-transition ${selectedDate && from && to && adults && !error && name && phone && email ? "show" : ""}`}>
           <div id="baggage-container">
-            <label htmlFor="baggage">{t("form.baggage")}</label>
             <label className="switch">
               <input type="checkbox" id="baggage" name="baggage" />
               <span className="slider"></span>
             </label>
+            <span className="label-text">{t("form.baggage")}</span>
           </div>
+
+
 
           <textarea
             id="comment"
@@ -356,11 +442,11 @@ export default function BookingForm() {
         </div>
 
         {loading ? (
-          <div className="spinner1"></div> // показываем только спиннер во время загрузки
-        ) : price ? (
-          <p>{t("form.estimatedPrice")} <strong>{price}</strong></p> // после загрузки показываем фразу с ценой
+          <div className="spinner1"></div>
+        ) : adjustedPrice !== null && adjustedPrice > 0 ? (
+          <p>{t("form.estimatedPrice")} <strong>{adjustedPrice.toFixed(2)}</strong></p>
         ) : (
-          <p>{t("form.estimatedPrice")}</p> // изначально показываем только фразу без цены
+          <p>{t("form.estimatedPrice")}</p>
         )}
 
 

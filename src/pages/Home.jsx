@@ -1,6 +1,6 @@
 import Hero from "../components/Hero";
 import { useLocation, Link } from "react-router-dom";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
 import BookingForm from "../components/BookingForm";
 import SecondForm from "../components/SecondForm";

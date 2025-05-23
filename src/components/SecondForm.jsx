@@ -78,6 +78,9 @@ export default function SecondForm() {
         e.target.reset();
         setPickupLocation("");
         setDuration("");
+        setName("");
+        setPhone("");
+        setEmail("");
         setSelectedDate(null);
         setLastSubmitTime(now);
       } else {

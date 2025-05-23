@@ -41,7 +41,7 @@ form select:focus,
 form textarea:focus {
   border-color: #000;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  /*box-shadow: 0 0 0 2px rgba(0,0,0,0.1);*/
 }
 
 
