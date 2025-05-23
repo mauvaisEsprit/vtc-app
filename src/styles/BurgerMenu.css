@@ -63,6 +63,8 @@
     align-items: center;
     transition: right 0.4s ease-in-out;
     z-index: 2050;
+    overscroll-behavior: contain;
+    touch-action: none;
   }
 
   .fullscreen-menu.open {

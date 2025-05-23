@@ -103,7 +103,7 @@ useEffect(() => {
             </button>
           </Link>
         </div>
-
+      
         {bookingType === "standard" ? (
           <div id="booking" ref={bookingRef}>
             <BookingForm /> </div>
@@ -111,7 +111,7 @@ useEffect(() => {
           <div id="booking2">
             <SecondForm />
           </div>
-        )}
+        )}*
       <section className="why-choose-us" data-aos="fade-up">
   <h2>{t("home.whyChooseUsTitle")}</h2>
   <ul>
@@ -124,11 +124,12 @@ useEffect(() => {
 </section>
 <section className="testimonials" data-aos="fade-up">
   <h2>{t("home.testimonialsTitle")}</h2>
-  <div className="testimonial"data-aos="fade-right">
+  <div className="testimonial" data-aos="fade-right">
     <blockquote>“{t("home.testimonial1.text")}”</blockquote>
     <footer>— {t("home.testimonial1.author")}</footer>
   </div>
-  <div className="testimonial" data-aos="fade-left">
+  
+ <div className="testimonial" data-aos="fade-right">
     <blockquote>“{t("home.testimonial2.text")}”</blockquote>
     <footer>— {t("home.testimonial2.author")}</footer>
   </div>
