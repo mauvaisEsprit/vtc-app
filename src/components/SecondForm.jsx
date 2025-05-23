@@ -129,6 +129,7 @@ export default function SecondForm() {
           dateFormat="dd/MM/yyyy HH:mm"
           timeFormat="HH:mm"
           name="date"
+          onFocus={(e) => e.target.blur()} // убираем фокус сразу после получения
           required
         />
 

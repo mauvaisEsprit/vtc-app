@@ -283,6 +283,7 @@ export default function BookingForm() {
           timeFormat="HH:mm"
           name="date"
           required
+          onFocus={(e) => e.target.blur()} // убираем фокус сразу после получения
         />
 
         {/* Если выбран round trip — показываем дату обратного пути */}
@@ -311,6 +312,7 @@ export default function BookingForm() {
               dateFormat="dd/MM/yyyy HH:mm"
               timeFormat="HH:mm"
               name="returnDate"
+              onFocus={(e) => e.target.blur()} // убираем фокус сразу после получения
               required={isRoundTrip}
             />
 
