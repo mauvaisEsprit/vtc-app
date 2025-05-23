@@ -10,7 +10,7 @@ header {
     text-align: center;
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 120px;
     z-index: 1000;
     -webkit-backdrop-filter: blur(10px);
