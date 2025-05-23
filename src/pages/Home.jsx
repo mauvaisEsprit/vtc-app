@@ -115,6 +115,7 @@ export default function Home() {
           <motion.div
             key="disposition"
             id="booking2"
+            ref={bookingRef}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
