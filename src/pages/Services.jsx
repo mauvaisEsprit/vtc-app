@@ -36,15 +36,18 @@ export default function Services() {
   const textServices = t("services.heroText");
   const buttonTextServices = t("services.heroButton");
 
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  }, []);
-
+useEffect(() => {
+  AOS.init({
+    duration: 800, // время анимации в мс
+    once: true, // анимация сработает только один раз при скролле
+    easing: "ease-in-out",
+  });
+}, []);
   return (
     <div>
-      <Hero image={imageServices} text={textServices} buttonText={buttonTextServices} />
-      <div className="services-page">
-        <div className="container">
+      <Hero image={imageServices} text={textServices} buttonText={buttonTextServices} data-aos="fade-up"/>
+      <div className="services-page" data-aos="fade-up">
+        <div className="container" data-aos="fade-up">
           <h1>{t("services.title")}</h1>
 
           {servicesData.map(({ key, img, anchor }, index) => (
@@ -53,7 +56,7 @@ export default function Services() {
               className={`service-section ${index % 2 === 1 ? "reverse" : ""}`}
               data-aos="fade-up"
             >
-              <div className="service-image-wrapper">
+              <div className="service-image-wrapper" data-aos="fade-up">
                 <img
                   src={img}
                   alt={t(`services.${key}.title`)}
@@ -61,7 +64,7 @@ export default function Services() {
                 />
               </div>
 
-              <div className="service-text">
+              <div className="service-text" data-aos="fade-up">
                 <h2>{t(`services.${key}.title`)}</h2>
                 <p>{t(`services.${key}.description`)}</p>
                 <Link to={`/${anchor}`}>
