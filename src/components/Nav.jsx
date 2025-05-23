@@ -39,6 +39,15 @@ export default function Nav() {
               <Link to={page.path}>{page.label}</Link>
             </div>
           ))}
+          <div className="nav-item dropdown">
+  <button className="dropdown-toggle">{t("nav.more")}</button>
+  <div className="dropdown-menu">
+    <Link to="/faq">{t("nav.faq")}</Link>
+    <Link to="/contact">{t("nav.contact")}</Link>
+    <Link to="/support">{t("nav.support")}</Link>
+  </div>
+</div>
+
           </div>
 
         <div className="nav-item lang-switcher">

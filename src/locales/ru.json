@@ -155,7 +155,10 @@
     "home": "Главная",
     "about": "О нас",
     "services": "Услуги",
-    "tarifs": "Карта"
+    "tarifs": "Карта",
+    "more": "Ещё",
+    "contact": "Контакты",
+    "support": "Поддержка"
   },
   "footer": {
     "linksTitle": "Ссылки",

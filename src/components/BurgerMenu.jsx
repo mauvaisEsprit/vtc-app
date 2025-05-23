@@ -51,6 +51,7 @@ export default function BurgerMenu() {
               <Link to="/services" onClick={toggleMenu}>{t("navBurger.services")}</Link>
               <Link to="/aboutus" onClick={toggleMenu}>{t("navBurger.aboutUs")}</Link>
               <Link to="/tarifs" onClick={toggleMenu}>{t("navBurger.tarifs")}</Link>
+             
 
               <div className="lang-switcher">
                 <button
@@ -74,6 +75,11 @@ export default function BurgerMenu() {
                   <img src="/flags/ru.svg" alt="RU" />
                 </button>
 
+              </div>
+               <div className="bottom-links">
+                <Link to="/faq" onClick={toggleMenu}>{t("footer.faq")}</Link>
+                <Link to="/contact" onClick={toggleMenu}>{t("footer.contact")}</Link>
+                <Link to="/support" onClick={toggleMenu}>{t("footer.support")}</Link>
               </div>
             </nav>
           </div>

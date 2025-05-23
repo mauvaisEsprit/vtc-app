@@ -153,7 +153,11 @@
     "home": "Home",
     "about": "About Us",
     "services": "Services",
-    "tarifs": "Map"
+    "tarifs": "Map",
+    "more": "More",
+  "faq": "FAQ",
+  "contact": "Contact",
+  "support": "Support"
   },
   "footer": {
     "linksTitle": "Links",

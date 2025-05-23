@@ -74,7 +74,7 @@
   .fullscreen-menu nav {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 55px;
     text-align: center;
   }
 
@@ -95,6 +95,20 @@
     background: none;
     border: none;
     cursor: pointer;
+  }
+
+  .bottom-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .fullscreen-menu nav .bottom-links a {
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    font-family: "Space Grotesk", sans-serif;
   }
 
   .close-button {

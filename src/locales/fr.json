@@ -173,7 +173,11 @@
     "home": "Accueil",
     "about": "À propos",
     "services": "Services",
-    "tarifs": "Carte"
+    "tarifs": "Carte",
+    "more": "Plus",
+  "faq": "FAQ",
+  "contact": "Contact",
+  "support": "Support"
   },
   "footer": {
     "linksTitle": "Liens",
