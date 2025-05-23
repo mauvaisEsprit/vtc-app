@@ -101,8 +101,8 @@ export default function SecondForm() {
       <form className="booking-form" id="booking-form2" onSubmit={handleSubmit}>
 
         <div className="booking-form-header">
-  <h2>{t("form.title1") || "Бронирование поездки"}</h2>
-  <p>{t("form.description1") || "Пожалуйста, заполните форму, чтобы заказать поездку с нашим сервисом VTC. Выберите дату, маршрут и укажите данные для связи."}</p>
+  <h2>{t("form.title2")}</h2>
+  <p>{t("form.description2")}</p>
 </div>
 
         <input
@@ -199,18 +199,18 @@ export default function SecondForm() {
           rows="3"
           placeholder={t("form.comment")}
         ></textarea>
+        </div>
         
         
         <div className="price-summary">
           <p>
-            {t("form.estimatedPrice")}: <strong>{totalPrice} €</strong>
+            {t("form.estimatedPrice")} <strong>{totalPrice} €</strong>
           </p>
         </div>
 
         <div id="garant-container">
           <input type="checkbox" id="garant" name="garant" required />
           <label htmlFor="garant">{t("form.consent")}</label>
-        </div>
         </div>
 
         <button className="booking-form-button" type="submit" disabled={isSubmitting}>
