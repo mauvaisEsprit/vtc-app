@@ -1,3 +1,12 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+
 /* Контейнер секции бронирования */
 #booking, #booking2 {
   background-color: #f5f5f5;
@@ -26,6 +35,15 @@
   transition: all 0.3s ease;
   font-weight: 600;
 }
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #000;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+}
+
 
 /* Анимация фона для активной кнопки */
 @keyframes gold-flow {
@@ -199,11 +217,20 @@ form button[type="submit"]:hover {
   color: #333;
 }
 
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
 .gallery-section {
   background-color: #ffffff;
   padding: 60px 20px;
   text-align: center;
+  
 }
 
 .gallery-section h2 {
@@ -231,4 +258,22 @@ form button[type="submit"]:hover {
 .gallery img:hover {
   transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+@media (min-width: 1200px) {
+  .services-page {
+    padding: 80px 30px;
+  }
+
+  .services-page h1,
+  .why-choose-us h2,
+  .testimonials h2,
+  .gallery-section h2 {
+    font-size: 42px;
+  }
+
+  form {
+    padding: 40px;
+  }
 }

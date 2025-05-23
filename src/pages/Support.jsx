@@ -5,7 +5,7 @@ import '../styles/Support.css'
 
 export default function Support() {
   const { t } = useTranslation();
-  const imageSupport = "https://cdn.tripster.ru/thumbs2/eaca4600-11de-11ef-9e38-a60641776996.800x600.jpeg";
+  const imageSupport = "https://plus.unsplash.com/premium_photo-1661962506417-f6056afac074?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGZyZW5jaCUyMHJpdmllcmF8ZW58MHx8MHx8fDA%3D";
   const textSupport = t('support.heroText');
   const buttonTextSupport = t('support.heroButton');
 

@@ -83,27 +83,28 @@
   
 
   "services": {
-    "heroText": "Nos services",
-    "heroButton": "Découvrir",
-    "title": "Nos services VTC haut de gamme",
-    "bookButton": "Réserver",
-    "service1": {
-      "title": "Transferts aéroport et gare",
-      "description": "Transferts vers/depuis l’aéroport de Nice, la gare SNCF ou toute autre destination. Accueil personnalisé, assistance bagages, ponctualité assurée."
-    },
-    "service2": {
-      "title": "Mise à disposition",
-      "description": "Réservez un chauffeur privé à l’heure pour vos rendez-vous professionnels, vos excursions ou vos journées shopping. Vous décidez du programme, nous assurons le confort."
-    },
-    "service3": {
-      "title": "Événements privés et professionnels",
-      "description": "Mariages, soirées, séminaires, congrès... Faites confiance à notre équipe pour une logistique fluide et élégante."
-    },
-    "service4": {
-      "title": "Longues distances",
-      "description": "Besoin de vous rendre à Monaco, Cannes, Marseille ou ailleurs ? Profitez d’un trajet détendu avec un chauffeur privé."
-    }
+  "heroText": "Nos services",
+  "heroButton": "Découvrir",
+  "title": "Nos services VTC haut de gamme",
+  "bookButton": "Réserver",
+  "service1": {
+    "title": "Transferts aéroport et gare",
+    "description": "Profitez d’un service de transfert personnalisé vers ou depuis l’aéroport de Nice, la gare SNCF ou toute autre destination de votre choix. Nos chauffeurs professionnels vous accueillent avec une pancarte nominative, vous assistent avec vos bagages et garantissent une arrivée ponctuelle et sans stress. Que vous voyagiez pour affaires ou pour le plaisir, nous assurons un confort optimal dès votre arrivée."
   },
+  "service2": {
+    "title": "Mise à disposition",
+    "description": "Bénéficiez d’un chauffeur privé à l’heure pour tous vos déplacements personnels ou professionnels. Que ce soit pour une réunion, une visite touristique, une journée de shopping ou un événement spécial, notre service de mise à disposition vous offre flexibilité, discrétion et élégance. Vous choisissez l’itinéraire et la durée, nous nous adaptons à votre emploi du temps avec la plus grande rigueur."
+  },
+  "service3": {
+    "title": "Événements privés et professionnels",
+    "description": "Faites de vos événements une réussite avec notre service de transport dédié. Mariages, soirées de gala, séminaires, congrès ou tout autre événement nécessitant une organisation impeccable : nous mettons à votre disposition une flotte élégante et des chauffeurs expérimentés. Nos prestations s’adaptent à vos besoins logistiques pour garantir confort, ponctualité et standing à tous vos invités."
+  },
+  "service4": {
+    "title": "Longues distances",
+    "description": "Voyagez sereinement vers Monaco, Cannes, Marseille, Saint-Tropez ou toute autre ville grâce à notre service longue distance. Nos véhicules confortables et climatisés vous assurent un trajet reposant, tandis que nos chauffeurs professionnels prennent soin de chaque détail. Parfait pour les rendez-vous importants, les week-ends détente ou les transferts longue portée en toute tranquillité."
+  }
+}
+,
 
   "form": {
     "ready": "PRÊT À VOYAGER AVEC STYLE?",

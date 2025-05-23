@@ -86,26 +86,28 @@
   },
   
   "services": {
-    "heroText": "Our Services",
-    "heroButton": "Discover",
-    "title": "Our Premium VTC Services",
-    "bookButton": "Book Now",
-    "service1": {
-      "title": "Airport and Train Station Transfers",
-      "description": "Transfers to/from Nice airport, SNCF train station, or any other destination. Personalized welcome, luggage assistance, and guaranteed punctuality."
-    },
-    "service2": {
-      "title": "Chauffeur at Your Disposal",
-      "description": "Book a private driver by the hour for your business meetings, excursions, or shopping days. You set the schedule, we ensure your comfort."
-    },
-    "service3": {
-      "title": "Private and Business Events",
-      "description": "Weddings, parties, seminars, conferences... Trust our team for smooth and elegant logistics."
-    },
-    "service4": {
-      "title": "Long-Distance Journeys",
-      "description": "Need to travel to Monaco, Cannes, Marseille, or elsewhere? Enjoy a relaxed ride with a private driver."
-    }
+  "heroText": "Our Services",
+  "heroButton": "Discover",
+  "title": "Our Premium VTC Services",
+  "bookButton": "Book Now",
+  "service1": {
+    "title": "Airport and Train Station Transfers",
+    "description": "Enjoy a personalized transfer service to or from Nice Airport, SNCF train station, or any other destination of your choice. Our professional drivers will greet you with a name sign, assist you with your luggage, and ensure you arrive on time and stress-free. Whether you're traveling for business or leisure, we guarantee maximum comfort from the moment you arrive."
+  },
+  "service2": {
+    "title": "Hourly Private Driver (Mise à disposition)",
+    "description": "Book a private driver by the hour for your personal or professional needs. Whether it’s for a meeting, sightseeing tour, shopping day, or special event, our chauffeured service offers flexibility, discretion, and elegance. You set the schedule and route, and we adapt to your plans with absolute professionalism."
+  },
+  "service3": {
+    "title": "Private and Corporate Events",
+    "description": "Make your events a success with our dedicated transportation service. Weddings, gala evenings, seminars, conferences – we provide a stylish fleet and experienced chauffeurs. Our services are tailored to your logistical needs to ensure comfort, punctuality, and a premium experience for all your guests."
+  },
+  "service4": {
+    "title": "Long-Distance Trips",
+    "description": "Travel in peace to Monaco, Cannes, Marseille, Saint-Tropez, or any other city with our long-distance chauffeur service. Our comfortable, air-conditioned vehicles ensure a relaxing journey, while our professional drivers take care of every detail. Ideal for business appointments, weekend getaways, or stress-free transfers."
+  }
+
+
   },
   "form": {
     "ready": "READY TO TRAVEL IN STYLE?",
