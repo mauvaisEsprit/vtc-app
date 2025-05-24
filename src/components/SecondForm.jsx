@@ -4,12 +4,10 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/BookingForm.css";
 
-// Импорт локалей
 import en from "date-fns/locale/en-US";
 import fr from "date-fns/locale/fr";
 import ru from "date-fns/locale/ru";
 
-// Регистрация локалей
 registerLocale("en", en);
 registerLocale("fr", fr);
 registerLocale("ru", ru);
@@ -26,8 +24,6 @@ export default function SecondForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  const minDateTime = new Date(Date.now() + 60 * 60 * 1000);
-
   const hourlyRate = 60;
   const totalPrice = duration ? duration * hourlyRate : 0;
 
@@ -40,6 +36,31 @@ export default function SecondForm() {
     "ru-RU": "ru",
   };
   const currentLocale = localeMap[i18n.language] || "en";
+
+  const handleDateChange = (date) => {
+    if (!date) {
+      setSelectedDate(null);
+      return;
+    }
+
+    const now = new Date();
+    const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
+
+    // Проверяем, выбрана ли сегодня дата
+    if (
+      date.getDate() === now.getDate() &&
+      date.getMonth() === now.getMonth() &&
+      date.getFullYear() === now.getFullYear()
+    ) {
+      // Если выбранное время раньше, чем сейчас + 1 час — корректируем
+      if (date.getTime() < oneHourLater.getTime()) {
+        setSelectedDate(oneHourLater);
+        return;
+      }
+    }
+
+    setSelectedDate(date);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +75,8 @@ export default function SecondForm() {
 
     if (formData.get("website")) return;
 
+    // Проверка даты на минимум сейчас + 1 час
+    const minDateTime = new Date(Date.now() + 60 * 60 * 1000);
     if (!selectedDate || selectedDate < minDateTime) {
       alert(t("form.error.invalidDate"));
       return;
@@ -94,6 +117,12 @@ export default function SecondForm() {
     setPickupLocation("");
     setDuration("");
     setSelectedDate(null);
+    setName("");
+    setPhone("");
+    setEmail("");
+    setIsSubmitting(false);
+    setLastSubmitTime(0);
+    document.getElementById("booking-form2").reset();
   };
 
   return (
@@ -112,20 +141,41 @@ export default function SecondForm() {
           autoComplete="off"
         />
 
-        {/* Шаг 1: Дата, откуда забрать */}
         <DatePicker
           locale={currentLocale}
           className="booking-datepicker"
           selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
+          onChange={handleDateChange}
           showTimeSelect
           timeIntervals={15}
-          minDate={minDateTime}
+          minDate={new Date()} // запрещает выбор прошедших дней
+          filterTime={(time) => {
+            if (!selectedDate) return true;
+
+            const now = new Date();
+            const candidateTime = new Date(selectedDate);
+
+            candidateTime.setHours(time.getHours());
+            candidateTime.setMinutes(time.getMinutes());
+            candidateTime.setSeconds(0);
+            candidateTime.setMilliseconds(0);
+
+            // Разрешаем все время для будущих дат
+            if (
+              candidateTime.getDate() !== now.getDate() ||
+              candidateTime.getMonth() !== now.getMonth() ||
+              candidateTime.getFullYear() !== now.getFullYear()
+            ) {
+              return true;
+            }
+
+            // Для сегодня — блокируем время в прошлом (меньше сейчас)
+            return candidateTime.getTime() > now.getTime();
+          }}
           placeholderText={t("form.datePlaceholder")}
           dateFormat="dd/MM/yyyy HH:mm"
           timeFormat="HH:mm"
           name="date"
-          onFocus={(e) => e.target.blur()} // убираем фокус сразу после получения
           required
         />
 
@@ -138,7 +188,7 @@ export default function SecondForm() {
           value={pickupLocation}
           onChange={(e) => setPickupLocation(e.target.value)}
         />
-        {/* Шаг 2: Длительность */}
+
         <div
           className={`step-transition ${
             selectedDate && pickupLocation ? "show" : ""
@@ -156,7 +206,7 @@ export default function SecondForm() {
             onChange={(e) => setDuration(e.target.value)}
           />
         </div>
-        {/* Шаг 3: Информация о клиенте */}
+
         <div
           className={`step-transition ${
             selectedDate && pickupLocation && duration ? "show" : ""
@@ -173,7 +223,6 @@ export default function SecondForm() {
           />
         </div>
 
-        {/* Шаг 4: Контактные данные телефона */}
         <div
           className={`step-transition ${
             selectedDate && pickupLocation && duration && name ? "show" : ""
@@ -190,7 +239,6 @@ export default function SecondForm() {
           />
         </div>
 
-        {/* Шаг 5: Контактные данные электронной почты */}
         <div
           className={`step-transition ${
             selectedDate && pickupLocation && duration && name && phone
@@ -209,7 +257,6 @@ export default function SecondForm() {
           />
         </div>
 
-        {/* Шаг 6: Подтверждение */}
         <div
           className={`step-transition ${
             selectedDate && pickupLocation && duration && name && phone && email
@@ -236,11 +283,12 @@ export default function SecondForm() {
             selectedDate && pickupLocation && duration && name && phone && email
               ? "show"
               : ""
-          }`}>
-        <div id="garant-container">
-          <input type="checkbox" id="garant" name="garant" required />
-          <label htmlFor="garant">{t("form.consent")}</label>
-        </div>
+          }`}
+        >
+          <div id="garant-container">
+            <input type="checkbox" id="garant" name="garant" required />
+            <label htmlFor="garant">{t("form.consent")}</label>
+          </div>
         </div>
 
         <button
