@@ -237,6 +237,14 @@
     border: none;
     cursor: pointer;
   }
+  
+  .bottom-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
 
   .close-button {
     position: absolute;
