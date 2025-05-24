@@ -32,17 +32,14 @@ export default function SecondForm() {
   const totalPrice = duration ? duration * hourlyRate : 0;
 
   const localeMap = {
-    "en": "en",
+    en: "en",
     "en-US": "en",
-    "fr": "fr",
+    fr: "fr",
     "fr-FR": "fr",
-    "ru": "ru",
+    ru: "ru",
     "ru-RU": "ru",
   };
   const currentLocale = localeMap[i18n.language] || "en";
-
- 
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,11 +99,10 @@ export default function SecondForm() {
   return (
     <div className="booking-form-container">
       <form className="booking-form" id="booking-form2" onSubmit={handleSubmit}>
-
         <div className="booking-form-header">
-  <h2>{t("form.title2")}</h2>
-  <p>{t("form.description2")}</p>
-</div>
+          <h2>{t("form.title2")}</h2>
+          <p>{t("form.description2")}</p>
+        </div>
 
         <input
           type="text"
@@ -143,69 +139,92 @@ export default function SecondForm() {
           onChange={(e) => setPickupLocation(e.target.value)}
         />
         {/* Шаг 2: Длительность */}
-        <div className={`step-transition ${selectedDate && pickupLocation ? "show" : ""}`}>
-        <input
-          type="number"
-          id="durationSeconds"
-          name="duration"
-          placeholder={t("form.duration")}
-          min="1"
-          max="12"
-          required
-          value={duration}
-          onChange={(e) => setDuration(e.target.value)}
-        />
+        <div
+          className={`step-transition ${
+            selectedDate && pickupLocation ? "show" : ""
+          }`}
+        >
+          <input
+            type="number"
+            id="durationSeconds"
+            name="duration"
+            placeholder={t("form.duration")}
+            min="1"
+            max="12"
+            required
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+          />
         </div>
         {/* Шаг 3: Информация о клиенте */}
-        <div className={`step-transition ${selectedDate && pickupLocation && duration ? "show" : ""}`}>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder={t("form.name")}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <div
+          className={`step-transition ${
+            selectedDate && pickupLocation && duration ? "show" : ""
+          }`}
+        >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder={t("form.name")}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </div>
 
         {/* Шаг 4: Контактные данные телефона */}
-        <div className={`step-transition ${selectedDate && pickupLocation && duration && name ? "show" : ""}`}>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder={t("form.phone")}
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-        />
+        <div
+          className={`step-transition ${
+            selectedDate && pickupLocation && duration && name ? "show" : ""
+          }`}
+        >
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder={t("form.phone")}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
         </div>
 
         {/* Шаг 5: Контактные данные электронной почты */}
-        <div className={`step-transition ${selectedDate && pickupLocation && duration && name && phone ? "show" : ""}`}>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder={t("form.email")}
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <div
+          className={`step-transition ${
+            selectedDate && pickupLocation && duration && name && phone
+              ? "show"
+              : ""
+          }`}
+        >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder={t("form.email")}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
 
         {/* Шаг 6: Подтверждение */}
-        <div className={`step-transition ${selectedDate && pickupLocation && duration && name && phone && email ? "show" : ""}`}>
-        <textarea
-          id="tripPurpose"
-          name="tripPurpose"
-          rows="3"
-          placeholder={t("form.comment")}
-        ></textarea>
+        <div
+          className={`step-transition ${
+            selectedDate && pickupLocation && duration && name && phone && email
+              ? "show"
+              : ""
+          }`}
+        >
+          <textarea
+            id="tripPurpose"
+            name="tripPurpose"
+            rows="3"
+            placeholder={t("form.comment")}
+          ></textarea>
         </div>
-        
-        
+
         <div className="price-summary">
           <p>
             {t("form.estimatedPrice")} <strong>{totalPrice} €</strong>
@@ -217,11 +236,19 @@ export default function SecondForm() {
           <label htmlFor="garant">{t("form.consent")}</label>
         </div>
 
-        <button className="booking-form-button" type="submit" disabled={isSubmitting}>
+        <button
+          className="booking-form-button"
+          type="submit"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? t("form.sending") : t("form.submit")}
         </button>
 
-        <button className="booking-form-button" type="reset" onClick={handleReset}>
+        <button
+          className="booking-form-button"
+          type="reset"
+          onClick={handleReset}
+        >
           {t("form.reset")}
         </button>
       </form>

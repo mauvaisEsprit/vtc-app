@@ -32,20 +32,26 @@ const servicesData = [
 export default function Services() {
   const { t } = useTranslation();
 
-  const imageServices = "https://cms.enjourney.ru/upload/Jana/Frankreich/Nice%20city/Nice19.jpg";
+  const imageServices =
+    "https://cms.enjourney.ru/upload/Jana/Frankreich/Nice%20city/Nice19.jpg";
   const textServices = t("services.heroText");
   const buttonTextServices = t("services.heroButton");
 
-useEffect(() => {
-  AOS.init({
-    duration: 800, // время анимации в мс
-    once: true, // анимация сработает только один раз при скролле
-    easing: "ease-in-out",
-  });
-}, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // время анимации в мс
+      once: true, // анимация сработает только один раз при скролле
+      easing: "ease-in-out",
+    });
+  }, []);
   return (
     <div>
-      <Hero image={imageServices} text={textServices} buttonText={buttonTextServices} data-aos="fade-up"/>
+      <Hero
+        image={imageServices}
+        text={textServices}
+        buttonText={buttonTextServices}
+        data-aos="fade-up"
+      />
       <div className="services-page" data-aos="fade-up">
         <div className="container" data-aos="fade-up">
           <h1>{t("services.title")}</h1>
@@ -68,12 +74,13 @@ useEffect(() => {
                 <h2>{t(`services.${key}.title`)}</h2>
                 <p>{t(`services.${key}.description`)}</p>
                 <Link to={`/${anchor}`}>
-                  <button className="service-button">{t("services.bookButton")}</button>
+                  <button className="service-button">
+                    {t("services.bookButton")}
+                  </button>
                 </Link>
               </div>
             </div>
           ))}
-
         </div>
       </div>
     </div>

@@ -4,8 +4,6 @@ import "../styles/Nav.css";
 import BurgerMenu from "./BurgerMenu";
 import { useTranslation } from "react-i18next";
 
-
-
 export default function Nav() {
   const { i18n, t } = useTranslation();
   const location = useLocation();
@@ -18,11 +16,10 @@ export default function Nav() {
   ];
 
   const languages = [
-  { code: "fr", img: "/flags/fr.svg" },
-  { code: "en", img: "/flags/gb.svg" },
-  { code: "ru", img: "/flags/ru.svg" },
-];
-
+    { code: "fr", img: "/flags/fr.svg" },
+    { code: "en", img: "/flags/gb.svg" },
+    { code: "ru", img: "/flags/ru.svg" },
+  ];
 
   const handleLangChange = (code) => {
     i18n.changeLanguage(code);
@@ -32,40 +29,40 @@ export default function Nav() {
     <nav className="nav">
       <div className="nav-container">
         <div className="nav-menu">
-        {pages
-          .filter((page) => page.path !== location.pathname)
-          .map((page) => (
-            <div key={page.path} className="nav-item">
-              <Link to={page.path}>{page.label}</Link>
-            </div>
-          ))}
+          {pages
+            .filter((page) => page.path !== location.pathname)
+            .map((page) => (
+              <div key={page.path} className="nav-item">
+                <Link to={page.path}>{page.label}</Link>
+              </div>
+            ))}
           <div className="nav-item dropdown">
-  <button className="dropdown-toggle">{t("nav.more")}</button>
-  <div className="dropdown-menu">
-    <Link to="/faq">{t("nav.faq")}</Link>
-    <Link to="/contact">{t("nav.contact")}</Link>
-    <Link to="/support">{t("nav.support")}</Link>
-  </div>
-</div>
-
+            <button className="dropdown-toggle">{t("nav.more")}</button>
+            <div className="dropdown-menu">
+              <Link to="/faq">{t("nav.faq")}</Link>
+              <Link to="/contact">{t("nav.contact")}</Link>
+              <Link to="/support">{t("nav.support")}</Link>
+            </div>
           </div>
+        </div>
 
         <div className="nav-item lang-switcher">
           {languages.map((lang) => (
             <button
-  key={lang.code}
-  onClick={() => handleLangChange(lang.code)}
-  className={i18n.language === lang.code ? "active-lang" : "not-active-lang"}
->
-  <img
-    src={lang.img}
-    alt={lang.code}
-    style={{ width: "24px", height: "24px", borderRadius: "4px" }}
-  />
-</button>
-
+              key={lang.code}
+              onClick={() => handleLangChange(lang.code)}
+              className={
+                i18n.language === lang.code ? "active-lang" : "not-active-lang"
+              }
+            >
+              <img
+                src={lang.img}
+                alt={lang.code}
+                style={{ width: "24px", height: "24px", borderRadius: "4px" }}
+              />
+            </button>
           ))}
-          </div>
+        </div>
       </div>
 
       <BurgerMenu />

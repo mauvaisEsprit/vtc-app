@@ -5,22 +5,26 @@ export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
   const controllerRef = useRef(null);
 
   useEffect(() => {
+    // Если from или to пустые - сбрасываем цену и загрузку
     if (!from || !to) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (controllerRef.current) controllerRef.current.abort();
+
       onPriceCalculated(null);
       setLoading(false);
       return;
     }
 
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    // Очистить предыдущий таймаут и запрос
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (controllerRef.current) controllerRef.current.abort();
 
     timeoutRef.current = setTimeout(() => {
       calculateRoute();
     }, 1500);
 
     return () => {
-      clearTimeout(timeoutRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       if (controllerRef.current) controllerRef.current.abort();
     };
   }, [from, to]);

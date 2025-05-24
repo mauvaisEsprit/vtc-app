@@ -5,7 +5,8 @@ import "../styles/FAQ.css";
 
 export default function FAQ() {
   const { t } = useTranslation();
-  const imageFAQ = "https://www.agence-winter.com/uploads/accommodations/2157/pictures/343844/index/winter-immobilier-appartement-nice-port-nice-13a2676d5e6f2a7e12219e3035c25a26_882070a1b2_1920.jpg?1745046222";
+  const imageFAQ =
+    "https://www.agence-winter.com/uploads/accommodations/2157/pictures/343844/index/winter-immobilier-appartement-nice-port-nice-13a2676d5e6f2a7e12219e3035c25a26_882070a1b2_1920.jpg?1745046222";
   const textFAQ = t("faq.heroText");
   const buttonTextFAQ = t("faq.heroButton");
 
@@ -30,16 +31,20 @@ export default function FAQ() {
           {faqItems.map((item, index) => (
             <div key={index} className="accordion-item">
               <button
-                className={`accordion-question ${activeIndex === index ? "active" : ""}`}
+                className={`accordion-question ${
+                  activeIndex === index ? "active" : ""
+                }`}
                 onClick={() => toggleAccordion(index)}
               >
                 {item.question}
               </button>
               <div
-  className={`accordion-answer ${activeIndex === index ? "open" : ""}`}
->
-  <p>{item.answer}</p>
-</div>
+                className={`accordion-answer ${
+                  activeIndex === index ? "open" : ""
+                }`}
+              >
+                <p>{item.answer}</p>
+              </div>
             </div>
           ))}
         </div>

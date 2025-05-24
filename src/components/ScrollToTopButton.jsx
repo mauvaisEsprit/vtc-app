@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { FaArrowUp } from "react-icons/fa"; 
-import '../styles/ScrollToTopButton.css';
+import { FaArrowUp } from "react-icons/fa";
+import "../styles/ScrollToTopButton.css";
 
 export default function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);

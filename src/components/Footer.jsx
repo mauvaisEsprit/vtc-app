@@ -1,12 +1,13 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaTiktok, FaTelegram } from "react-icons/fa";
-import { useLocation, NavLink, useNavigate } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import "../styles/Footer.css";
 import { useTranslation } from "react-i18next";
+
 
 export default function Footer() {
   const { t } = useTranslation();
   const location = useLocation();
-  const navigate = useNavigate();
+  
 
   const handleLinkClick = (e, path) => {
     if (location.pathname === path) {

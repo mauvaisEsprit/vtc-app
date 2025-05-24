@@ -10,8 +10,8 @@ export default function BurgerMenu() {
   const currentLang = i18n.language.startsWith("fr")
     ? "fr"
     : i18n.language.startsWith("ru")
-      ? "ru"
-      : "en";
+    ? "ru"
+    : "en";
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
@@ -47,45 +47,62 @@ export default function BurgerMenu() {
             </div>
 
             <nav>
-              <Link to="/" onClick={toggleMenu}>{t("navBurger.home")}</Link>
-              <Link to="/services" onClick={toggleMenu}>{t("navBurger.services")}</Link>
-              <Link to="/aboutus" onClick={toggleMenu}>{t("navBurger.aboutUs")}</Link>
-              <Link to="/tarifs" onClick={toggleMenu}>{t("navBurger.tarifs")}</Link>
-             
+              <Link to="/" onClick={toggleMenu}>
+                {t("navBurger.home")}
+              </Link>
+              <Link to="/services" onClick={toggleMenu}>
+                {t("navBurger.services")}
+              </Link>
+              <Link to="/aboutus" onClick={toggleMenu}>
+                {t("navBurger.aboutUs")}
+              </Link>
+              <Link to="/tarifs" onClick={toggleMenu}>
+                {t("navBurger.tarifs")}
+              </Link>
 
               <div className="lang-switcher">
                 <button
-                  className={currentLang === "fr" ? "active-lang" : "not-active-lang"}
+                  className={
+                    currentLang === "fr" ? "active-lang" : "not-active-lang"
+                  }
                   onClick={() => changeLanguage("fr")}
                 >
                   <img src="/flags/fr.svg" alt="FR" />
                 </button>
 
                 <button
-                  className={currentLang === "en" ? "active-lang" : "not-active-lang"}
+                  className={
+                    currentLang === "en" ? "active-lang" : "not-active-lang"
+                  }
                   onClick={() => changeLanguage("en")}
                 >
                   <img src="/flags/gb.svg" alt="EN" />
                 </button>
 
                 <button
-                  className={currentLang === "ru" ? "active-lang" : "not-active-lang"}
+                  className={
+                    currentLang === "ru" ? "active-lang" : "not-active-lang"
+                  }
                   onClick={() => changeLanguage("ru")}
                 >
                   <img src="/flags/ru.svg" alt="RU" />
                 </button>
-
               </div>
-               <div className="bottom-links">
-                <Link to="/faq" onClick={toggleMenu}>{t("footer.faq")}</Link>
-                <Link to="/contact" onClick={toggleMenu}>{t("footer.contact")}</Link>
-                <Link to="/support" onClick={toggleMenu}>{t("footer.support")}</Link>
+              <div className="bottom-links">
+                <Link to="/faq" onClick={toggleMenu}>
+                  {t("footer.faq")}
+                </Link>
+                <Link to="/contact" onClick={toggleMenu}>
+                  {t("footer.contact")}
+                </Link>
+                <Link to="/support" onClick={toggleMenu}>
+                  {t("footer.support")}
+                </Link>
               </div>
             </nav>
           </div>
         </div>
       )}
-
     </div>
   );
 }

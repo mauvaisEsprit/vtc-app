@@ -35,8 +35,6 @@ export default function BookingForm() {
   // если хочешь, добавь стейт для даты обратного пути:
   const [selectedReturnDate, setSelectedReturnDate] = useState(null);
 
-
-
   useEffect(() => {
     if (
       isRoundTrip &&
@@ -50,19 +48,15 @@ export default function BookingForm() {
     }
   }, [selectedDate, selectedReturnDate, isRoundTrip]);
 
-
-
-
   const localeMap = {
-    "en": "en",
+    en: "en",
     "en-US": "en",
-    "fr": "fr",
+    fr: "fr",
     "fr-FR": "fr",
-    "ru": "ru",
+    ru: "ru",
     "ru-RU": "ru",
   };
   const currentLocale = localeMap[i18n.language] || "en";
-
 
   const handleRoundTripChange = (e) => {
     setIsRoundTrip(e.target.checked);
@@ -71,13 +65,6 @@ export default function BookingForm() {
       // например, если добавишь selectedReturnDate
     }
   };
-
-
-
-
-
-
-
 
   const handleAdultsChange = (e) => {
     const val = e.target.value;
@@ -230,7 +217,9 @@ export default function BookingForm() {
 
   const numericPrice = Number(price);
   const adjustedPrice = !isNaN(numericPrice)
-    ? (isRoundTrip ? numericPrice * 1.9 : numericPrice)
+    ? isRoundTrip
+      ? numericPrice * 1.9
+      : numericPrice
     : null;
 
   return (
@@ -262,12 +251,10 @@ export default function BookingForm() {
           <span className="label-text">{t("form.roundTrip")}</span>
         </div>
 
-
-
-
-
         {/* Шаг 1: Дата, откуда, куда, карта */}
-        <label htmlFor="date" className="visually-hidden">Date</label>
+        <label htmlFor="date" className="visually-hidden">
+          Date
+        </label>
         <DatePicker
           locale={currentLocale}
           className="booking-datepicker"
@@ -302,8 +289,9 @@ export default function BookingForm() {
               minDate={selectedDate || minDateTime} // минимум — дата туда
               minTime={
                 selectedReturnDate &&
-                  selectedDate &&
-                  selectedReturnDate.toDateString() === selectedDate.toDateString()
+                selectedDate &&
+                selectedReturnDate.toDateString() ===
+                  selectedDate.toDateString()
                   ? getMinTime(selectedDate)
                   : new Date(0, 0, 0, 0, 0) // иначе любое время
               }
@@ -315,13 +303,8 @@ export default function BookingForm() {
               onFocus={(e) => e.target.blur()} // убираем фокус сразу после получения
               required={isRoundTrip}
             />
-
-
-
-
           </>
         )}
-
 
         <input
           type="text"
@@ -354,7 +337,11 @@ export default function BookingForm() {
         />
 
         {/* Шаг 2: Имя */}
-        <div className={`step-transition ${selectedDate && from && to ? "show" : ""}`}>
+        <div
+          className={`step-transition ${
+            selectedDate && from && to ? "show" : ""
+          }`}
+        >
           <input
             type="text"
             id="name"
@@ -367,8 +354,11 @@ export default function BookingForm() {
         </div>
 
         {/* Шаг 3: Телефон и email */}
-        <div className={`step-transition ${selectedDate && from && to && name ? "show" : ""}`}>
-
+        <div
+          className={`step-transition ${
+            selectedDate && from && to && name ? "show" : ""
+          }`}
+        >
           <input
             type="tel"
             id="phone"
@@ -380,7 +370,11 @@ export default function BookingForm() {
           />
 
           {/* Шаг 4: email */}
-          <div className={`step-transition ${selectedDate && from && to && name && phone ? "show" : ""}`}></div>
+          <div
+            className={`step-transition ${
+              selectedDate && from && to && name && phone ? "show" : ""
+            }`}
+          ></div>
           <input
             type="email"
             id="email"
@@ -393,7 +387,13 @@ export default function BookingForm() {
         </div>
 
         {/* Шаг 5: Взрослые и дети */}
-        <div className={`step-transition ${selectedDate && from && to && !error && name && phone && email ? "show" : ""}`}>
+        <div
+          className={`step-transition ${
+            selectedDate && from && to && !error && name && phone && email
+              ? "show"
+              : ""
+          }`}
+        >
           <input
             type="number"
             id="adults"
@@ -418,13 +418,27 @@ export default function BookingForm() {
           />
 
           {error && (
-            <p id="error-message" style={{ color: "red" }}>{error}</p>
+            <p id="error-message" style={{ color: "red" }}>
+              {error}
+            </p>
           )}
         </div>
 
-
         {/* Шаг 6: Прочее */}
-        <div className={`step-transition ${selectedDate && from && to && adults && !error && name && phone && email ? "show" : ""}`}>
+        <div
+          className={`step-transition ${
+            selectedDate &&
+            from &&
+            to &&
+            adults &&
+            !error &&
+            name &&
+            phone &&
+            email
+              ? "show"
+              : ""
+          }`}
+        >
           <div id="baggage-container">
             <label className="switch">
               <input type="checkbox" id="baggage" name="baggage" />
@@ -432,8 +446,6 @@ export default function BookingForm() {
             </label>
             <span className="label-text">{t("form.baggage")}</span>
           </div>
-
-
 
           <textarea
             id="comment"
@@ -446,11 +458,13 @@ export default function BookingForm() {
         {loading ? (
           <div className="spinner1"></div>
         ) : adjustedPrice !== null && adjustedPrice > 0 ? (
-          <p>{t("form.estimatedPrice")} <strong>{adjustedPrice.toFixed(2)}</strong></p>
+          <p>
+            {t("form.estimatedPrice")}{" "}
+            <strong>{adjustedPrice.toFixed(2)}</strong>
+          </p>
         ) : (
           <p>{t("form.estimatedPrice")}</p>
         )}
-
 
         <div id="garant-container">
           <input type="checkbox" id="garant" name="garant" required />
@@ -471,9 +485,7 @@ export default function BookingForm() {
         >
           {t("form.reset")}
         </button>
-
       </form>
     </div>
   );
-
 }

@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Hero from "../components/Hero";
 import "../styles/Tarifs.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
-import { set } from "date-fns";
+
 
 export default function Tarifs() {
   const { t, i18n } = useTranslation();
@@ -27,6 +27,20 @@ export default function Tarifs() {
   const [duration, setDuration] = useState("");
   const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const reverseGeocode = useCallback(
+      async (lat, lon) => {
+        try {
+          const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${i18n.language}`;
+          const res = await fetch(url);
+          const data = await res.json();
+          return data.display_name || "";
+        } catch {
+          return "";
+        }
+      },
+      [i18n.language]
+    );
 
   useEffect(() => {
     mapRef.current = L.map("map").setView([0, 0], 13);
@@ -67,7 +81,7 @@ export default function Tarifs() {
     return () => {
       mapRef.current.remove();
     };
-  }, [t]);
+  }, [t, reverseGeocode]);
 
   async function forwardGeocode(address) {
     try {
@@ -85,16 +99,7 @@ export default function Tarifs() {
     }
   }
 
-  async function reverseGeocode(lat, lon) {
-    try {
-      const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${i18n.language}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      return data.display_name || "";
-    } catch {
-      return "";
-    }
-  }
+
   const resultRef = useRef(null);
 
   async function calculateRoute() {
@@ -113,8 +118,6 @@ export default function Tarifs() {
       setLoading(false);
       return;
     }
-
-
 
     if (fromMarkerRef.current) {
       mapRef.current.removeLayer(fromMarkerRef.current);
@@ -135,7 +138,7 @@ export default function Tarifs() {
       const data = await res.json();
 
       if (!data.routes || data.routes.length === 0) {
-         throw new Error(t("errors.route_not_found"));
+        throw new Error(t("errors.route_not_found"));
       }
 
       const route = data.routes[0].geometry;
@@ -159,7 +162,10 @@ export default function Tarifs() {
       setTimeout(() => {
         if (resultRef.current) {
           const offset = -120; // +30 для небольшого зазора
-          const top = resultRef.current.getBoundingClientRect().top + window.scrollY + offset;
+          const top =
+            resultRef.current.getBoundingClientRect().top +
+            window.scrollY +
+            offset;
           window.scrollTo({ top, behavior: "smooth" });
         }
       }, 100);
@@ -174,7 +180,7 @@ export default function Tarifs() {
 
       mapRef.current.fitBounds(routeLayerRef.current.getBounds());
     } catch (err) {
-       alert(t("errors.route_error", { error: err.message }));
+      alert(t("errors.route_error", { error: err.message }));
     } finally {
       setLoading(false);
     }
@@ -201,57 +207,69 @@ export default function Tarifs() {
     setPrice("");
   }
 
-   return (
+  return (
     <div>
       <Hero
         image={imageTarifs}
         text={t("tarifs.hero_title")}
         buttonText={t("tarifs.hero_button")}
       />
-        <div ref={resultRef}>
-      <div id="tarifc">
-        <h2>{t("tarifs.hero_title")}</h2>
-        <input
-          type="text"
-          placeholder={t("tarifs.from")}
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder={t("tarifs.to")}
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-          required
-        />
-        <button onClick={calculateRoute} disabled={loading}>
-          {t("tarifs.calculate")}
-        </button>
-        <button onClick={resetMap} disabled={loading}>
-          {t("tarifs.reset")}
-        </button>
-       
+      <div ref={resultRef}>
+        <div id="tarifc">
+          <h2>{t("tarifs.hero_title")}</h2>
+          <input
+            type="text"
+            placeholder={t("tarifs.from")}
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder={t("tarifs.to")}
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+            required
+          />
+          <button onClick={calculateRoute} disabled={loading}>
+            {t("tarifs.calculate")}
+          </button>
+          <button onClick={resetMap} disabled={loading}>
+            {t("tarifs.reset")}
+          </button>
+
           {loading && <div className="spinner"></div>}
-          {distance && <div id="distance">{t("tarifs.distance")}: {distance}</div>}
-          {duration && <div id="duration">{t("tarifs.duration")}: {duration}</div>}
-          {price && <div id="price">{t("tarifs.price")}: {price}</div>}
+          {distance && (
+            <div id="distance">
+              {t("tarifs.distance")}: {distance}
+            </div>
+          )}
+          {duration && (
+            <div id="duration">
+              {t("tarifs.duration")}: {duration}
+            </div>
+          )}
+          {price && (
+            <div id="price">
+              {t("tarifs.price")}: {price}
+            </div>
+          )}
         </div>
       </div>
       <div style={{ position: "relative" }}>
-  <div id="map" style={{ height: "400px", width: "100%" }}></div>
+        <div id="map" style={{ height: "400px", width: "100%" }}></div>
 
-  {fromMarkerRef.current && toMarkerRef.current && (
-    <div className="map-buttons">
-      <button onClick={calculateRoute} disabled={loading}>
-        {t("tarifs.calculate")}
-      </button>
-      <button onClick={resetMap} disabled={loading}>
-        {t("tarifs.reset")}
-      </button>
-    </div>
-  )}
-</div>
+        {fromMarkerRef.current && toMarkerRef.current && (
+          <div className="map-buttons">
+            <button onClick={calculateRoute} disabled={loading}>
+              {t("tarifs.calculate")}
+            </button>
+            <button onClick={resetMap} disabled={loading}>
+              {t("tarifs.reset")}
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

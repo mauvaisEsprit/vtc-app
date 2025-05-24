@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 import "../styles/Tarifs.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
@@ -11,9 +11,6 @@ import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 
 export default function Map() {
   const { t, i18n } = useTranslation();
-
-  const imageTarifs =
-    "https://www.ophorus.com/UPLOADS/DESTINATIONS/13/ophorus-167985-nice_large.jpeg";
 
   const mapRef = useRef(null);
   const fromMarkerRef = useRef(null);
@@ -26,6 +23,20 @@ export default function Map() {
   const [duration, setDuration] = useState("");
   const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const reverseGeocode = useCallback(
+    async (lat, lon) => {
+      try {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${i18n.language}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        return data.display_name || "";
+      } catch {
+        return "";
+      }
+    },
+    [i18n.language]
+  );
 
   useEffect(() => {
     mapRef.current = L.map("map").setView([0, 0], 13);
@@ -66,7 +77,7 @@ export default function Map() {
     return () => {
       mapRef.current.remove();
     };
-  }, [t]);
+  }, [t, reverseGeocode]);
 
   async function forwardGeocode(address) {
     try {
@@ -81,17 +92,6 @@ export default function Map() {
       return null;
     } catch {
       return null;
-    }
-  }
-
-  async function reverseGeocode(lat, lon) {
-    try {
-      const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${i18n.language}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      return data.display_name || "";
-    } catch {
-      return "";
     }
   }
 
@@ -131,7 +131,7 @@ export default function Map() {
       const data = await res.json();
 
       if (!data.routes || data.routes.length === 0) {
-         throw new Error(t("errors.route_not_found"));
+        throw new Error(t("errors.route_not_found"));
       }
 
       const route = data.routes[0].geometry;
@@ -162,7 +162,7 @@ export default function Map() {
 
       mapRef.current.fitBounds(routeLayerRef.current.getBounds());
     } catch (err) {
-       alert(t("errors.route_error", { error: err.message }));
+      alert(t("errors.route_error", { error: err.message }));
     } finally {
       setLoading(false);
     }
@@ -189,7 +189,7 @@ export default function Map() {
     setPrice("");
   }
 
-   return (
+  return (
     <div>
       <div id="tarifc">
         <h2>{t("tarifs.hero_title")}</h2>
@@ -214,9 +214,21 @@ export default function Map() {
           {t("tarifs.reset")}
         </button>
         {loading && <div className="spinner"></div>}
-        {distance && <div id="distance">{t("tarifs.distance")}: {distance}</div>}
-        {duration && <div id="duration">{t("tarifs.duration")}: {duration}</div>}
-        {price && <div id="price">{t("tarifs.price")}: {price}</div>}
+        {distance && (
+          <div id="distance">
+            {t("tarifs.distance")}: {distance}
+          </div>
+        )}
+        {duration && (
+          <div id="duration">
+            {t("tarifs.duration")}: {duration}
+          </div>
+        )}
+        {price && (
+          <div id="price">
+            {t("tarifs.price")}: {price}
+          </div>
+        )}
       </div>
       <div id="map" style={{ height: "400px", width: "100%" }}></div>
     </div>

@@ -1,13 +1,8 @@
 import "../styles/BookingForm.css";
 import { useTranslation } from "react-i18next";
 
-
 export default function TextHome() {
   const { t } = useTranslation();
-
-
-
-
 
   return (
     <div className="booking-form-container">
