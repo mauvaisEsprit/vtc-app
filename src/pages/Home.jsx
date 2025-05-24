@@ -111,7 +111,7 @@ useEffect(() => {
           <div id="booking2">
             <SecondForm />
           </div>
-        )}*
+        )}
       <section className="why-choose-us" data-aos="fade-up">
   <h2>{t("home.whyChooseUsTitle")}</h2>
   <ul>
