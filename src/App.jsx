@@ -1,5 +1,5 @@
 // App.jsx
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Header from "./components/Header";
@@ -36,7 +36,7 @@ export default function App() {
   }, [i18n.language, t]);
 
   return (
-    <HashRouter basename="/">
+    <Router basename="/">
       <Header />
       <ScrollToTop />
       <Routes>
@@ -50,6 +50,6 @@ export default function App() {
       </Routes>
       <ScrollToTopButton />
       <Footer />
-    </HashRouter>
+    </Router>
   );
 }
