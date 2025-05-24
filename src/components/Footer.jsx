@@ -38,6 +38,16 @@ export default function Footer() {
                 {t("footer.support")}
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/mentions-legales" onClick={(e) => handleLinkClick(e, "/mentions-legales")}>
+                {t("footer.mentionsLegales")}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/politique-de-confidentialite" onClick={(e) => handleLinkClick(e, "/politique-de-confidentialite")}>
+                {t("footer.privacyPolicy")}
+              </NavLink>
+            </li>
           </ul>
         </div>
 

@@ -17,6 +17,8 @@ import Tarifs from "./pages/Tarifs";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import Support from "./pages/Support";
+import MentionsLegales from "./pages/MentionsLegales";
+import PolitiqueDeConfidentialite from "./pages/PolitiqueDeConfidentialite";
 
 export default function App() {
  const { t, i18n } = useTranslation();
@@ -47,6 +49,8 @@ export default function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/politique-de-confidentialite" element={<PolitiqueDeConfidentialite />} />
       </Routes>
       <ScrollToTopButton />
       <Footer />

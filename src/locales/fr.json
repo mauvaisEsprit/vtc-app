@@ -202,7 +202,9 @@
     "services": "Services",
     "tarifs": "Carte",
     "followUs": "Suivez-nous",
-    "rightsReserved": "Tous droits réservés."
+    "rightsReserved": "Tous droits réservés.",
+    "privacyPolicy": "Politique de confidentialité",
+    "mentionsLegales": "Mentions légales"
   },
   "navBurger": {
     "home": "Accueil",
@@ -252,5 +254,20 @@
     "phone": "Téléphone",
     "email": "Email",
     "responseTime": "Nous répondons habituellement dans l'heure pendant les heures ouvrables."
-  }
+  },
+
+  "legal": {
+  "heroText": "Informations légales du site",
+  "heroButton": "Mentions légales",
+  "title": "Mentions légales",
+  "content": "Ce site est édité par [Nom de l’entreprise], domiciliée à [Adresse]. Numéro SIRET : [XXXXXXX]. Directeur de la publication : [Nom]. Hébergeur : Vercel Inc, 340 S Lemon Ave #4133, Walnut, CA 91789, USA."
+}
+  
+,
+  "privacy": {
+  "heroText": "Protection de vos données personnelles",
+  "heroButton": "Voir la politique",
+  "title": "Politique de confidentialité",
+  "content": "Nous collectons uniquement les données nécessaires au traitement des réservations. Ces données ne sont ni revendues, ni partagées avec des tiers sans consentement. Conformément à la législation en vigueur, vous disposez d’un droit d’accès, de rectification et de suppression de vos données."
+}
 }

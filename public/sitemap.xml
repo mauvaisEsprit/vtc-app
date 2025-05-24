@@ -8,7 +8,7 @@
   </url>
 
   <url>
-    <loc>https://vtc-app-tau.vercel.app/about</loc>
+    <loc>https://vtc-app-tau.vercel.app/aboutus</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -18,5 +18,42 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://vtc-app-tau.vercel.app/tarifs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+    <url>
+        <loc>https://vtc-app-tau.vercel.app/faq</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://vtc-app-tau.vercel.app/contact</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+
+    <url>
+        <loc>https://vtc-app-tau.vercel.app/support</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+  <url>
+    <loc>https://vtc-app-tau.vercel.app/mentions-legales</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://vtc-app-tau.vercel.app/politique-de-confidentialite</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
 
 </urlset>

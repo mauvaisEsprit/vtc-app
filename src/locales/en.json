@@ -184,7 +184,9 @@
     "services": "Services",
     "tarifs": "Map",
     "followUs": "Follow Us",
-    "rightsReserved": "All rights reserved."
+    "rightsReserved": "All rights reserved.",
+    "mentionsLegales": "Legal Notice",
+    "privacyPolicy": "Privacy Policy"
   },
   "navBurger": {
     "home": "Home",
@@ -250,5 +252,20 @@
     "phone": "Phone",
     "email": "Email",
     "responseTime": "We usually respond within an hour during business hours."
-  }
+  },
+
+  "legal": {
+  "heroText": "Site Legal Information",
+  "heroButton": "Legal Notice",
+  "title": "Legal Notice",
+  "content": "This website is published by [Company Name], located at [Address]. Business registration number: [XXXXXXX]. Publication director: [Name]. Hosting provider: Vercel Inc, 340 S Lemon Ave #4133, Walnut, CA 91789, USA."
+}
+,
+  "privacy": {
+  "heroText": "Your Data. Protected.",
+  "heroButton": "View Policy",
+  "title": "Privacy Policy",
+  "content": "We only collect data required to process bookings. This data is not sold or shared with third parties without consent. In accordance with applicable laws, you have the right to access, correct, or delete your data at any time."
+}
+
 }
