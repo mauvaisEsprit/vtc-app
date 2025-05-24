@@ -466,9 +466,23 @@ export default function BookingForm() {
           <p>{t("form.estimatedPrice")}</p>
         )}
 
+        <div
+          className={`step-transition ${
+            selectedDate &&
+            from &&
+            to &&
+            adults &&
+            !error &&
+            name &&
+            phone &&
+            email
+              ? "show"
+              : ""
+          }`}>
         <div id="garant-container">
           <input type="checkbox" id="garant" name="garant" required />
           <label htmlFor="garant">{t("form.consent")}</label>
+        </div>
         </div>
         <button
           className="booking-form-button"

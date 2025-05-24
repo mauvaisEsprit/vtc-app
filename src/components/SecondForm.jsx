@@ -231,9 +231,16 @@ export default function SecondForm() {
           </p>
         </div>
 
+        <div
+          className={`step-transition ${
+            selectedDate && pickupLocation && duration && name && phone && email
+              ? "show"
+              : ""
+          }`}>
         <div id="garant-container">
           <input type="checkbox" id="garant" name="garant" required />
           <label htmlFor="garant">{t("form.consent")}</label>
+        </div>
         </div>
 
         <button
