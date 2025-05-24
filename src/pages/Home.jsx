@@ -46,10 +46,20 @@ export default function Home() {
     }
   };*/
 
+  const scrollToWithOffset = (sectionId, offset = 300) => {
+  if (!sectionId) return;
+  const element = document.querySelector(sectionId);
+  if (element) {
+    const top = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+};
+
   const handleSwitch = (type) => {
     setBookingType(type);
     const hash = type === "disposition" ? "#booking2" : "#booking";
     window.history.replaceState(null, "", hash);
+    scrollToWithOffset(hash); // принудительный скролл
   };
 
  useEffect(() => {
