@@ -29,39 +29,45 @@ export default function Home() {
   }, [bookingType]);
 
   useEffect(() => {
-    const hash = location.hash;
-    if (hash === "#booking2") {
-      setBookingType("disposition");
-    } else {
-      setBookingType("standard");
-    }
-  }, [location.hash]);
+  const hash = location.hash;
 
-  const scrollTo = (sectionId) => {
-  if (!sectionId) return; // ничего не делать, если нет селектора
-
-  const element = document.querySelector(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+  if (hash === "#booking2") {
+    setBookingType("disposition");
+  } else if (hash === "#booking") {
+    setBookingType("standard");
   }
-};
+}, []); // только при монтировании
 
+  /*const scrollTo = (sectionId) => {
+    if (!sectionId) return;
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };*/
 
   const handleSwitch = (type) => {
     setBookingType(type);
     const hash = type === "disposition" ? "#booking2" : "#booking";
     window.history.replaceState(null, "", hash);
-    scrollTo(hash);
   };
 
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      scrollTo(location.hash);
-    } else {
-      window.addEventListener("load", () => scrollTo(location.hash));
-      return () => window.removeEventListener("load", () => scrollTo(location.hash));
-    }
-  }, [bookingType, location.hash]);
+ useEffect(() => {
+  const hash = window.location.hash;
+  if (hash === "#booking" || hash === "#booking2") {
+    const timer = setTimeout(() => {
+      const element = document.querySelector(hash);
+      if (element) {
+        const offset = 300; // например, 100px отступ сверху
+        const top = element.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }
+}, [bookingType]);
+
 
   return (
     <>
