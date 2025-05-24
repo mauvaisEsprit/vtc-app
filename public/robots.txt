@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://https://vtc-app-tau.vercel.app/#/sitemap.xml
