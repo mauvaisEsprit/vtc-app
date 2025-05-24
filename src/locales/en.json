@@ -1,4 +1,10 @@
 {
+  "seo": {
+    "title": "Comfortable VTC rides at best prices — Book online",
+    "description": "Book your VTC transfers and rides across France with comfort. Fast, easy, and affordable."
+  },
+
+
   "tarifs": {
     "hero_title": "Calculate Your Trip Price",
     "hero_button": "Calculate",
@@ -109,6 +115,8 @@
 
 
   },
+
+
   "form": {
     "ready": "READY TO TRAVEL IN STYLE?",
     "reset": "Reset",

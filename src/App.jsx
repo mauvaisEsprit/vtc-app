@@ -1,5 +1,7 @@
 // App.jsx
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -17,6 +19,22 @@ import Contact from "./pages/Contact";
 import Support from "./pages/Support";
 
 export default function App() {
+ const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    document.title = t("seo.title");
+    
+    const description = t("seo.description");
+    let metaDescription = document.querySelector("meta[name='description']");
+    
+    if (!metaDescription) {
+      metaDescription = document.createElement("meta");
+      metaDescription.name = "description";
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.content = description;
+  }, [i18n.language, t]);
+
   return (
     <HashRouter basename="/">
       <Header />
