@@ -8,6 +8,13 @@
   position: relative;
 }
 
+@media (max-width: 600px) {
+  .gallery-carousel {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
 .gallery-carousel h2 {
   font-size: 2rem;
   margin-bottom: 20px;
