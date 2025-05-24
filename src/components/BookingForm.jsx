@@ -230,30 +230,7 @@ export default function BookingForm() {
       : numericPrice
     : null;
 
-    const handleDateChange = (date) => {
-    if (!date) {
-      setSelectedDate(null);
-      return;
-    }
-
-    const now = new Date();
-    const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
-
-    // Проверяем, выбрана ли сегодня дата
-    if (
-      date.getDate() === now.getDate() &&
-      date.getMonth() === now.getMonth() &&
-      date.getFullYear() === now.getFullYear()
-    ) {
-      // Если выбранное время раньше, чем сейчас + 1 час — корректируем
-      if (date.getTime() < oneHourLater.getTime()) {
-        setSelectedDate(oneHourLater);
-        return;
-      }
-    }
-
-    setSelectedDate(date);
-  };
+    
 
     
 
@@ -294,33 +271,11 @@ export default function BookingForm() {
           locale={currentLocale}
           className="booking-datepicker"
           selected={selectedDate}
-          onChange={handleDateChange}
+          onChange={(date) => setSelectedDate(date)}
           showTimeSelect
           timeIntervals={15}
-          minDate={new Date()} // запрещает выбор прошедших дней
-          filterTime={(time) => {
-            if (!selectedDate) return true;
-
-            const now = new Date();
-            const candidateTime = new Date(selectedDate);
-
-            candidateTime.setHours(time.getHours());
-            candidateTime.setMinutes(time.getMinutes());
-            candidateTime.setSeconds(0);
-            candidateTime.setMilliseconds(0);
-
-            // Разрешаем все время для будущих дат
-            if (
-              candidateTime.getDate() !== now.getDate() ||
-              candidateTime.getMonth() !== now.getMonth() ||
-              candidateTime.getFullYear() !== now.getFullYear()
-            ) {
-              return true;
-            }
-
-            // Для сегодня — блокируем время в прошлом (меньше сейчас)
-            return candidateTime.getTime() > now.getTime();
-          }}
+          minDate={minDateTime}
+          minTime={selectedDate ? getMinTime(selectedDate) : undefined}
           maxTime={selectedDate ? getMaxTime(selectedDate) : undefined}
           placeholderText={t("form.datePlaceholder")}
           dateFormat="dd/MM/yyyy HH:mm"
