@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Hero from "../components/Hero";
-import "../styles/PolitiqueConfidentialite.css";
+import "../styles/PolitiqueDeConfidentialite.css";
 
 export default function PolitiqueConfidentialite() {
   const { t } = useTranslation();
