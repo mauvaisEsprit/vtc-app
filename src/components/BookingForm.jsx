@@ -48,6 +48,10 @@ export default function BookingForm() {
     }
   }, [selectedDate, selectedReturnDate, isRoundTrip]);
 
+
+
+  
+
   const localeMap = {
     en: "en",
     "en-US": "en",
@@ -213,6 +217,10 @@ export default function BookingForm() {
     setPhone("");
     setEmail("");
     setSelectedReturnDate(null);
+    setIsRoundTrip(false); // сбрасываем переключатель
+    setLoading(false);
+    setIsSubmitting(false);
+    
   };
 
   const numericPrice = Number(price);
@@ -221,6 +229,8 @@ export default function BookingForm() {
       ? numericPrice * 1.9
       : numericPrice
     : null;
+
+    
 
   return (
     <div className="booking-form-container">
