@@ -458,7 +458,6 @@ export default function BookingForm() {
             from &&
             to &&
             adults &&
-            !error &&
             name &&
             phone &&
             email
