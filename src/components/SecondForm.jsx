@@ -25,7 +25,7 @@ export default function SecondForm() {
   const [email, setEmail] = useState("");
 
   const hourlyRate = 60;
-  const totalPrice = duration ? duration * hourlyRate : 0;
+  const totalPrice = Number(duration ? duration * hourlyRate : 0).toFixed(2);
 
   const localeMap = {
     en: "en",
