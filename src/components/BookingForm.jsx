@@ -9,6 +9,8 @@ import RouteMap from "./RouteMap";
 import en from "date-fns/locale/en-US";
 import fr from "date-fns/locale/fr";
 import ru from "date-fns/locale/ru";
+import { GiArmoredPants } from "react-icons/gi";
+/*import { g } from "framer-motion/client";*/
 
 // Регистрация локалей
 registerLocale("en", en);
@@ -47,10 +49,6 @@ export default function BookingForm() {
       setSelectedReturnDate(adjustedReturn);
     }
   }, [selectedDate, selectedReturnDate, isRoundTrip]);
-
-
-
-  
 
   const localeMap = {
     en: "en",
@@ -172,13 +170,35 @@ export default function BookingForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/mgvalzay", {
+      // Собираем объект с данными формы для отправки
+      const dataToSend = {
+        from,
+        to,
+        date: selectedDate.toISOString(),
+        returnDate:
+          isRoundTrip && selectedReturnDate
+            ? selectedReturnDate.toISOString()
+            : null,
+
+        adults: Number(adults) || 0,
+        children: Number(children) || 0,
+        name,
+        phone,
+        email,
+        baggage: formData.get("baggage") === "on",
+        comment: formData.get("comment") || "",
+        isRoundTrip,
+        garant: formData.get("garant") === "on",
+        price: adjustedPrice,
+      };
+      console.log("Отправленные данные:", dataToSend);
+      const response = await fetch("http://localhost:3001/api/bookings/form1", {
         method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataToSend),
       });
+
+      console.log("Ответ сервера:", response);
 
       if (response.ok) {
         alert(t("form.success"));
@@ -220,7 +240,6 @@ export default function BookingForm() {
     setIsRoundTrip(false); // сбрасываем переключатель
     setLoading(false);
     setIsSubmitting(false);
-    
   };
 
   const numericPrice = Number(price);
@@ -229,10 +248,6 @@ export default function BookingForm() {
       ? numericPrice * 1.9
       : numericPrice
     : null;
-
-    
-
-    
 
   return (
     <div className="booking-form-container">
@@ -490,11 +505,12 @@ export default function BookingForm() {
             email
               ? "show"
               : ""
-          }`}>
-        <div id="garant-container">
-          <input type="checkbox" id="garant" name="garant" required />
-          <label htmlFor="garant">{t("form.consent")}</label>
-        </div>
+          }`}
+        >
+          <div id="garant-container">
+            <input type="checkbox" id="garant" name="garant" required />
+            <label htmlFor="garant">{t("form.consent")}</label>
+          </div>
         </div>
         <button
           className="booking-form-button"

@@ -62,56 +62,58 @@ export default function SecondForm() {
     setSelectedDate(date);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const now = Date.now();
-    if (now - lastSubmitTime < 30000) {
-      alert(t("form.error.tooFast"));
-      return;
-    }
+  const now = Date.now();
+  if (now - lastSubmitTime < 30000) {
+    alert(t("form.error.tooFast"));
+    return;
+  }
 
-    const formData = new FormData(e.target);
+  // Проверка даты
+  const minDateTime = new Date(Date.now() + 60 * 60 * 1000);
+  if (!selectedDate || selectedDate < minDateTime) {
+    alert(t("form.error.invalidDate"));
+    return;
+  }
 
-    if (formData.get("website")) return;
+  setIsSubmitting(true);
 
-    // Проверка даты на минимум сейчас + 1 час
-    const minDateTime = new Date(Date.now() + 60 * 60 * 1000);
-    if (!selectedDate || selectedDate < minDateTime) {
-      alert(t("form.error.invalidDate"));
-      return;
-    }
-
-    formData.set("date", selectedDate.toISOString());
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://formspree.io/f/mgvalzay", {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-
-      if (response.ok) {
-        alert(t("form.success"));
-        e.target.reset();
-        setPickupLocation("");
-        setDuration("");
-        setName("");
-        setPhone("");
-        setEmail("");
-        setSelectedDate(null);
-        setLastSubmitTime(now);
-      } else {
-        alert(t("form.error.submit"));
-      }
-    } catch {
-      alert(t("form.error.network"));
-    } finally {
-      setIsSubmitting(false);
-    }
+  const payload = {
+    pickupLocation,
+    duration: Number(duration),
+    date: selectedDate.toISOString(),
+    name,
+    phone,
+    email,
+    tripPurpose: e.target.tripPurpose.value || "",
+    garant: e.target.garant.checked,
   };
+
+  try {
+    const response = await fetch("http://localhost:3001/api/bookings/form2", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(t("form.success"));
+      handleReset();
+      setLastSubmitTime(now);
+    } else {
+      alert(data.message || t("form.error.submit"));
+    }
+  } catch  {
+    alert(t("form.error.network"));
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const handleReset = () => {
     setPickupLocation("");
