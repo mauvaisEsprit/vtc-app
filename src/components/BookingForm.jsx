@@ -190,6 +190,7 @@ export default function BookingForm() {
         isRoundTrip,
         garant: formData.get("garant") === "on",
         price: adjustedPrice,
+        locale: currentLocale,
       };
       console.log("Отправленные данные:", dataToSend);
       const response = await fetch("https://backtest1-0501.onrender.com/api/bookings/form1", {

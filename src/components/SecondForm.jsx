@@ -90,6 +90,7 @@ const handleSubmit = async (e) => {
     tripPurpose: e.target.tripPurpose.value || "",
     totalPrice: Number(totalPrice),
     garant: e.target.garant.checked,
+    locale: currentLocale,
   };
 
   try {
