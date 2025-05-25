@@ -192,7 +192,7 @@ export default function BookingForm() {
         price: adjustedPrice,
       };
       console.log("Отправленные данные:", dataToSend);
-      const response = await fetch("http://localhost:3001/api/bookings/form1", {
+      const response = await fetch("https://backtest1-0501.onrender.com/api/bookings/form1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataToSend),

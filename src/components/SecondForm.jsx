@@ -92,7 +92,7 @@ const handleSubmit = async (e) => {
   };
 
   try {
-    const response = await fetch("http://localhost:3001/api/bookings/form2", {
+    const response = await fetch("https://backtest1-0501.onrender.com/api/bookings/form2", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
