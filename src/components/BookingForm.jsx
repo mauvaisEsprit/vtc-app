@@ -416,7 +416,7 @@ export default function BookingForm() {
         {/* Шаг 5: Взрослые и дети */}
         <div
           className={`step-transition ${
-            selectedDate && from && to && !error && name && phone && email
+            selectedDate && from && to  && name && phone && email
               ? "show"
               : ""
           }`}
