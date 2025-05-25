@@ -24,8 +24,8 @@ const handleSubmit = async (e) => {
 
   const now = Date.now();
   if (now - lastSubmitTime < 30000) {
-    setStatusMessage(t("form.error.tooFast"));
-    setStatusType("error");
+    alert(t("form.error.tooFast"));
+   
     return;
   }
 
@@ -42,17 +42,14 @@ const handleSubmit = async (e) => {
   const message = formData.get("message");
 
   if (!message || message.length < 10) {
-    setStatusMessage(t("form.error.shortMessage"));
-    setStatusType("error");
+    alert(t("form.error.shortMessage"));
+    
     return;
   }
 
   setIsSubmitting(true);
 
-  const clearStatus = () => {
-  setStatusMessage(null);
-  setStatusType(null);
-};
+  
 
   try {
     const response = await fetch("https://backtest1-0501.onrender.com/api/contact", {  // свой backend
@@ -66,24 +63,24 @@ const handleSubmit = async (e) => {
     
 
     if (response.ok) {
-      setStatusMessage(t("form2.success"));
+      alert(t("form2.success"));
       setStatusType("success");
       e.target.reset();
       setLastSubmitTime(now);
-      setTimeout(clearStatus, 5000);  // Очистить сообщение через 5 секунд
+      
     } else {
-      setStatusMessage(t("form.error.submit"));
+      alert(t("form.error.submit"));
       setStatusType("error");
-      setTimeout(clearStatus, 5000);  // Очистить сообщение через 5 секунд
+      
     }
   } catch (error) {
     console.error(error);
-    setStatusMessage(t("form.error.network"));
-    setStatusType("error");
-    setTimeout(clearStatus, 5000);  // Очистить сообщение через 5 секунд
+    alert(t("form.error.network"));
+    
+    
   } finally {
     setIsSubmitting(false);
-    setTimeout(clearStatus, 5000);
+    
   }
 };
 
