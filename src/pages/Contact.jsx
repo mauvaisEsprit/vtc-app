@@ -49,6 +49,11 @@ const handleSubmit = async (e) => {
 
   setIsSubmitting(true);
 
+  const clearStatus = () => {
+  setStatusMessage(null);
+  setStatusType(null);
+};
+
   try {
     const response = await fetch("https://backtest1-0501.onrender.com/api/contact", {  // свой backend
       method: "POST",
@@ -58,21 +63,27 @@ const handleSubmit = async (e) => {
       body: JSON.stringify({ name, email, message }),
     });
 
+    
+
     if (response.ok) {
       setStatusMessage(t("form2.success"));
       setStatusType("success");
       e.target.reset();
       setLastSubmitTime(now);
+      setTimeout(clearStatus, 5000);  // Очистить сообщение через 5 секунд
     } else {
       setStatusMessage(t("form.error.submit"));
       setStatusType("error");
+      setTimeout(clearStatus, 5000);  // Очистить сообщение через 5 секунд
     }
   } catch (error) {
     console.error(error);
     setStatusMessage(t("form.error.network"));
     setStatusType("error");
+    setTimeout(clearStatus, 5000);  // Очистить сообщение через 5 секунд
   } finally {
     setIsSubmitting(false);
+    setTimeout(clearStatus, 5000);
   }
 };
 
