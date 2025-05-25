@@ -16,62 +16,66 @@ export default function Contact() {
   const textContact = t("contact.heroText");
   const buttonTextContact = t("contact.heroButton");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    setStatusMessage(null);
-    setStatusType(null);
+  setStatusMessage(null);
+  setStatusType(null);
 
-    const now = Date.now();
-    if (now - lastSubmitTime < 30000) {
-      setStatusMessage(t("form.error.tooFast"));
+  const now = Date.now();
+  if (now - lastSubmitTime < 30000) {
+    setStatusMessage(t("form.error.tooFast"));
+    setStatusType("error");
+    return;
+  }
+
+  const formData = new FormData(e.target);
+
+  // Honeypot check
+  if (formData.get("website")) {
+    console.warn("Spam bot detected.");
+    return;
+  }
+
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const message = formData.get("message");
+
+  if (!message || message.length < 10) {
+    setStatusMessage(t("form.error.shortMessage"));
+    setStatusType("error");
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch("https://backtest1-0501.onrender.com/api/contact", {  // свой backend
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    if (response.ok) {
+      setStatusMessage(t("form2.success"));
+      setStatusType("success");
+      e.target.reset();
+      setLastSubmitTime(now);
+    } else {
+      setStatusMessage(t("form.error.submit"));
       setStatusType("error");
-      return;
     }
+  } catch (error) {
+    console.error(error);
+    setStatusMessage(t("form.error.network"));
+    setStatusType("error");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
-    const formData = new FormData(e.target);
-
-    // Honeypot check
-    if (formData.get("website")) {
-      console.warn("Spam bot detected.");
-      return;
-    }
-
-    const message = formData.get("message");
-    if (!message || message.length < 10) {
-      setStatusMessage(t("form.error.shortMessage"));
-      setStatusType("error");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://formspree.io/f/mgvalzay", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
-        setStatusMessage(t("form2.success"));
-        setStatusType("success");
-        e.target.reset();
-        setLastSubmitTime(now);
-      } else {
-        setStatusMessage(t("form.error.submit"));
-        setStatusType("error");
-      }
-    } catch (error) {
-      console.error(error); // например, вывести в консоль
-      setStatusMessage(t("form.error.network"));
-      setStatusType("error");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div>
