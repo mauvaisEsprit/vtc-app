@@ -88,6 +88,7 @@ const handleSubmit = async (e) => {
     phone,
     email,
     tripPurpose: e.target.tripPurpose.value || "",
+    price: totalPrice,
     garant: e.target.garant.checked,
   };
 
