@@ -485,7 +485,7 @@ export default function BookingForm() {
         ) : finalPrice !== null && finalPrice > 0 ? (
           <p>
             {t("form.estimatedPrice")}{" "}
-            <strong>{finalPrice}</strong>
+            <strong>{finalPrice}€</strong>
           </p>
         ) : (
           <p>{t("form.estimatedPrice")}</p>

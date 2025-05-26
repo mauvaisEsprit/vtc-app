@@ -279,7 +279,7 @@ const handleSubmit = async (e) => {
 
         <div className="price-summary">
           <p>
-            {t("form.estimatedPrice")} <strong>{totalPrice} €</strong>
+            {t("form.estimatedPrice")} <strong>{totalPrice}€</strong>
           </p>
         </div>
 
