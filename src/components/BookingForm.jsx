@@ -189,15 +189,18 @@ export default function BookingForm() {
         comment: formData.get("comment") || "",
         isRoundTrip,
         garant: formData.get("garant") === "on",
-        price: adjustedPrice,
+        price: finalPrice,
         locale: currentLocale,
       };
       console.log("Отправленные данные:", dataToSend);
-      const response = await fetch("https://backtest1-0501.onrender.com/api/bookings/form1", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dataToSend),
-      });
+      const response = await fetch(
+        "https://backtest1-0501.onrender.com/api/bookings/form1",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dataToSend),
+        }
+      );
 
       console.log("Ответ сервера:", response);
 
@@ -249,6 +252,9 @@ export default function BookingForm() {
       ? numericPrice * 1.9
       : numericPrice
     : null;
+
+  const finalPrice =
+    adjustedPrice !== null ? Number(adjustedPrice.toFixed(2)) : null;
 
   return (
     <div className="booking-form-container">
@@ -417,9 +423,7 @@ export default function BookingForm() {
         {/* Шаг 5: Взрослые и дети */}
         <div
           className={`step-transition ${
-            selectedDate && from && to  && name && phone && email
-              ? "show"
-              : ""
+            selectedDate && from && to && name && phone && email ? "show" : ""
           }`}
         >
           <input
@@ -455,13 +459,7 @@ export default function BookingForm() {
         {/* Шаг 6: Прочее */}
         <div
           className={`step-transition ${
-            selectedDate &&
-            from &&
-            to &&
-            adults &&
-            name &&
-            phone &&
-            email
+            selectedDate && from && to && adults && name && phone && email
               ? "show"
               : ""
           }`}
@@ -484,10 +482,10 @@ export default function BookingForm() {
 
         {loading ? (
           <div className="spinner1"></div>
-        ) : adjustedPrice !== null && adjustedPrice > 0 ? (
+        ) : finalPrice !== null && finalPrice > 0 ? (
           <p>
             {t("form.estimatedPrice")}{" "}
-            <strong>{adjustedPrice.toFixed(2)}</strong>
+            <strong>{finalPrice}</strong>
           </p>
         ) : (
           <p>{t("form.estimatedPrice")}</p>
