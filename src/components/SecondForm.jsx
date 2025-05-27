@@ -27,10 +27,6 @@ export default function SecondForm() {
   const [email, setEmail] = useState("");
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-
-
-
-
   const hourlyRate = 60;
   const totalPrice = Number(duration ? duration * hourlyRate : 0).toFixed(2);
 
@@ -69,60 +65,62 @@ export default function SecondForm() {
     setSelectedDate(date);
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const now = Date.now();
-  if (now - lastSubmitTime < 30000) {
-    alert(t("form.error.tooFast"));
-    return;
-  }
-
-  // Проверка даты
-  const minDateTime = new Date(Date.now() + 60 * 60 * 1000);
-  if (!selectedDate || selectedDate < minDateTime) {
-    alert(t("form.error.invalidDate"));
-    return;
-  }
-
-  setIsSubmitting(true);
-
-  const payload = {
-    pickupLocation,
-    duration: Number(duration),
-    date: selectedDate.toISOString(),
-    name,
-    phone,
-    email,
-    tripPurpose: e.target.tripPurpose.value || "",
-    totalPrice: Number(totalPrice),
-    garant: e.target.garant.checked,
-    locale: currentLocale,
-  };
-
-  try {
-    const response = await fetch("https://backtest1-0501.onrender.com/api/bookings/form2", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert(t("form.success"));
-      handleReset();
-      setLastSubmitTime(now);
-    } else {
-      alert(data.message || t("form.error.submit"));
+    const now = Date.now();
+    if (now - lastSubmitTime < 30000) {
+      alert(t("form.error.tooFast"));
+      return;
     }
-  } catch  {
-    alert(t("form.error.network"));
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
+    // Проверка даты
+    const minDateTime = new Date(Date.now() + 60 * 60 * 1000);
+    if (!selectedDate || selectedDate < minDateTime) {
+      alert(t("form.error.invalidDate"));
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const payload = {
+      pickupLocation,
+      duration: Number(duration),
+      date: selectedDate.toISOString(),
+      name,
+      phone,
+      email,
+      tripPurpose: e.target.tripPurpose.value || "",
+      totalPrice: Number(totalPrice),
+      garant: e.target.garant.checked,
+      locale: currentLocale,
+    };
+
+    try {
+      const response = await fetch(
+        "https://backtest1-0501.onrender.com/api/bookings/form2",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(t("form.success"));
+        handleReset();
+        setLastSubmitTime(now);
+      } else {
+        alert(data.message || t("form.error.submit"));
+      }
+    } catch {
+      alert(t("form.error.network"));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleReset = () => {
     setPickupLocation("");
@@ -136,7 +134,7 @@ const handleSubmit = async (e) => {
     document.getElementById("booking-form2").reset();
   };
 
-   useEffect(() => {
+  useEffect(() => {
     if (pickupLocation.length < 3) {
       setSuggestions([]);
       return;
@@ -176,7 +174,6 @@ const handleSubmit = async (e) => {
     setPickupLocation(address);
     setSuggestions([]);
   };
-
 
   return (
     <div className="booking-form-container">
@@ -233,40 +230,33 @@ const handleSubmit = async (e) => {
           required
         />
 
- <div className="input-suggestion-wrapper">
-  <input
-    type="text"
-    id="pickupLocation"
-    name="pickupLocation"
-    placeholder={t("form.pickupLocation")}
-    required
-    value={pickupLocation}
-    onChange={(e) => setPickupLocation(e.target.value)}
-    onFocus={() => setIsInputFocused(true)}
-    onBlur={() => {
-      // небольшой таймер, чтобы успеть кликнуть по подсказке
-      setTimeout(() => setIsInputFocused(false), 100);
-    }}
-    autoComplete="off"
-  />
+        <div className="input-suggestion-wrapper">
+          <input
+            type="text"
+            id="pickupLocation"
+            name="pickupLocation"
+            placeholder={t("form.pickupLocation")}
+            required
+            value={pickupLocation}
+            onChange={(e) => setPickupLocation(e.target.value)}
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => {
+              // небольшой таймер, чтобы успеть кликнуть по подсказке
+              setTimeout(() => setIsInputFocused(false), 100);
+            }}
+            autoComplete="off"
+          />
 
-  {isInputFocused && suggestions.length > 0 && (
-    <ul className="suggestions-list">
-      {suggestions.map((item, index) => (
-        <li
-          key={index}
-          onClick={() => handleSelect(item.display_name)}
-        >
-          {item.display_name}
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
-
-
-
-
+          {isInputFocused && suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((item, index) => (
+                <li key={index} onClick={() => handleSelect(item.display_name)}>
+                  {item.display_name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         <div
           className={`step-transition ${

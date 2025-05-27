@@ -47,7 +47,10 @@
   justify-content: center;
 }
 
-
+.react-datepicker-popper {
+  
+    z-index: 1000 !important; /* Увеличиваем z-index, чтобы календарь был поверх других элементов */
+}
 
 .react-datepicker-wrapper {
   width: 100%;
