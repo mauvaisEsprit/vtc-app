@@ -21,7 +21,7 @@ export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
 
     timeoutRef.current = setTimeout(() => {
       calculateRoute();
-    }, 1500);
+    }, 2000);
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);

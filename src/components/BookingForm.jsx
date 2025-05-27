@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import "../styles/BookingForm.css";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -37,6 +38,11 @@ export default function BookingForm() {
   // если хочешь, добавь стейт для даты обратного пути:
   const [selectedReturnDate, setSelectedReturnDate] = useState(null);
 
+  const [suggestionsFrom, setSuggestionsFrom] = useState([]);
+  const [suggestionsTo, setSuggestionsTo] = useState([]);
+  const [isInputFocusedFrom, setIsInputFocusedFrom] = useState(false);
+  const [isInputFocusedTo, setIsInputFocusedTo] = useState(false);
+
   useEffect(() => {
     if (
       isRoundTrip &&
@@ -63,8 +69,7 @@ export default function BookingForm() {
   const handleRoundTripChange = (e) => {
     setIsRoundTrip(e.target.checked);
     if (!e.target.checked) {
-      // если переключаем в "Туда" — можно очистить дату обратного пути, если есть
-      // например, если добавишь selectedReturnDate
+      setSelectedReturnDate(null); // сбрасываем дату обратного пути
     }
   };
 
@@ -256,6 +261,85 @@ export default function BookingForm() {
   const finalPrice =
     adjustedPrice !== null ? Number(adjustedPrice.toFixed(2)) : null;
 
+  useEffect(() => {
+    if (from.length < 3) {
+      setSuggestionsFrom([]);
+      return;
+    }
+
+    const delayDebounce = setTimeout(() => {
+      axios
+        .get("https://nominatim.openstreetmap.org/search", {
+          params: {
+            q: from,
+            format: "json",
+            addressdetails: 1,
+            limit: 5,
+            countrycodes: "fr",
+          },
+          headers: {
+            "Accept-Language": currentLocale,
+          },
+        })
+        .then((res) => {
+          if (Array.isArray(res.data)) {
+            setSuggestionsFrom(res.data);
+          } else {
+            setSuggestionsFrom([]);
+          }
+        })
+        .catch(() => setSuggestionsFrom([]));
+    }, 1500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [from, currentLocale]);
+
+  useEffect(() => {
+    if (to.length < 3) {
+      setSuggestionsTo([]);
+      return;
+    }
+
+    const delayDebounce = setTimeout(() => {
+      axios
+        .get("https://nominatim.openstreetmap.org/search", {
+          params: {
+            q: to,
+            format: "json",
+            addressdetails: 1,
+            limit: 5,
+            countrycodes: "fr",
+          },
+          headers: {
+            "Accept-Language": currentLocale,
+          },
+        })
+        .then((res) => {
+          if (Array.isArray(res.data)) {
+            setSuggestionsTo(res.data);
+          } else {
+            setSuggestionsTo([]);
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка загрузки подсказок:", error);
+          setSuggestionsTo([]);
+        });
+    }, 1000);
+
+    return () => clearTimeout(delayDebounce);
+  }, [to, currentLocale]);
+
+  const handleSelectFrom = (address) => {
+    setFrom(address);
+    setSuggestionsFrom([]);
+  };
+
+  const handleSelectTo = (address) => {
+    setTo(address);
+    setSuggestionsTo([]);
+  };
+
   return (
     <div className="booking-form-container">
       <form className="booking-form" onSubmit={handleSubmit}>
@@ -340,25 +424,67 @@ export default function BookingForm() {
           </>
         )}
 
-        <input
-          type="text"
-          id="from"
-          name="from"
-          placeholder={t("form.from")}
-          required
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-        />
+        <div className="input-suggestion-wrapper">
+          <input
+            type="text"
+            id="from"
+            name="from"
+            placeholder={t("form.from")}
+            required
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+            onFocus={() => setIsInputFocusedFrom(true)}
+            onBlur={() => {
+              // небольшой таймер, чтобы успеть кликнуть по подсказке
+              setTimeout(() => setIsInputFocusedFrom(false), 100);
+            }}
+            autoComplete="off"
+          />
 
-        <input
-          type="text"
-          id="to"
-          name="to"
-          placeholder={t("form.to")}
-          required
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-        />
+          {isInputFocusedFrom && suggestionsFrom.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestionsFrom.map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleSelectFrom(item.display_name)}
+                >
+                  {item.display_name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="input-suggestion-wrapper">
+          <input
+            type="text"
+            id="to"
+            name="to"
+            placeholder={t("form.to")}
+            required
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+            onFocus={() => setIsInputFocusedTo(true)}
+            onBlur={() => {
+              // небольшой таймер, чтобы успеть кликнуть по подсказке
+              setTimeout(() => setIsInputFocusedTo(false), 100);
+            }}
+            autoComplete="off"
+          />
+
+          {isInputFocusedTo && suggestionsTo.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestionsTo.map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleSelectTo(item.display_name)}
+                >
+                  {item.display_name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         <RouteMap
           from={from}
@@ -484,8 +610,7 @@ export default function BookingForm() {
           <div className="spinner1"></div>
         ) : finalPrice !== null && finalPrice > 0 ? (
           <p>
-            {t("form.estimatedPrice")}{" "}
-            <strong>{finalPrice}€</strong>
+            {t("form.estimatedPrice")} <strong>{finalPrice}€</strong>
           </p>
         ) : (
           <p>{t("form.estimatedPrice")}</p>

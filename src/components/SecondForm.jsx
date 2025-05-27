@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { useTranslation } from "react-i18next";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,6 +17,7 @@ export default function SecondForm() {
   const { t, i18n } = useTranslation();
 
   const [pickupLocation, setPickupLocation] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
   const [duration, setDuration] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,6 +25,11 @@ export default function SecondForm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+
+
+
 
   const hourlyRate = 60;
   const totalPrice = Number(duration ? duration * hourlyRate : 0).toFixed(2);
@@ -129,6 +136,48 @@ const handleSubmit = async (e) => {
     document.getElementById("booking-form2").reset();
   };
 
+   useEffect(() => {
+    if (pickupLocation.length < 3) {
+      setSuggestions([]);
+      return;
+    }
+
+    const delayDebounce = setTimeout(() => {
+      axios
+        .get("https://nominatim.openstreetmap.org/search", {
+          params: {
+            q: pickupLocation,
+            format: "json",
+            addressdetails: 1,
+            limit: 5,
+            countrycodes: "fr",
+          },
+          headers: {
+            "Accept-Language": currentLocale,
+          },
+        })
+        .then((res) => {
+          if (Array.isArray(res.data)) {
+            setSuggestions(res.data);
+          } else {
+            setSuggestions([]);
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка загрузки подсказок:", error);
+          setSuggestions([]);
+        });
+    }, 1000);
+
+    return () => clearTimeout(delayDebounce);
+  }, [pickupLocation, currentLocale]);
+
+  const handleSelect = (address) => {
+    setPickupLocation(address);
+    setSuggestions([]);
+  };
+
+
   return (
     <div className="booking-form-container">
       <form className="booking-form" id="booking-form2" onSubmit={handleSubmit}>
@@ -184,15 +233,40 @@ const handleSubmit = async (e) => {
           required
         />
 
-        <input
-          type="text"
-          id="pickupLocation"
-          name="pickupLocation"
-          placeholder={t("form.pickupLocation")}
-          required
-          value={pickupLocation}
-          onChange={(e) => setPickupLocation(e.target.value)}
-        />
+ <div className="input-suggestion-wrapper">
+  <input
+    type="text"
+    id="pickupLocation"
+    name="pickupLocation"
+    placeholder={t("form.pickupLocation")}
+    required
+    value={pickupLocation}
+    onChange={(e) => setPickupLocation(e.target.value)}
+    onFocus={() => setIsInputFocused(true)}
+    onBlur={() => {
+      // небольшой таймер, чтобы успеть кликнуть по подсказке
+      setTimeout(() => setIsInputFocused(false), 100);
+    }}
+    autoComplete="off"
+  />
+
+  {isInputFocused && suggestions.length > 0 && (
+    <ul className="suggestions-list">
+      {suggestions.map((item, index) => (
+        <li
+          key={index}
+          onClick={() => handleSelect(item.display_name)}
+        >
+          {item.display_name}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
+
+
+
 
         <div
           className={`step-transition ${
