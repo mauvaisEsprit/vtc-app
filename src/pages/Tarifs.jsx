@@ -390,7 +390,7 @@ export default function Tarifs() {
         </div>
       </div>
       <div style={{ position: "relative" }}>
-        <div id="map" style={{ height: "400px", width: "100%" }}></div>
+        <div id="map"></div>
 
         {fromMarkerRef.current && toMarkerRef.current && (
           <div className="map-buttons">
