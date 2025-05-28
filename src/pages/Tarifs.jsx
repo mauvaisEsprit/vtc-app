@@ -4,11 +4,11 @@ import "leaflet/dist/leaflet.css";
 import Hero from "../components/Hero";
 import "../styles/Tarifs.css";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
-
 
 export default function Tarifs() {
   const { t, i18n } = useTranslation();
@@ -28,19 +28,24 @@ export default function Tarifs() {
   const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [suggestionsFrom, setSuggestionsFrom] = useState([]);
+  const [suggestionsTo, setSuggestionsTo] = useState([]);
+  const [isInputFocusedFrom, setIsInputFocusedFrom] = useState(false);
+  const [isInputFocusedTo, setIsInputFocusedTo] = useState(false);
+
   const reverseGeocode = useCallback(
-      async (lat, lon) => {
-        try {
-          const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${i18n.language}`;
-          const res = await fetch(url);
-          const data = await res.json();
-          return data.display_name || "";
-        } catch {
-          return "";
-        }
-      },
-      [i18n.language]
-    );
+    async (lat, lon) => {
+      try {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=${i18n.language}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        return data.display_name || "";
+      } catch {
+        return "";
+      }
+    },
+    [i18n.language]
+  );
 
   useEffect(() => {
     mapRef.current = L.map("map").setView([0, 0], 13);
@@ -98,7 +103,6 @@ export default function Tarifs() {
       return null;
     }
   }
-
 
   const resultRef = useRef(null);
 
@@ -207,6 +211,85 @@ export default function Tarifs() {
     setPrice("");
   }
 
+  useEffect(() => {
+    if (from.length < 3) {
+      setSuggestionsFrom([]);
+      return;
+    }
+
+    const delayDebounce = setTimeout(() => {
+      axios
+        .get("https://nominatim.openstreetmap.org/search", {
+          params: {
+            q: from,
+            format: "json",
+            addressdetails: 1,
+            limit: 5,
+            countrycodes: "fr",
+          },
+          headers: {
+            "Accept-Language": i18n.language,
+          },
+        })
+        .then((res) => {
+          if (Array.isArray(res.data)) {
+            setSuggestionsFrom(res.data);
+          } else {
+            setSuggestionsFrom([]);
+          }
+        })
+        .catch(() => setSuggestionsFrom([]));
+    }, 1500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [from, i18n.language]);
+
+  useEffect(() => {
+    if (to.length < 3) {
+      setSuggestionsTo([]);
+      return;
+    }
+
+    const delayDebounce = setTimeout(() => {
+      axios
+        .get("https://nominatim.openstreetmap.org/search", {
+          params: {
+            q: to,
+            format: "json",
+            addressdetails: 1,
+            limit: 5,
+            countrycodes: "fr",
+          },
+          headers: {
+            "Accept-Language": i18n.language,
+          },
+        })
+        .then((res) => {
+          if (Array.isArray(res.data)) {
+            setSuggestionsTo(res.data);
+          } else {
+            setSuggestionsTo([]);
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка загрузки подсказок:", error);
+          setSuggestionsTo([]);
+        });
+    }, 1000);
+
+    return () => clearTimeout(delayDebounce);
+  }, [to, i18n.language]);
+
+  const handleSelectFrom = (address) => {
+    setFrom(address);
+    setSuggestionsFrom([]);
+  };
+
+  const handleSelectTo = (address) => {
+    setTo(address);
+    setSuggestionsTo([]);
+  };
+
   return (
     <div>
       <Hero
@@ -217,20 +300,67 @@ export default function Tarifs() {
       <div ref={resultRef}>
         <div id="tarifc">
           <h2>{t("tarifs.hero_title")}</h2>
-          <input
-            type="text"
-            placeholder={t("tarifs.from")}
-            value={from}
-            onChange={(e) => setFrom(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder={t("tarifs.to")}
-            value={to}
-            onChange={(e) => setTo(e.target.value)}
-            required
-          />
+          <div className="input-suggestion-wrapper-tarifs">
+            <input
+              type="text"
+              id="from"
+              name="from"
+              placeholder={t("tarifs.from")}
+              required
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+              onFocus={() => setIsInputFocusedFrom(true)}
+              onBlur={() => {
+                // небольшой таймер, чтобы успеть кликнуть по подсказке
+                setTimeout(() => setIsInputFocusedFrom(false), 100);
+              }}
+              autoComplete="off"
+            />
+
+            {isInputFocusedFrom && suggestionsFrom.length > 0 && (
+              <ul className="suggestions-list">
+                {suggestionsFrom.map((item, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSelectFrom(item.display_name)}
+                  >
+                    {item.display_name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className="input-suggestion-wrapper-tarifs">
+            <input
+              type="text"
+              id="to"
+              name="to"
+              placeholder={t("tarifs.to")}
+              required
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              onFocus={() => setIsInputFocusedTo(true)}
+              onBlur={() => {
+                // небольшой таймер, чтобы успеть кликнуть по подсказке
+                setTimeout(() => setIsInputFocusedTo(false), 100);
+              }}
+              autoComplete="off"
+            />
+
+            {isInputFocusedTo && suggestionsTo.length > 0 && (
+              <ul className="suggestions-list">
+                {suggestionsTo.map((item, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSelectTo(item.display_name)}
+                  >
+                    {item.display_name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
           <button onClick={calculateRoute} disabled={loading}>
             {t("tarifs.calculate")}
           </button>
@@ -254,6 +384,9 @@ export default function Tarifs() {
               {t("tarifs.price")}: {price}
             </div>
           )}
+          <p style={{ fontSize: "0.9rem", marginTop: "0.5rem", color: "white" }}>
+            * {t("tarifs.noteApproximate")}
+          </p>
         </div>
       </div>
       <div style={{ position: "relative" }}>

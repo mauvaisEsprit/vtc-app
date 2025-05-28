@@ -12,9 +12,10 @@
     "to": "To",
     "calculate": "Calculate",
     "reset": "Reset",
-    "distance": "Distance",
-    "duration": "Duration",
-    "price": "Price"
+    "distance": "Distance*",
+    "duration": "Duration*",
+    "price": "Price*",
+     "noteApproximate": "Values are approximate and may vary depending on actual conditions."
   },
   "errors": {
     "geolocation": "Unable to get your location.",
