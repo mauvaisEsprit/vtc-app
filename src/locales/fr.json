@@ -117,7 +117,7 @@
 
   "form": {
     "ready": "ENVIE DE VOYAGER AVEC STYLE?",
-    "estimatedPrice": "Prix estimé:",
+    "estimatedPrice": "Prix",
     "roundTrip": "Ajouter le trajet retour",
     "oneWay": "Aller simple",
     "reset": "Réinitialiser",

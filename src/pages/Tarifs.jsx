@@ -318,7 +318,7 @@ export default function Tarifs() {
             />
 
             {isInputFocusedFrom && suggestionsFrom.length > 0 && (
-              <ul className="suggestions-list">
+              <ul className="suggestions-list-tarifs">
                 {suggestionsFrom.map((item, index) => (
                   <li
                     key={index}
@@ -348,7 +348,7 @@ export default function Tarifs() {
             />
 
             {isInputFocusedTo && suggestionsTo.length > 0 && (
-              <ul className="suggestions-list">
+              <ul className="suggestions-list-tarifs">
                 {suggestionsTo.map((item, index) => (
                   <li
                     key={index}

@@ -610,11 +610,14 @@ export default function BookingForm() {
           <div className="spinner1"></div>
         ) : finalPrice !== null && finalPrice > 0 ? (
           <p>
-            {t("form.estimatedPrice")} <strong>{finalPrice}€</strong>
+            {t("form.estimatedPrice")}*: <strong>{finalPrice}€</strong>
           </p>
         ) : (
-          <p>{t("form.estimatedPrice")}</p>
+          <p>{t("form.estimatedPrice")}*:</p>
         )}
+        <p style={{ fontSize: "0.9rem", marginTop: "0.5rem", color: "#333" }}>
+            * {t("tarifs.noteApproximate")}
+          </p>
 
         <div
           className={`step-transition ${
@@ -630,6 +633,7 @@ export default function BookingForm() {
               : ""
           }`}
         >
+          
           <div id="garant-container">
             <input type="checkbox" id="garant" name="garant" required />
             <label htmlFor="garant">{t("form.consent")}</label>

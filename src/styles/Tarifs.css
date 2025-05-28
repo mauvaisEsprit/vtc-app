@@ -180,13 +180,13 @@
 }
 
 /* Список подсказок */
-.suggestions-list {
+.suggestions-list-tarifs {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #444;
+  background-color: #555;
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 8px 8px;
@@ -196,7 +196,7 @@
 }
 
 /* Элемент подсказки */
-.suggestions-list li {
+.suggestions-list-tarifs li {
   padding: 12px 16px;
   font-size: 1rem;
   cursor: pointer;
@@ -204,7 +204,7 @@
   transition: background 0.2s;
 }
 
-.suggestions-list li:hover {
+.suggestions-list-tarifs li:hover {
   background-color: #222;
 }
 
@@ -217,7 +217,7 @@ input#pickupLocation {
 
 /* Мобильная адаптация */
 @media (max-width: 600px) {
-  .suggestions-list li {
+  .suggestions-list-tarifs li {
     padding: 10px 14px;
     font-size: 0.95rem;
   }
