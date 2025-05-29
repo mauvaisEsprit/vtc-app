@@ -7,7 +7,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    axios.get('/api/admin/bookings', {
+    axios.get('"https://backtest1-0501.onrender.com/api/admin/bookings', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => setBookings(res.data))
@@ -16,7 +16,7 @@ export default function AdminDashboard() {
 
   const confirmBooking = async (id) => {
     const token = localStorage.getItem('token');
-    await axios.post(`/api/admin/bookings/${id}/confirm`, {}, {
+    await axios.post(`"https://backtest1-0501.onrender.com/api/admin/bookings/${id}/confirm`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setBookings(prev => prev.map(b => b._id === id ? { ...b, confirmed: true } : b));
@@ -24,7 +24,7 @@ export default function AdminDashboard() {
 
   const deleteBooking = async (id) => {
     const token = localStorage.getItem('token');
-    await axios.delete(`/api/admin/bookings/${id}`, {
+    await axios.delete(`"https://backtest1-0501.onrender.com/api/admin/bookings/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setBookings(prev => prev.filter(b => b._id !== id));
