@@ -208,12 +208,6 @@
   background-color: #222;
 }
 
-/* Поле ввода — делаем верхние скругления */
-input#pickupLocation {
-  border-radius: 8px 8px 0 0;
-  z-index: 800;
-  position: relative;
-}
 
 /* Мобильная адаптация */
 @media (max-width: 600px) {

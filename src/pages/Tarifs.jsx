@@ -384,7 +384,9 @@ export default function Tarifs() {
               {t("tarifs.price")}: {price}
             </div>
           )}
-          <p style={{ fontSize: "0.9rem", marginTop: "0.5rem", color: "white" }}>
+          <p
+            style={{ fontSize: "0.9rem", marginTop: "0.5rem", color: "white" }}
+          >
             * {t("tarifs.noteApproximate")}
           </p>
         </div>

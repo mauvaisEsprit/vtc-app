@@ -8,6 +8,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import "../src/components/i18n";
 import "./styles/Index.css";
 import ScrollToTopButton from "../src/components/ScrollToTopButton";
+import ProtectedRoute from "./pages/admin/ProtectedRoute";
 
 // Страницы
 import Home from "./pages/Home";
@@ -19,7 +20,8 @@ import Contact from "./pages/Contact";
 import Support from "./pages/Support";
 import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueDeConfidentialite from "./pages/PolitiqueDeConfidentialite";
-
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 export default function App() {
  const { t, i18n } = useTranslation();
 
@@ -51,6 +53,16 @@ export default function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-de-confidentialite" element={<PolitiqueDeConfidentialite />} />
+
+         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <ScrollToTopButton />
       <Footer />
