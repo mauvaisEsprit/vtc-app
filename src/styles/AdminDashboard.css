@@ -1,0 +1,210 @@
+/* Общие стили */
+.admin-container {
+  max-width: 900px;
+  margin: 150px auto;
+  border-radius: 10px;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
+  min-height: 100vh;
+  color: #222;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #3f51b5;
+  text-shadow: 1px 1px 2px rgba(63,81,181,0.4);
+}
+
+.no-bookings {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #666;
+  margin-top: 40px;
+}
+
+/* Карточки заявок */
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.booking-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  padding: 20px 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.booking-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+}
+
+.booking-card.confirmed {
+  border-color: #4caf50;
+}
+
+.booking-card.pending {
+  border-color: #ff9800;
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap; /* добавлено */
+  gap: 8px; /* небольшой отступ между строками */
+}
+
+
+.booking-id {
+  color: #3f51b5;
+  font-weight: 700;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  user-select: none;
+  white-space: nowrap; /* запретить перенос слов внутри */
+  min-width: 120px; /* минимум ширины, чтобы был виден */
+  text-align: center;
+}
+
+
+@media (max-width: 600px) {
+  .booking-header {
+    justify-content: center;
+  }
+  
+  .booking-header h2 {
+    flex: 1 1 100%;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .status-badge {
+    flex: 1 1 100%;
+    min-width: auto;
+    margin-top: 6px;
+    text-align: center;
+  }
+}
+
+
+.status-confirmed {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.status-pending {
+  background-color: #ffe0b2;
+  color: #ef6c00;
+}
+
+/* Информация о заявке */
+.booking-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 24px;
+  color: #444;
+  font-size: 1rem;
+}
+
+.booking-info p {
+  margin: 0;
+}
+
+/* Действия */
+.booking-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(63,81,181,0.5);
+}
+
+.btn-confirm {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background-color: #388e3c;
+  box-shadow: 0 6px 15px rgba(56,142,60,0.7);
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #d32f2f;
+  box-shadow: 0 6px 15px rgba(211,47,47,0.7);
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  .booking-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tabs button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+
+.booking-card.replied {
+  border: 2px solid green;
+  background-color: #e6ffe6;
+}
+
+.replied-text {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
