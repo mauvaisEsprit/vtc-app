@@ -197,7 +197,7 @@ export default function BookingForm() {
         price: finalPrice,
         locale: currentLocale,
       };
-      console.log("Отправленные данные:", dataToSend);
+      
       const response = await fetch(
         "http://localhost:3001/api/bookings",
         {

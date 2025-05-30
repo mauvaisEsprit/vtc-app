@@ -296,7 +296,7 @@ export default function AdminDashboard() {
                   <b>Сообщение:</b> {msg.message}
                 </p>
                 {msg.replied && (
-                  <p className="replied-label">Ответ отправлен</p>
+                  <span className="replied-text"><p className="replied-label">Ответ отправлен</p></span>
                 )}
                 <div className="booking-actions">
                   {!msg.replied && (
