@@ -8,6 +8,11 @@ export default function AdminDashboard() {
   const [hourlyBookings, setHourlyBookings] = useState([]);
   const [messages, setMessages] = useState([]);
 
+  const unconfirmedStandard = standardBookings.filter(b => !b.confirmed).length;
+const unconfirmedHourly = hourlyBookings.filter(b => !b.confirmed).length;
+const unrepliedMessages = messages.filter(m => !m.replied).length;
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -63,6 +68,10 @@ export default function AdminDashboard() {
   };
 
   const deleteBooking = async (id, type) => {
+    const card = document.getElementById(id);
+  if (card) {
+    card.classList.add("fade-out");
+    setTimeout(async () => {
     const token = localStorage.getItem("token");
     const url =
       type === "hourly"
@@ -78,6 +87,8 @@ export default function AdminDashboard() {
     } else {
       setStandardBookings((prev) => prev.filter((b) => b._id !== id));
     }
+  }, 500);
+  } 
   };
 
   const replyMessage = async (id) => {
@@ -102,6 +113,10 @@ export default function AdminDashboard() {
   };
 
   const deleteMessage = async (id) => {
+    const card = document.getElementById(id);
+  if (card) {
+    card.classList.add("fade-out");
+    setTimeout(async () => {
     const token = localStorage.getItem("token");
     try {
       await axios.delete(`https://backtest1-0501.onrender.com/api/messages/admin/${id}`, {
@@ -112,12 +127,15 @@ export default function AdminDashboard() {
       console.error(error);
       alert("Ошибка при удалении сообщения");
     }
+  }, 500);
+  } 
   };
 
   const renderBookingList = (bookings, type) =>
     bookings.map((b) => (
       <div
         key={b._id}
+        id={b._id}
         className={`booking-card ${b.confirmed ? "confirmed" : "pending"}`}
       >
         <div className="booking-header">
@@ -239,25 +257,31 @@ export default function AdminDashboard() {
       <h1 className="admin-title">Админ-панель</h1>
 
       <div className="tabs">
-        <button
-          onClick={() => setActiveTab("standard")}
-          className={activeTab === "standard" ? "active" : ""}
-        >
-          Обычные поездки
-        </button>
-        <button
-          onClick={() => setActiveTab("hourly")}
-          className={activeTab === "hourly" ? "active" : ""}
-        >
-          Почасовая аренда
-        </button>
-        <button
-          onClick={() => setActiveTab("messages")}
-          className={activeTab === "messages" ? "active" : ""}
-        >
-          Сообщения
-        </button>
-      </div>
+  <button
+    onClick={() => setActiveTab("standard")}
+    className={`tab-button ${activeTab === "standard" ? "active" : ""} ${unconfirmedStandard > 0 ? "alert" : ""}`}
+  >
+    Обычные поездки
+    {unconfirmedStandard > 0 && <span className="tab-badge">{unconfirmedStandard}</span>}
+  </button>
+
+  <button
+    onClick={() => setActiveTab("hourly")}
+    className={`tab-button ${activeTab === "hourly" ? "active" : ""} ${unconfirmedHourly > 0 ? "alert" : ""}`}
+  >
+    Почасовая аренда
+    {unconfirmedHourly > 0 && <span className="tab-badge">{unconfirmedHourly}</span>}
+  </button>
+
+  <button
+    onClick={() => setActiveTab("messages")}
+    className={`tab-button ${activeTab === "messages" ? "active" : ""} ${unrepliedMessages > 0 ? "alert" : ""}`}
+  >
+    Сообщения
+    {unrepliedMessages > 0 && <span className="tab-badge">{unrepliedMessages}</span>}
+  </button>
+</div>
+
 
       {activeTab === "standard" && (
         <div className="bookings-list">
@@ -287,6 +311,7 @@ export default function AdminDashboard() {
             messages.map((msg) => (
               <div
                 key={msg._id}
+                id={msg._id}
                 className={`booking-card ${msg.replied ? "replied" : ""}`}
               >
                 <p>

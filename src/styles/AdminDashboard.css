@@ -1,13 +1,20 @@
 /* Общие стили */
 .admin-container {
   max-width: 900px;
-  margin: 150px auto;
+  margin: 130px auto;
   border-radius: 10px;
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
   min-height: 100vh;
   color: #222;
+}
+
+@media (max-width: 600px) {
+  .admin-container {
+    margin: 80px auto;
+    padding: 15px;
+  }
 }
 
 .admin-title {
@@ -178,24 +185,31 @@
 }
 
 
-.tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+.tab-button {
+  position: relative;
+  padding: 10px 16px;
+  margin-right: 10px;
+  margin-bottom: 25px;
 }
 
-.tabs button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #ccc;
-  cursor: pointer;
-  border-radius: 5px;
+.tab-button.alert {
+  background-color: #ffe6e6;
+  border: 1px solid #cc0000;
+  color: #cc0000;
 }
 
-.tabs button.active {
-  background-color: #007bff;
+.tab-badge {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  background-color: red;
   color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
 }
+
 
 
 .booking-card.replied {
@@ -209,4 +223,12 @@
   color: green;
   font-weight: bold;
   margin-bottom: 8px;
+}
+
+
+/* Анимация исчезновения */
+.fade-out {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s ease, transform 0.5s ease;
 }
