@@ -189,12 +189,29 @@
   position: relative;
   padding: 10px 16px;
   margin-right: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.tab-button.alert {
+.tab-button:hover {
+  background-color: #f0f0f0;
+}
+
+.tab-button.active {
+  background-color: #007bff; /* насыщенный синий */
+  border-color: #0056b3;
+  color: white;
+  font-weight: 600;
+}
+
+.tab-button.alert:not(.active) {
   background-color: #ffe6e6;
-  border: 1px solid #cc0000;
+  border-color: #cc0000;
   color: #cc0000;
 }
 
@@ -208,7 +225,9 @@
   font-weight: bold;
   padding: 2px 6px;
   border-radius: 50%;
+  user-select: none;
 }
+
 
 
 
