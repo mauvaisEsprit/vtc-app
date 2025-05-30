@@ -15,16 +15,19 @@
     margin: 80px auto;
     padding: 15px;
   }
+  
 }
 
 .admin-title {
   text-align: center;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   margin-bottom: 30px;
   font-weight: 700;
   color: #3f51b5;
   text-shadow: 1px 1px 2px rgba(63,81,181,0.4);
 }
+
+
 
 .no-bookings {
   text-align: center;
