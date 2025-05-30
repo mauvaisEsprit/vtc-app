@@ -271,5 +271,51 @@
   "heroButton": "Voir la politique",
   "title": "Politique de confidentialité",
   "content": "Nous collectons uniquement les données nécessaires au traitement des réservations. Ces données ne sont ni revendues, ni partagées avec des tiers sans consentement. Conformément à la législation en vigueur, vous disposez d’un droit d’accès, de rectification et de suppression de vos données."
+},
+
+
+  "admin": {
+    "adminPanel": "Panneau d'administration",
+    "standardTrips": "Trajets standards",
+    "hourlyRental": "Location à l'heure",
+    "messages": "Messages",
+    "noStandardTrips": "Pas de trajets standards",
+    "noHourlyOrders": "Pas de commandes de location à l'heure",
+    "noMessagesYet": "Pas de nouveaux messages",
+    "bookingNumber": "Numéro de réservation",
+    "confirmed": "Confirmé",
+    "notConfirmed": "Non confirmé",
+    "name": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "language": "Langue",
+    "languageFrench": "Français",
+    "languageEnglish": "Anglais",
+    "languageRussian": "Russe",
+    "from": "De",
+    "to": "À",
+    "date": "Date",
+    "returnDate": "Date de retour",
+    "adults": "Adultes",
+    "children": "Enfants",
+    "baggage": "Bagages",
+    "yes": "Oui",
+    "no": "Non",
+    "price": "Prix",
+    "notSpecified": "Non spécifié",
+    "comment": "Commentaire",
+    "pickupLocation": "Lieu de prise en charge",
+    "duration": "Durée",
+    "hoursShort": "h",
+    "tripPurpose": "But du voyage",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "reply": "Répondre",
+    "replySent": "Réponse envoyée",
+    "messageSentToClient": "Message envoyé au client",
+    "errorSendingEmail": "Erreur lors de l'envoi de l'email",
+    "errorDeletingMessage": "Erreur lors de la suppression du message"
+  }
 }
-}
+
+

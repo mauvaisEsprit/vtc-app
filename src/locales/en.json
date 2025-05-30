@@ -267,6 +267,53 @@
   "heroButton": "View Policy",
   "title": "Privacy Policy",
   "content": "We only collect data required to process bookings. This data is not sold or shared with third parties without consent. In accordance with applicable laws, you have the right to access, correct, or delete your data at any time."
-}
+},
+  
 
+  "admin": {
+    "adminPanel": "Admin Panel",
+    "standardTrips": "Standard Trips",
+    "hourlyRental": "Hourly Rental",
+    "messages": "Messages",
+    "noStandardTrips": "No standard trips",
+    "noHourlyOrders": "No hourly rental orders",
+    "noMessagesYet": "No new messages",
+    "bookingNumber": "Booking Number",
+    "confirmed": "Confirmed",
+    "notConfirmed": "Not Confirmed",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "language": "Language",
+    "languageFrench": "French",
+    "languageEnglish": "English",
+    "languageRussian": "Russian",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "returnDate": "Return Date",
+    "adults": "Adults",
+    "children": "Children",
+    "baggage": "Baggage",
+    "yes": "Yes",
+    "no": "No",
+    "price": "Price",
+    "notSpecified": "Not Specified",
+    "comment": "Comment",
+    "pickupLocation": "Pickup Location",
+    "duration": "Duration",
+    "hoursShort": "h",
+    "tripPurpose": "Trip Purpose",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "reply": "Reply",
+    "replySent": "Reply Sent",
+    "messageSentToClient": "Message sent to client",
+    "errorSendingEmail": "Error sending email",
+    "errorDeletingMessage": "Error deleting message"
+  }
+
+
+  
+    
 }
