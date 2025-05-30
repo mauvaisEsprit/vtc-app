@@ -13,7 +13,7 @@ export default function AdminDashboard() {
 
     // Обычные поездки
     axios
-      .get("http://localhost:3001/api/bookings/admin", {
+      .get("https://backtest1-0501.onrender.com/api/bookings/admin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setStandardBookings(res.data))
@@ -21,7 +21,7 @@ export default function AdminDashboard() {
 
     // Почасовая аренда
     axios
-      .get("http://localhost:3001/api/hourly/admin", {
+      .get("https://backtest1-0501.onrender.com/api/hourly/admin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setHourlyBookings(res.data))
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
 
     // Сообщения с сайта (если есть такая коллекция)
     axios
-      .get("http://localhost:3001/api/messages/admin", {
+      .get("https://backtest1-0501.onrender.com/api/messages/admin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setMessages(res.data))
@@ -40,8 +40,8 @@ export default function AdminDashboard() {
     const token = localStorage.getItem("token");
     const url =
       type === "hourly"
-        ? `http://localhost:3001/api/hourly/admin/${id}/confirm`
-        : `http://localhost:3001/api/bookings/admin/${id}/confirm`;
+        ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}/confirm`
+        : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}/confirm`;
 
     await axios.put(
       url,
@@ -66,8 +66,8 @@ export default function AdminDashboard() {
     const token = localStorage.getItem("token");
     const url =
       type === "hourly"
-        ? `http://localhost:3001/api/hourly/admin/${id}`
-        : `http://localhost:3001/api/bookings/admin/${id}`;
+        ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}`
+        : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}`;
 
     await axios.delete(url, {
       headers: { Authorization: `Bearer ${token}` },
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem("token");
     try {
       await axios.post(
-        `http://localhost:3001/api/messages/admin/${id}/reply`,
+        `https://backtest1-0501.onrender.com/api/messages/admin/${id}/reply`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -104,7 +104,7 @@ export default function AdminDashboard() {
   const deleteMessage = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete(`http://localhost:3001/api/messages/admin/${id}`, {
+      await axios.delete(`https://backtest1-0501.onrender.com/api/messages/admin/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessages((prev) => prev.filter((msg) => msg._id !== id));
@@ -143,6 +143,9 @@ export default function AdminDashboard() {
           </p>
           <p>
             <b>Телефон:</b> {b.phone}
+          </p>
+          <p>
+            <b>Язык:</b> {b.locale === "fr" ? "Français" : b.locale === "en" ? "English" : "Русский"}
           </p>
 
           {type === "standard" && (

@@ -98,7 +98,7 @@ export default function SecondForm() {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/api/hourly",
+        "https://backtest1-0501.onrender.com/api/hourly",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

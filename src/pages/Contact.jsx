@@ -52,7 +52,7 @@ const handleSubmit = async (e) => {
   
 
   try {
-    const response = await fetch("http://localhost:3001/api/messages", {  // свой backend
+    const response = await fetch("https://backtest1-0501.onrender.com/api/messages", {  // свой backend
       method: "POST",
       headers: {
         "Content-Type": "application/json",

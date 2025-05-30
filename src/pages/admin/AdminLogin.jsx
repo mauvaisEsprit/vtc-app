@@ -12,7 +12,7 @@ export default function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3001/api/admin', { email, password });
+      const res = await axios.post('https://backtest1-0501.onrender.com/api/admin', { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/admin');
     } catch (err) {

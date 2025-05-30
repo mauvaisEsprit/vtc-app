@@ -199,7 +199,7 @@ export default function BookingForm() {
       };
       
       const response = await fetch(
-        "http://localhost:3001/api/bookings",
+        "https://backtest1-0501.onrender.com/api/bookings",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
