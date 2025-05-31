@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "../../styles/AdminDashboard.css";
@@ -22,18 +22,18 @@ export default function AdminDashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-    navigate("/admin/login", { replace: true });
-    return;
-  }
-
-  const handleError = (err) => {
-    if (err.response?.status === 401 || err.response?.status === 403) {
-      localStorage.removeItem("token");
       navigate("/admin/login", { replace: true });
-    } else {
-      console.error(err);
+      return;
     }
-  };
+
+    const handleError = (err) => {
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        localStorage.removeItem("token");
+        navigate("/admin/login", { replace: true });
+      } else {
+        console.error(err);
+      }
+    };
     // Обычные поездки
     axios
       .get("https://backtest1-0501.onrender.com/api/bookings/admin", {
@@ -58,8 +58,6 @@ export default function AdminDashboard() {
       .then((res) => setMessages(res.data))
       .catch(handleError);
 
-      
-
     // Цены (если есть такая коллекция)
     axios
       .get("https://backtest1-0501.onrender.com/api/admin/settings", {
@@ -67,9 +65,10 @@ export default function AdminDashboard() {
       })
       .then((res) => setSettings(res.data))
       .catch(console.error);
-  }, [ navigate ]);
+  }, [navigate]);
 
-  const confirmBooking = async (id, type) => {
+  const confirmBooking = useCallback( 
+    async (id, type) => {
     if (window.confirm(t("admin.confirmBooking"))) {
       const token = localStorage.getItem("token");
       const url =
@@ -95,33 +94,39 @@ export default function AdminDashboard() {
         );
       }
     }
-  };
+  }, [t, setStandardBookings, setHourlyBookings]);
 
   const deleteBooking = async (id, type) => {
-    if (window.confirm(t("admin.confirmDelete"))) {
-      const card = document.getElementById(id);
-      if (card) {
-        card.classList.add("fade-out");
-        setTimeout(async () => {
-          const token = localStorage.getItem("token");
-          const url =
-            type === "hourly"
-              ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}`
-              : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}`;
+  if (window.confirm(t("admin.confirmDelete"))) {
+    const card = document.getElementById(id);
+    if (card) {
+      card.classList.add("fade-out");
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 500)); // ждем анимацию
+        const token = localStorage.getItem("token");
+        const url =
+          type === "hourly"
+            ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}`
+            : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}`;
 
-          await axios.delete(url, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+        await axios.delete(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-          if (type === "hourly") {
-            setHourlyBookings((prev) => prev.filter((b) => b._id !== id));
-          } else {
-            setStandardBookings((prev) => prev.filter((b) => b._id !== id));
-          }
-        }, 500);
+        if (type === "hourly") {
+          setHourlyBookings((prev) => prev.filter((b) => b._id !== id));
+        } else {
+          setStandardBookings((prev) => prev.filter((b) => b._id !== id));
+        }
+      } catch (error) {
+        console.error(error);
+        card.classList.remove("fade-out"); // отменяем анимацию при ошибке
+        alert(t("admin.errorDeletingBooking"));
       }
     }
-  };
+  }
+};
+
 
   const replyMessage = async (id) => {
     const token = localStorage.getItem("token");
@@ -169,30 +174,57 @@ export default function AdminDashboard() {
   };
 
   const updateSettings = (field, value) => {
-    setSettings((prev) => ({
-      ...prev,
-      [field]: parseFloat(value),
-    }));
-  };
+ 
+  const val = value.replace(/,/g, ".");
+  setSettings((prev) => ({
+    ...prev,
+    [field]: val,
+  }));
+};
+
 
   const handleSettingsSubmit = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    try {
-      const response = await axios.put(
-        `https://backtest1-0501.onrender.com/api/admin/settings/${settings._id}`,
-        settings,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setSettings(response.data);
-      alert(t("admin.settingsUpdated"));
-    } catch (error) {
-      console.error(error);
-      alert(t("admin.errorUpdatingSettings"));
-    }
+  e.preventDefault();
+  if (!window.confirm(t("admin.confirmSettingsUpdate"))) return;
+
+  const token = localStorage.getItem("token");
+
+  // Преобразуем поля в числа
+  const payload = {
+    pricePerKm: parseFloat(settings.pricePerKm),
+    pricePerMin: parseFloat(settings.pricePerMin),
+    minFare: parseFloat(settings.minFare),
+    pricePerHour: parseFloat(settings.pricePerHour),
+    locale: settings.locale, // если нужно
   };
+
+  // Проверка на ошибки в числе
+  if (
+    isNaN(payload.pricePerKm) ||
+    isNaN(payload.pricePerMin) ||
+    isNaN(payload.minFare)
+  ) {
+    alert(t("admin.invalidPrice"));
+    return;
+  }
+
+  try {
+    const response = await axios.put(
+      `https://backtest1-0501.onrender.com/api/admin/settings/${settings._id}`,
+      payload,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    
+    setSettings(response.data);
+    alert(t("admin.settingsUpdated"));
+  } catch (error) {
+    console.error("Error updating settings:", error.response?.data || error);
+    alert(t("admin.errorUpdatingSettings"));
+  }
+};
+
 
   const renderBookingList = (bookings, type) =>
     bookings.map((b) => (
@@ -269,6 +301,12 @@ export default function AdminDashboard() {
               <p>
                 <b>{t("admin.price")}:</b>{" "}
                 {b.price ? `${b.price.toFixed(2)} €` : t("admin.notSpecified")}
+              </p>
+              <p>
+                <b>{t("admin.priceServer")}:</b>{" "}
+                {b.priceServer
+                  ? `${b.serverPrice.toFixed(2)} €`
+                  : t("admin.notSpecified")}
               </p>
               <p>
                 <b>{t("admin.comment")}:</b>{" "}
@@ -473,12 +511,14 @@ export default function AdminDashboard() {
       {activeTab === "settings" && settings && (
         <form onSubmit={handleSettingsSubmit} className="settings-form">
           <label>
-            {t("admin.pricePerKm")}:
+            {t("admin.pricePerKm")}:  
             <input
               type="number"
               step="0.01"
-              value={settings.pricePerKm}
-              onChange={(e) => updateSettings("pricePerKm", e.target.value)}
+              value={settings.pricePerKm ?? ""}
+              onChange={(e) => {
+                updateSettings("pricePerKm", e.target.value);
+              }}
               required
             />
           </label>
@@ -488,7 +528,9 @@ export default function AdminDashboard() {
               type="number"
               step="0.01"
               value={settings.pricePerMin}
-              onChange={(e) => updateSettings("pricePerMin", e.target.value)}
+              onChange={(e) =>
+                updateSettings("pricePerMin", e.target.value)
+              }
               required
             />
           </label>
@@ -498,7 +540,9 @@ export default function AdminDashboard() {
               type="number"
               step="0.01"
               value={settings.minFare}
-              onChange={(e) => updateSettings("minFare", e.target.value)}
+              onChange={(e) =>
+                updateSettings("minFare", e.target.value)
+              }
               required
             />
           </label>
@@ -508,7 +552,9 @@ export default function AdminDashboard() {
               type="number"
               step="0.01"
               value={settings.pricePerHour}
-              onChange={(e) => updateSettings("pricePerHour", e.target.value)}
+              onChange={(e) =>
+                updateSettings("pricePerHour", e.target.value)
+              }
               required
             />
           </label>

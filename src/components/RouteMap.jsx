@@ -107,21 +107,19 @@ export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
         let basePrice = settings.pricePerKm;
         let minPriceForEnter = settings.minFare;
         let pricePerKm;
-        console.log(settings);
+        
 
         if (distanceInKm <= 100) {
           pricePerKm = basePrice * 1.3 ;
-          console.log("Цена за км (до 100):", pricePerKm);
+          
         } else if (distanceInKm <= 300) {
           pricePerKm = basePrice * 1.15;
-          console.log("Цена за км (до 300):", pricePerKm);
+          
         } else {
           pricePerKm = basePrice;
-          console.log("Цена за км (более 300):", pricePerKm);
+          
         }
-        console.log("Минимальная цена за вход:", minPriceForEnter);
-        console.log("Расстояние в км:", distanceInKm);
-        console.log("Цена за км:", pricePerKm);
+       
         
         const calculatedPrice = parseFloat((distanceInKm * pricePerKm + minPriceForEnter).toFixed(2));
         return calculatedPrice;

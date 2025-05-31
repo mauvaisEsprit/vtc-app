@@ -331,6 +331,7 @@
     "minFare": "Минимальная стоимость",
     "save": "Сохранить",
     "settingsUpdated": "Настройки успешно обновлены",
+    "confirmSettingsUpdate": "Вы уверены, что хотите обновить настройки?",
     "errorUpdatingSettings": "Ошибка при обновлении настроек",
     "settingsComingSoon": "Настройки скоро будут доступны"
   },

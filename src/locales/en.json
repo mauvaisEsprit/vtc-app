@@ -324,6 +324,7 @@
   "pricePerMin": "Price per Minute",
   "save": "Save",
   "minFare": "Minimum Fare",
+  "confirmSettingsUpdate": "Are you sure you want to update the settings?",
   "settingsUpdated": "Settings updated successfully",
   "errorUpdatingSettings": "Error updating settings",
   "settingsComingSoon": "Settings section is coming soon. Stay tuned for updates!",
