@@ -321,7 +321,7 @@
       "Analytics section is coming soon. Stay tuned for updates!",
       "pricePerHour": "Price per Hour",
   "pricePerKm": "Price per Km",
-  "pricePerMin": "Price per Minute",
+  "pricePerMin": "Coefficient for return trip",
   "save": "Save",
   "minFare": "Minimum Fare",
   "confirmSettingsUpdate": "Are you sure you want to update the settings?",
