@@ -5,14 +5,17 @@ import "../../styles/AdminDashboard.css";
 
 export default function AdminDashboard() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState("standard"); // 'messages', 'standard', 'hourly'
+  const [activeTab, setActiveTab] = useState("standard"); // можно менять между: 'standard', 'hourly', 'messages', 'analytics', 'settings', 'drivers'
   const [standardBookings, setStandardBookings] = useState([]);
   const [hourlyBookings, setHourlyBookings] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [settings, setSettings] = useState(null);
 
-  const unconfirmedStandard = standardBookings.filter(b => !b.confirmed).length;
-  const unconfirmedHourly = hourlyBookings.filter(b => !b.confirmed).length;
-  const unrepliedMessages = messages.filter(m => !m.replied).length;
+  const unconfirmedStandard = standardBookings.filter(
+    (b) => !b.confirmed
+  ).length;
+  const unconfirmedHourly = hourlyBookings.filter((b) => !b.confirmed).length;
+  const unrepliedMessages = messages.filter((m) => !m.replied).length;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -40,62 +43,68 @@ export default function AdminDashboard() {
       })
       .then((res) => setMessages(res.data))
       .catch(console.error);
+
+    // Цены (если есть такая коллекция)
+    axios
+      .get("https://backtest1-0501.onrender.com/api/admin/settings", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => setSettings(res.data))
+      .catch(console.error);
   }, []);
 
   const confirmBooking = async (id, type) => {
     if (window.confirm(t("admin.confirmBooking"))) {
-    const token = localStorage.getItem("token");
-    const url =
-      type === "hourly"
-        ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}/confirm`
-        : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}/confirm`;
+      const token = localStorage.getItem("token");
+      const url =
+        type === "hourly"
+          ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}/confirm`
+          : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}/confirm`;
 
-    await axios.put(
-      url,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
+      await axios.put(
+        url,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (type === "hourly") {
+        setHourlyBookings((prev) =>
+          prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
+        );
+      } else {
+        setStandardBookings((prev) =>
+          prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
+        );
       }
-    );
-
-    if (type === "hourly") {
-      setHourlyBookings((prev) =>
-        prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
-      );
-    } else {
-      setStandardBookings((prev) =>
-        prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
-      );
     }
-  }
   };
 
   const deleteBooking = async (id, type) => {
     if (window.confirm(t("admin.confirmDelete"))) {
-    const card = document.getElementById(id);
-    if (card) {
-      card.classList.add("fade-out");
-      setTimeout(async () => {
-        const token = localStorage.getItem("token");
-        const url =
-          type === "hourly"
-            ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}`
-            : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}`;
+      const card = document.getElementById(id);
+      if (card) {
+        card.classList.add("fade-out");
+        setTimeout(async () => {
+          const token = localStorage.getItem("token");
+          const url =
+            type === "hourly"
+              ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}`
+              : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}`;
 
-        await axios.delete(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        
-        
+          await axios.delete(url, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
           if (type === "hourly") {
             setHourlyBookings((prev) => prev.filter((b) => b._id !== id));
           } else {
             setStandardBookings((prev) => prev.filter((b) => b._id !== id));
-        }
-      
-      }, 500);
+          }
+        }, 500);
+      }
     }
-  }
   };
 
   const replyMessage = async (id) => {
@@ -121,23 +130,52 @@ export default function AdminDashboard() {
 
   const deleteMessage = async (id) => {
     if (window.confirm(t("admin.confirmDeleteMessage"))) {
-    const card = document.getElementById(id);
-    if (card) {
-      card.classList.add("fade-out");
-      setTimeout(async () => {
-        const token = localStorage.getItem("token");
-        try {
-          await axios.delete(`https://backtest1-0501.onrender.com/api/messages/admin/${id}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          setMessages((prev) => prev.filter((msg) => msg._id !== id));
-        } catch (error) {
-          console.error(error);
-          alert(t("admin.errorDeletingMessage"));
-        }
-      }, 500);
+      const card = document.getElementById(id);
+      if (card) {
+        card.classList.add("fade-out");
+        setTimeout(async () => {
+          const token = localStorage.getItem("token");
+          try {
+            await axios.delete(
+              `https://backtest1-0501.onrender.com/api/messages/admin/${id}`,
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              }
+            );
+            setMessages((prev) => prev.filter((msg) => msg._id !== id));
+          } catch (error) {
+            console.error(error);
+            alert(t("admin.errorDeletingMessage"));
+          }
+        }, 500);
+      }
     }
-  }
+  };
+
+  const updateSettings = (field, value) => {
+    setSettings((prev) => ({
+      ...prev,
+      [field]: parseFloat(value),
+    }));
+  };
+
+  const handleSettingsSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.put(
+        `https://backtest1-0501.onrender.com/api/admin/settings/${settings._id}`,
+        settings,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setSettings(response.data);
+      alert(t("admin.settingsUpdated"));
+    } catch (error) {
+      console.error(error);
+      alert(t("admin.errorUpdatingSettings"));
+    }
   };
 
   const renderBookingList = (bookings, type) =>
@@ -173,7 +211,11 @@ export default function AdminDashboard() {
           </p>
           <p>
             <b>{t("admin.language")}:</b>{" "}
-            {b.locale === "fr" ? t("admin.languageFrench") : b.locale === "en" ? t("admin.languageEnglish") : t("admin.languageRussian")}
+            {b.locale === "fr"
+              ? t("admin.languageFrench")
+              : b.locale === "en"
+              ? t("admin.languageEnglish")
+              : t("admin.languageRussian")}
           </p>
 
           {type === "standard" && (
@@ -205,14 +247,16 @@ export default function AdminDashboard() {
                 <b>{t("admin.children")}:</b> {b.children}
               </p>
               <p>
-                <b>{t("admin.baggage")}:</b> {b.baggage ? t("admin.yes") : t("admin.no")}
+                <b>{t("admin.baggage")}:</b>{" "}
+                {b.baggage ? t("admin.yes") : t("admin.no")}
               </p>
               <p>
                 <b>{t("admin.price")}:</b>{" "}
                 {b.price ? `${b.price.toFixed(2)} €` : t("admin.notSpecified")}
               </p>
               <p>
-                <b>{t("admin.comment")}:</b> {b.comment || t("admin.notSpecified")}
+                <b>{t("admin.comment")}:</b>{" "}
+                {b.comment || t("admin.notSpecified")}
               </p>
             </>
           )}
@@ -230,14 +274,19 @@ export default function AdminDashboard() {
               </p>
               <p>
                 <b>{t("admin.duration")}:</b>{" "}
-                {b.duration ? b.duration + " " + t("admin.hoursShort") : t("admin.notSpecified")}
+                {b.duration
+                  ? b.duration + " " + t("admin.hoursShort")
+                  : t("admin.notSpecified")}
               </p>
               <p>
                 <b>{t("admin.price")}:</b>{" "}
-                {b.totalPrice ? `${b.totalPrice.toFixed(2)} €` : t("admin.notSpecified")}
+                {b.totalPrice
+                  ? `${b.totalPrice.toFixed(2)} €`
+                  : t("admin.notSpecified")}
               </p>
               <p>
-                <b>{t("admin.comment")}:</b> {b.tripPurpose || t("admin.notSpecified")}
+                <b>{t("admin.comment")}:</b>{" "}
+                {b.tripPurpose || t("admin.notSpecified")}
               </p>
             </>
           )}
@@ -274,7 +323,9 @@ export default function AdminDashboard() {
           }`}
         >
           {t("admin.standardTrips")}
-          {unconfirmedStandard > 0 && <span className="tab-badge">{unconfirmedStandard}</span>}
+          {unconfirmedStandard > 0 && (
+            <span className="tab-badge">{unconfirmedStandard}</span>
+          )}
         </button>
 
         <button
@@ -284,7 +335,9 @@ export default function AdminDashboard() {
           }`}
         >
           {t("admin.hourlyRental")}
-          {unconfirmedHourly > 0 && <span className="tab-badge">{unconfirmedHourly}</span>}
+          {unconfirmedHourly > 0 && (
+            <span className="tab-badge">{unconfirmedHourly}</span>
+          )}
         </button>
 
         <button
@@ -294,7 +347,28 @@ export default function AdminDashboard() {
           }`}
         >
           {t("admin.messages")}
-          {unrepliedMessages > 0 && <span className="tab-badge">{unrepliedMessages}</span>}
+          {unrepliedMessages > 0 && (
+            <span className="tab-badge">{unrepliedMessages}</span>
+          )}
+        </button>
+        <button
+          onClick={() => setActiveTab("analytics")}
+          className={`tab-button ${activeTab === "analytics" ? "active" : ""}`}
+        >
+          {t("admin.analytics")}
+        </button>
+
+        <button
+          onClick={() => setActiveTab("drivers")}
+          className={`tab-button ${activeTab === "drivers" ? "active" : ""}`}
+        >
+          {t("admin.drivers")}
+        </button>
+        <button
+          onClick={() => setActiveTab("settings")}
+          className={`tab-button ${activeTab === "settings" ? "active" : ""}`}
+        >
+          {t("admin.settings")}
         </button>
       </div>
 
@@ -336,7 +410,15 @@ export default function AdminDashboard() {
                   <b>{t("admin.email")}:</b> {msg.email}
                 </p>
                 <p>
-                  <b>{t("admin.message")}:</b> {msg.message}
+                  <b>{t("admin.messages")}:</b> {msg.message}
+                </p>
+                <p>
+                  <b>{t("admin.language")}:</b>{" "}
+                  {msg.locale === "fr"
+                    ? t("admin.languageFrench")
+                    : msg.locale === "en"
+                    ? t("admin.languageEnglish")
+                    : t("admin.languageRussian")}
                 </p>
                 {msg.replied && (
                   <span className="replied-text">
@@ -364,7 +446,69 @@ export default function AdminDashboard() {
           )}
         </div>
       )}
+      {activeTab === "analytics" && (
+        <div className="analytics-content">
+          <h2>{t("admin.analytics")}</h2>
+          <p>{t("admin.analyticsComingSoon")}</p>
+          {/* Здесь можно отобразить графики, количество поездок, доход и т.п. */}
+        </div>
+      )}
+
+      {activeTab === "settings" && settings && (
+        <form onSubmit={handleSettingsSubmit} className="settings-form">
+          <label>
+            {t("admin.pricePerKm")}:
+            <input
+              type="number"
+              step="0.01"
+              value={settings.pricePerKm}
+              onChange={(e) => updateSettings("pricePerKm", e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            {t("admin.pricePerMin")}:
+            <input
+              type="number"
+              step="0.01"
+              value={settings.pricePerMin}
+              onChange={(e) => updateSettings("pricePerMin", e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            {t("admin.minFare")}:
+            <input
+              type="number"
+              step="0.01"
+              value={settings.minFare}
+              onChange={(e) => updateSettings("minFare", e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            {t("admin.pricePerHour")}:
+            <input
+              type="number"
+              step="0.01"
+              value={settings.pricePerHour}
+              onChange={(e) => updateSettings("pricePerHour", e.target.value)}
+              required
+            />
+          </label>
+          <button type="submit" className="btn btn-save">
+            {t("admin.save")}
+          </button>
+        </form>
+      )}
+
+      {activeTab === "drivers" && (
+        <div className="drivers-content">
+          <h2>{t("admin.drivers")}</h2>
+          <p>{t("admin.driversComingSoon")}</p>
+          {/* Список водителей, добавление, удаление, смена статуса */}
+        </div>
+      )}
     </div>
   );
 }
-

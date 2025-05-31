@@ -314,10 +314,23 @@
     "replySent": "Réponse envoyée",
     "messageSentToClient": "Message envoyé au client",
     "errorSendingEmail": "Erreur lors de l'envoi de l'email",
+    "analytics": "Statistiques",
+    "drivers": "Chauffeurs",
+    "settings": "Paramètres",
     "confirmBooking": "Confirmer la réservation?",
     "confirmDelete": "Confirmer la suppression?",
     "confirmDeleteMessage": "Êtes-vous sûr de vouloir supprimer ce message ? Cette action est irréversible.",
-    "errorDeletingMessage": "Erreur lors de la suppression du message"
+    "errorDeletingMessage": "Erreur lors de la suppression du message",
+    "analyticsComingSoon": "La section analytique sera bientôt disponible.",
+  "settingsComingSoon": "La section des paramètres sera bientôt disponible.",
+  "pricePerHour": "Prix par heure",
+  "pricePerKm": "Prix par km",
+  "pricePerMinute": "Prix par minute",
+  "minFare": "Tarif minimum",
+  "save": "Enregistrer",
+  "settingsUpdated": "Paramètres mis à jour avec succès.",
+  "errorUpdatingSettings": "Erreur lors de la mise à jour des paramètres.",
+  "driversComingSoon": "La gestion des chauffeurs sera bientôt disponible."
   },
 
   "adminLogin" : {

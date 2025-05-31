@@ -316,10 +316,23 @@
     "replySent": "Ответ отправлен",
     "messageSentToClient": "Сообщение отправлено клиенту",
     "errorSendingEmail": "Ошибка при отправке письма",
+    "analytics": "Аналитика",
+    "drivers": "Водители",
+    "settings": "Настройки",
     "confirmBooking": "Подтвердить бронирование?",
     "confirmDelete": "Вы уверены, что хотите удалить это бронирование?",
     "confirmDeleteMessage": "Вы уверены, что хотите удалить это сообщение?",
-    "errorDeletingMessage": "Ошибка при удалении сообщения"
+    "errorDeletingMessage": "Ошибка при удалении сообщения",
+    "analyticsComingSoon": "Аналитика скоро будет доступна",
+    "driversComingSoon": "Список водителей скоро будет доступен",
+    "pricePerHour": "Цена за час",
+    "pricePerKm": "Цена за км",
+    "pricePerMin": "Цена за минуту",
+    "minFare": "Минимальная стоимость",
+    "save": "Сохранить",
+    "settingsUpdated": "Настройки успешно обновлены",
+    "errorUpdatingSettings": "Ошибка при обновлении настроек",
+    "settingsComingSoon": "Настройки скоро будут доступны"
   },
 
   "adminLogin": {

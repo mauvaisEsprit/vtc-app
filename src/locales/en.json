@@ -310,10 +310,24 @@
     "replySent": "Reply Sent",
     "messageSentToClient": "Message sent to client",
     "errorSendingEmail": "Error sending email",
+    "analytics": "Analytics",
+    "drivers": "Drivers",
+    "settings": "Settings",
     "confirmBooking": "Confirm Booking?",
     "confirmDelete": "Are you sure you want to delete this booking?",
     "confirmDeleteMessage": "Are you sure you want to delete this message?",
-    "errorDeletingMessage": "Error deleting message"
+    "errorDeletingMessage": "Error deleting message",
+    "analyticsComingSoon": 
+      "Analytics section is coming soon. Stay tuned for updates!",
+      "pricePerHour": "Price per Hour",
+  "pricePerKm": "Price per Km",
+  "pricePerMin": "Price per Minute",
+  "save": "Save",
+  "minFare": "Minimum Fare",
+  "settingsUpdated": "Settings updated successfully",
+  "errorUpdatingSettings": "Error updating settings",
+  "settingsComingSoon": "Settings section is coming soon. Stay tuned for updates!",
+  "driversComingSoon": "Drivers section is coming soon. Stay tuned for updates!"
   },
 
   "adminLogin": {

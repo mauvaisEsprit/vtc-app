@@ -190,7 +190,6 @@ const handleSubmit = async (e) => {
             className="booking-form-button"
             type="reset"
             disabled={isSubmitting}
-            style={{ marginLeft: "10px" }}
           >
             {t("contact.form.reset")}
           </button>
