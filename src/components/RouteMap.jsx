@@ -1,8 +1,27 @@
 import { useEffect, useRef } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
   const timeoutRef = useRef(null);
   const controllerRef = useRef(null);
+
+  const [settings, setSettings] = useState({});
+
+  useEffect(() => {
+    // Цены (если есть такая коллекция)
+    axios
+      .get("https://backtest1-0501.onrender.com/api/admin/settings", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      .then((res) => {
+        setSettings(res.data);
+      })
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     // Если from или to пустые - сбрасываем цену и загрузку
@@ -80,13 +99,37 @@ export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
       }
 
       const distanceInKm = data.routes[0].distance / 1000;
+      console.log("Расстояние в км:", distanceInKm);
 
-      let pricePerKm = 3;
-      if (distanceInKm > 100 && distanceInKm <= 300) pricePerKm = 2.5;
-      else if (distanceInKm > 300) pricePerKm = 2.2;
+      const calculatePrice = (distanceInKm, settings) => {
+        if (!settings?.pricePerKm) return 0;
 
-      const calculatedPrice = (distanceInKm * pricePerKm).toFixed(2);
-      onPriceCalculated(calculatedPrice);
+        let basePrice = settings.pricePerKm;
+        let minPriceForEnter = settings.minFare;
+        let pricePerKm;
+        console.log(settings);
+
+        if (distanceInKm <= 100) {
+          pricePerKm = basePrice * 1.3 ;
+          console.log("Цена за км (до 100):", pricePerKm);
+        } else if (distanceInKm <= 300) {
+          pricePerKm = basePrice * 1.15;
+          console.log("Цена за км (до 300):", pricePerKm);
+        } else {
+          pricePerKm = basePrice;
+          console.log("Цена за км (более 300):", pricePerKm);
+        }
+        console.log("Минимальная цена за вход:", minPriceForEnter);
+        console.log("Расстояние в км:", distanceInKm);
+        console.log("Цена за км:", pricePerKm);
+        
+        const calculatedPrice = parseFloat((distanceInKm * pricePerKm + minPriceForEnter).toFixed(2));
+        return calculatedPrice;
+      };
+
+      // Пример использования:
+      const finalPrice = calculatePrice(distanceInKm, settings);
+      onPriceCalculated(finalPrice);
     } catch (err) {
       if (err.name !== "AbortError") {
         console.error("Ошибка маршрута:", err);

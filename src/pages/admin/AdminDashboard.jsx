@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "../../styles/AdminDashboard.css";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
   const { t } = useTranslation();
@@ -10,6 +11,7 @@ export default function AdminDashboard() {
   const [hourlyBookings, setHourlyBookings] = useState([]);
   const [messages, setMessages] = useState([]);
   const [settings, setSettings] = useState(null);
+  const navigate = useNavigate();
 
   const unconfirmedStandard = standardBookings.filter(
     (b) => !b.confirmed
@@ -19,14 +21,26 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) {
+    navigate("/admin/login", { replace: true });
+    return;
+  }
 
+  const handleError = (err) => {
+    if (err.response?.status === 401 || err.response?.status === 403) {
+      localStorage.removeItem("token");
+      navigate("/admin/login", { replace: true });
+    } else {
+      console.error(err);
+    }
+  };
     // Обычные поездки
     axios
       .get("https://backtest1-0501.onrender.com/api/bookings/admin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setStandardBookings(res.data))
-      .catch(console.error);
+      .catch(handleError);
 
     // Почасовая аренда
     axios
@@ -34,7 +48,7 @@ export default function AdminDashboard() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setHourlyBookings(res.data))
-      .catch(console.error);
+      .catch(handleError);
 
     // Сообщения с сайта (если есть такая коллекция)
     axios
@@ -42,7 +56,9 @@ export default function AdminDashboard() {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setMessages(res.data))
-      .catch(console.error);
+      .catch(handleError);
+
+      
 
     // Цены (если есть такая коллекция)
     axios
@@ -51,7 +67,7 @@ export default function AdminDashboard() {
       })
       .then((res) => setSettings(res.data))
       .catch(console.error);
-  }, []);
+  }, [ navigate ]);
 
   const confirmBooking = async (id, type) => {
     if (window.confirm(t("admin.confirmBooking"))) {

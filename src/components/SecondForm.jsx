@@ -26,9 +26,11 @@ export default function SecondForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [settings, setSettings] = useState({});
 
-  const hourlyRate = 60;
-  const totalPrice = Number(duration ? duration * hourlyRate : 0).toFixed(2);
+  
+
+
 
   const localeMap = {
     en: "en",
@@ -39,6 +41,36 @@ export default function SecondForm() {
     "ru-RU": "ru",
   };
   const currentLocale = localeMap[i18n.language] || "en";
+
+
+useEffect(() => {
+    // Цены (если есть такая коллекция)
+    axios
+      .get("https://backtest1-0501.onrender.com/api/admin/settings", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      .then((res) => {
+        setSettings(res.data);
+      })
+      .catch(console.error);
+  }, []);
+
+
+  const calculateHourlyPrice = (duration, settings) => {
+  if (!settings?.pricePerHour) return 0; // если нет ставки — цена 0
+
+  const hourlyRate = settings.pricePerHour;
+  const firstPrice = duration ? (duration * hourlyRate + settings.minFare).toFixed(2) : "0.00";
+  const totalPrice = parseFloat(firstPrice)
+  return totalPrice;
+};
+  // Вычисляем цену на основе введенной продолжительности и настроек
+  const totalPrice = calculateHourlyPrice(duration, settings);
+
+
 
   const handleDateChange = (date) => {
     if (!date) {
