@@ -331,6 +331,7 @@
   "settingsUpdated": "Paramètres mis à jour avec succès.",
   "errorUpdatingSettings": "Erreur lors de la mise à jour des paramètres.",
   "confirmSettingsUpdate": "Confirmer la mise à jour des paramètres ?",
+  "priceServer": "Prix du serveur",
   "driversComingSoon": "La gestion des chauffeurs sera bientôt disponible."
   },
 

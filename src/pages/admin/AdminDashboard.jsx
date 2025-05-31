@@ -305,7 +305,7 @@ export default function AdminDashboard() {
               <p>
                 <b>{t("admin.priceServer")}:</b>{" "}
                 {b.priceServer
-                  ? `${b.serverPrice.toFixed(2)} €`
+                  ? `${b.priceServer.toFixed(2)} €`
                   : t("admin.notSpecified")}
               </p>
               <p>
