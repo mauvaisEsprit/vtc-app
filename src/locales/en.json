@@ -310,7 +310,19 @@
     "replySent": "Reply Sent",
     "messageSentToClient": "Message sent to client",
     "errorSendingEmail": "Error sending email",
+    "confirmBooking": "Confirm Booking?",
+    "confirmDelete": "Are you sure you want to delete this booking?",
+    "confirmDeleteMessage": "Are you sure you want to delete this message?",
     "errorDeletingMessage": "Error deleting message"
+  },
+
+  "adminLogin": {
+    "title": "Login",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "error": "Invalid login or password"
   }
 
 

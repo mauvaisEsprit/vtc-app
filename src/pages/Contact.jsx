@@ -4,12 +4,14 @@ import Hero from "../components/Hero";
 import "../styles/Contact.css";
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
   const [statusMessage, setStatusMessage] = useState(null);
   const [statusType, setStatusType] = useState(null); // 'error' | 'success'
+
+  const currentLocale = i18n.language || "fr"; // Получаем текущий язык из i18n
 
   const imageContact =
     "https://img.12go.asia/0/fit/1024/0/ce/1/plain/s3://12go-web-static/static/images/upload-media/4670.jpeg";
@@ -57,7 +59,7 @@ const handleSubmit = async (e) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, message }),
+      body: JSON.stringify({ name, email, message, locale: currentLocale }),
     });
 
     

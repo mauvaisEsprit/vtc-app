@@ -314,8 +314,21 @@
     "replySent": "Réponse envoyée",
     "messageSentToClient": "Message envoyé au client",
     "errorSendingEmail": "Erreur lors de l'envoi de l'email",
+    "confirmBooking": "Confirmer la réservation?",
+    "confirmDelete": "Confirmer la suppression?",
+    "confirmDeleteMessage": "Êtes-vous sûr de vouloir supprimer ce message ? Cette action est irréversible.",
     "errorDeletingMessage": "Erreur lors de la suppression du message"
-  }
+  },
+
+  "adminLogin" : {
+  "title": "Сonnexion",
+
+    "login": "Connexion administrateur",
+    "email": "Email",
+    "password": "Mot de passe",
+    "loginButton": "Se connecter",
+    "error": "Erreur de connexion. Veuillez verifier vos identifiants."
+}
 }
 
 

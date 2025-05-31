@@ -43,6 +43,7 @@ export default function AdminDashboard() {
   }, []);
 
   const confirmBooking = async (id, type) => {
+    if (window.confirm(t("admin.confirmBooking"))) {
     const token = localStorage.getItem("token");
     const url =
       type === "hourly"
@@ -66,9 +67,11 @@ export default function AdminDashboard() {
         prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
       );
     }
+  }
   };
 
   const deleteBooking = async (id, type) => {
+    if (window.confirm(t("admin.confirmDelete"))) {
     const card = document.getElementById(id);
     if (card) {
       card.classList.add("fade-out");
@@ -82,14 +85,17 @@ export default function AdminDashboard() {
         await axios.delete(url, {
           headers: { Authorization: `Bearer ${token}` },
         });
-
-        if (type === "hourly") {
-          setHourlyBookings((prev) => prev.filter((b) => b._id !== id));
-        } else {
-          setStandardBookings((prev) => prev.filter((b) => b._id !== id));
+        
+        
+          if (type === "hourly") {
+            setHourlyBookings((prev) => prev.filter((b) => b._id !== id));
+          } else {
+            setStandardBookings((prev) => prev.filter((b) => b._id !== id));
         }
+      
       }, 500);
     }
+  }
   };
 
   const replyMessage = async (id) => {
@@ -114,6 +120,7 @@ export default function AdminDashboard() {
   };
 
   const deleteMessage = async (id) => {
+    if (window.confirm(t("admin.confirmDeleteMessage"))) {
     const card = document.getElementById(id);
     if (card) {
       card.classList.add("fade-out");
@@ -130,6 +137,7 @@ export default function AdminDashboard() {
         }
       }, 500);
     }
+  }
   };
 
   const renderBookingList = (bookings, type) =>

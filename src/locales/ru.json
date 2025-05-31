@@ -316,7 +316,19 @@
     "replySent": "Ответ отправлен",
     "messageSentToClient": "Сообщение отправлено клиенту",
     "errorSendingEmail": "Ошибка при отправке письма",
+    "confirmBooking": "Подтвердить бронирование?",
+    "confirmDelete": "Вы уверены, что хотите удалить это бронирование?",
+    "confirmDeleteMessage": "Вы уверены, что хотите удалить это сообщение?",
     "errorDeletingMessage": "Ошибка при удалении сообщения"
+  },
+
+  "adminLogin": {
+  "title": "Вход",
+    "login": "Войти в панель администратора",
+    "email": "Email",
+    "password": "Пароль",
+    "loginButton": "Войти",
+    "error": "Неверный email или пароль"
   }
 }
     
