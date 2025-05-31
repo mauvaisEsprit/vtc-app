@@ -527,7 +527,7 @@ export default function AdminDashboard() {
             <input
               type="number"
               step="0.01"
-              min="0"
+              min="1.00"
               max="2.00"
               value={settings.pricePerMin}
               onChange={(e) =>
