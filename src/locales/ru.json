@@ -334,7 +334,8 @@
     "priceServer": "Цена c сервера",
     "confirmSettingsUpdate": "Вы уверены, что хотите обновить настройки?",
     "errorUpdatingSettings": "Ошибка при обновлении настроек",
-    "settingsComingSoon": "Настройки скоро будут доступны"
+    "settingsComingSoon": "Настройки скоро будут доступны",
+    "invalidPrice": "Некорректная цена. Пожалуйста, введите положительное число."
   },
 
   "adminLogin": {

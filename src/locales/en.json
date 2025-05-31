@@ -329,7 +329,8 @@
   "errorUpdatingSettings": "Error updating settings",
   "settingsComingSoon": "Settings section is coming soon. Stay tuned for updates!",
   "priceServer": "Price Server",
-  "driversComingSoon": "Drivers section is coming soon. Stay tuned for updates!"
+  "driversComingSoon": "Drivers section is coming soon. Stay tuned for updates!",
+  "invalidPrice": "Invalid price format. Please enter a valid number."
   },
 
   "adminLogin": {

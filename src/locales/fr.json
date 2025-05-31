@@ -325,14 +325,15 @@
   "settingsComingSoon": "La section des paramètres sera bientôt disponible.",
   "pricePerHour": "Prix par heure",
   "pricePerKm": "Prix par km",
-  "pricePerMinute": "Coefficient pour le retour",
+  "pricePerMin": "Coefficient pour le retour",
   "minFare": "Tarif minimum",
   "save": "Enregistrer",
   "settingsUpdated": "Paramètres mis à jour avec succès.",
   "errorUpdatingSettings": "Erreur lors de la mise à jour des paramètres.",
   "confirmSettingsUpdate": "Confirmer la mise à jour des paramètres ?",
   "priceServer": "Prix du serveur",
-  "driversComingSoon": "La gestion des chauffeurs sera bientôt disponible."
+  "driversComingSoon": "La gestion des chauffeurs sera bientôt disponible.",
+  "invalidPrice": "Prix invalide. Veuillez entrer un nombre valide."
   },
 
   "adminLogin" : {

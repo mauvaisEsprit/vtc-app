@@ -42,6 +42,7 @@ export default function BookingForm() {
   const [suggestionsTo, setSuggestionsTo] = useState([]);
   const [isInputFocusedFrom, setIsInputFocusedFrom] = useState(false);
   const [isInputFocusedTo, setIsInputFocusedTo] = useState(false);
+  const [coefForRoundTrip, setCoefForRoundTrip] = useState(null);
 
   useEffect(() => {
     if (
@@ -254,9 +255,10 @@ export default function BookingForm() {
   const numericPrice = Number(price);
   const adjustedPrice = !isNaN(numericPrice)
     ? isRoundTrip
-      ? numericPrice * 1.9
+      ? numericPrice * coefForRoundTrip
       : numericPrice
     : null;
+
 
   const finalPrice =
     adjustedPrice !== null ? Number(adjustedPrice.toFixed(2)) : null;
@@ -489,6 +491,7 @@ export default function BookingForm() {
         <RouteMap
           from={from}
           to={to}
+          onCoefForRoundTripChange={(coef) => setCoefForRoundTrip(coef)}
           onPriceCalculated={(price) => {
             setPrice(price);
             if (price === null) setLoading(false);

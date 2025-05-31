@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
+export default function RouteMap({ from, to, onPriceCalculated, setLoading , onCoefForRoundTripChange  }) {
   const timeoutRef = useRef(null);
   const controllerRef = useRef(null);
 
@@ -22,6 +22,13 @@ export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
       })
       .catch(console.error);
   }, []);
+
+  const coefForRoundTrip = settings?.coefForRoundTrip;
+  useEffect(() => {
+    if (coefForRoundTrip) {
+      onCoefForRoundTripChange(coefForRoundTrip);
+    }
+  }, [coefForRoundTrip, onCoefForRoundTripChange]);
 
   useEffect(() => {
     // Если from или to пустые - сбрасываем цену и загрузку
@@ -122,6 +129,7 @@ export default function RouteMap({ from, to, onPriceCalculated, setLoading }) {
        
         
         const calculatedPrice = parseFloat((distanceInKm * pricePerKm + minPriceForEnter).toFixed(2));
+        console.log("Цена за маршрут:", calculatedPrice);
         return calculatedPrice;
       };
 

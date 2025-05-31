@@ -192,22 +192,27 @@ export default function AdminDashboard() {
   // Преобразуем поля в числа
   const payload = {
     pricePerKm: parseFloat(settings.pricePerKm),
-    pricePerMin: parseFloat(settings.pricePerMin),
+    coefForRoundTrip: parseFloat(settings.coefForRoundTrip),
     minFare: parseFloat(settings.minFare),
     pricePerHour: parseFloat(settings.pricePerHour),
     locale: settings.locale, // если нужно
   };
 
+  console.log("Updating settings with payload:", payload);
+console.log("pricePerMin raw value:", settings.coefForRoundTrip);
+
   // Проверка на ошибки в числе
   if (
     isNaN(payload.pricePerKm) ||
-    isNaN(payload.pricePerMin) ||
-    isNaN(payload.minFare)
+    isNaN(payload.coefForRoundTrip) ||
+    isNaN(payload.minFare) ||
+    isNaN(payload.pricePerHour)
   ) {
     alert(t("admin.invalidPrice"));
     return;
   }
-
+  console.log("pricePerMin after conversion:", payload.coefForRoundTrip);
+console.log(settings.coefForRoundTrip);
   try {
     const response = await axios.put(
       `https://backtest1-0501.onrender.com/api/admin/settings/${settings._id}`,
@@ -527,11 +532,11 @@ export default function AdminDashboard() {
             <input
               type="number"
               step="0.01"
-              min="1.00"
-              max="2.00"
-              value={settings.pricePerMin}
+              min="1"
+              max="2"
+              value={settings.coefForRoundTrip}
               onChange={(e) =>
-                updateSettings("pricePerMin", e.target.value)
+                updateSettings("coefForRoundTrip", e.target.value)
               }
               required
             />
