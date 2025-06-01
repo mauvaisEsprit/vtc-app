@@ -10,6 +10,7 @@ import "./styles/Index.css";
 import ScrollToTopButton from "../src/components/ScrollToTopButton";
 import ProtectedRoute from "./pages/admin/ProtectedRoute";
 
+
 // Страницы
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
@@ -22,6 +23,8 @@ import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueDeConfidentialite from "./pages/PolitiqueDeConfidentialite";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import DriverLogin from "./pages/driver/DriverLogin";
+import DriverDashboard from "./pages/driver/DriverDashboard";
 export default function App() {
  const { t, i18n } = useTranslation();
 
@@ -54,14 +57,23 @@ export default function App() {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-de-confidentialite" element={<PolitiqueDeConfidentialite />} />
 
-         <Route path="/login" element={<AdminLogin />} />
+         <Route path="/login/admin" element={<AdminLogin />} />
+         <Route path="/login/driver" element={<DriverLogin />} />
         <Route
-          path="/login/admin"
+          path="/login/admin/dashboard"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute role="admin">
               <AdminDashboard />
             </ProtectedRoute>
           }
+        />
+        <Route 
+          path="/login/driver/dashboard" 
+          element={
+            <ProtectedRoute role="driver">
+              <DriverDashboard />
+            </ProtectedRoute>
+          } 
         />
       </Routes>
       <ScrollToTopButton />

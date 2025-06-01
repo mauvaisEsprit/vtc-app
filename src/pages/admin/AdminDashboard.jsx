@@ -3,6 +3,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "../../styles/AdminDashboard.css";
 import { useNavigate } from "react-router-dom";
+import DriverRegister from "./DriverRegister";
 
 export default function AdminDashboard() {
   const { t } = useTranslation();
@@ -20,15 +21,15 @@ export default function AdminDashboard() {
   const unrepliedMessages = messages.filter((m) => !m.replied).length;
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    const adminToken = localStorage.getItem("adminToken");
+    if (!adminToken) {
       navigate("/login", { replace: true });
       return;
     }
 
     const handleError = (err) => {
       if (err.response?.status === 401 || err.response?.status === 403) {
-        localStorage.removeItem("token");
+        localStorage.removeItem("adminToken");
         navigate("/login", { replace: true });
       } else {
         console.error(err);
@@ -37,7 +38,7 @@ export default function AdminDashboard() {
     // Обычные поездки
     axios
       .get("https://backtest1-0501.onrender.com/api/bookings/login/admin", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${adminToken}` },
       })
       .then((res) => setStandardBookings(res.data))
       .catch(handleError);
@@ -45,7 +46,7 @@ export default function AdminDashboard() {
     // Почасовая аренда
     axios
       .get("https://backtest1-0501.onrender.com/api/hourly/login/admin", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${adminToken}` },
       })
       .then((res) => setHourlyBookings(res.data))
       .catch(handleError);
@@ -53,7 +54,7 @@ export default function AdminDashboard() {
     // Сообщения с сайта (если есть такая коллекция)
     axios
       .get("https://backtest1-0501.onrender.com/api/messages/login/admin", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${adminToken}` },
       })
       .then((res) => setMessages(res.data))
       .catch(handleError);
@@ -61,7 +62,7 @@ export default function AdminDashboard() {
     // Цены (если есть такая коллекция)
     axios
       .get("https://backtest1-0501.onrender.com/api/login/admin/settings", {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${adminToken}` },
       })
       .then((res) => setSettings(res.data))
       .catch(console.error);
@@ -70,7 +71,7 @@ export default function AdminDashboard() {
   const confirmBooking = useCallback(
     async (id, type) => {
       if (window.confirm(t("admin.confirmBooking"))) {
-        const token = localStorage.getItem("token");
+        const adminToken = localStorage.getItem("adminToken");
         const url =
           type === "hourly"
             ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}/confirm`
@@ -80,7 +81,7 @@ export default function AdminDashboard() {
           url,
           {},
           {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${adminToken}` },
           }
         );
 
@@ -105,14 +106,14 @@ export default function AdminDashboard() {
         card.classList.add("fade-out");
         try {
           await new Promise((resolve) => setTimeout(resolve, 500)); // ждем анимацию
-          const token = localStorage.getItem("token");
+          const adminToken = localStorage.getItem("adminToken");
           const url =
             type === "hourly"
               ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}`
               : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}`;
 
           await axios.delete(url, {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${adminToken}` },
           });
 
           if (type === "hourly") {
@@ -130,13 +131,13 @@ export default function AdminDashboard() {
   };
 
   const replyMessage = async (id) => {
-    const token = localStorage.getItem("token");
+    const adminToken = localStorage.getItem("adminToken");
     try {
       await axios.post(
         `https://backtest1-0501.onrender.com/api/messages/login/admin/${id}/reply`,
         {},
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${adminToken}` },
         }
       );
       alert(t("admin.messageSentToClient"));
@@ -156,12 +157,12 @@ export default function AdminDashboard() {
       if (card) {
         card.classList.add("fade-out");
         setTimeout(async () => {
-          const token = localStorage.getItem("token");
+          const adminToken = localStorage.getItem("adminToken");
           try {
             await axios.delete(
               `https://backtest1-0501.onrender.com/api/messages/login/admin/${id}`,
               {
-                headers: { Authorization: `Bearer ${token}` },
+                headers: { Authorization: `Bearer ${adminToken}` },
               }
             );
             setMessages((prev) => prev.filter((msg) => msg._id !== id));
@@ -186,7 +187,7 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!window.confirm(t("admin.confirmSettingsUpdate"))) return;
 
-    const token = localStorage.getItem("token");
+    const adminToken = localStorage.getItem("adminToken");
 
     // Преобразуем поля в числа
     const payload = {
@@ -217,7 +218,7 @@ export default function AdminDashboard() {
         `https://backtest1-0501.onrender.com/api/login/admin/settings/${settings._id}`,
         payload,
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${adminToken}` },
         }
       );
 
@@ -586,6 +587,7 @@ export default function AdminDashboard() {
 
       {activeTab === "drivers" && (
         <div className="drivers-content">
+          <DriverRegister />
           <h2>{t("admin.drivers")}</h2>
           <p>{t("admin.driversComingSoon")}</p>
           {/* Список водителей, добавление, удаление, смена статуса */}
