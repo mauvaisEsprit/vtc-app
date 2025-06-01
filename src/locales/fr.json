@@ -333,6 +333,7 @@
   "confirmSettingsUpdate": "Confirmer la mise à jour des paramètres ?",
   "priceServer": "Prix du serveur",
   "driversComingSoon": "La gestion des chauffeurs sera bientôt disponible.",
+  "dateCreation": "Date de création",
   "invalidPrice": "Prix invalide. Veuillez entrer un nombre valide."
   },
 

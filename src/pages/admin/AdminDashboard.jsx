@@ -22,14 +22,14 @@ export default function AdminDashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/admin/login", { replace: true });
+      navigate("/login", { replace: true });
       return;
     }
 
     const handleError = (err) => {
       if (err.response?.status === 401 || err.response?.status === 403) {
         localStorage.removeItem("token");
-        navigate("/admin/login", { replace: true });
+        navigate("/login", { replace: true });
       } else {
         console.error(err);
       }
@@ -67,66 +67,67 @@ export default function AdminDashboard() {
       .catch(console.error);
   }, [navigate]);
 
-  const confirmBooking = useCallback( 
+  const confirmBooking = useCallback(
     async (id, type) => {
-    if (window.confirm(t("admin.confirmBooking"))) {
-      const token = localStorage.getItem("token");
-      const url =
-        type === "hourly"
-          ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}/confirm`
-          : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}/confirm`;
-
-      await axios.put(
-        url,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      if (type === "hourly") {
-        setHourlyBookings((prev) =>
-          prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
-        );
-      } else {
-        setStandardBookings((prev) =>
-          prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
-        );
-      }
-    }
-  }, [t, setStandardBookings, setHourlyBookings]);
-
-  const deleteBooking = async (id, type) => {
-  if (window.confirm(t("admin.confirmDelete"))) {
-    const card = document.getElementById(id);
-    if (card) {
-      card.classList.add("fade-out");
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 500)); // ждем анимацию
+      if (window.confirm(t("admin.confirmBooking"))) {
         const token = localStorage.getItem("token");
         const url =
           type === "hourly"
-            ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}`
-            : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}`;
+            ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}/confirm`
+            : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}/confirm`;
 
-        await axios.delete(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.put(
+          url,
+          {},
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         if (type === "hourly") {
-          setHourlyBookings((prev) => prev.filter((b) => b._id !== id));
+          setHourlyBookings((prev) =>
+            prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
+          );
         } else {
-          setStandardBookings((prev) => prev.filter((b) => b._id !== id));
+          setStandardBookings((prev) =>
+            prev.map((b) => (b._id === id ? { ...b, confirmed: true } : b))
+          );
         }
-      } catch (error) {
-        console.error(error);
-        card.classList.remove("fade-out"); // отменяем анимацию при ошибке
-        alert(t("admin.errorDeletingBooking"));
+      }
+    },
+    [t, setStandardBookings, setHourlyBookings]
+  );
+
+  const deleteBooking = async (id, type) => {
+    if (window.confirm(t("admin.confirmDelete"))) {
+      const card = document.getElementById(id);
+      if (card) {
+        card.classList.add("fade-out");
+        try {
+          await new Promise((resolve) => setTimeout(resolve, 500)); // ждем анимацию
+          const token = localStorage.getItem("token");
+          const url =
+            type === "hourly"
+              ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}`
+              : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}`;
+
+          await axios.delete(url, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          if (type === "hourly") {
+            setHourlyBookings((prev) => prev.filter((b) => b._id !== id));
+          } else {
+            setStandardBookings((prev) => prev.filter((b) => b._id !== id));
+          }
+        } catch (error) {
+          console.error(error);
+          card.classList.remove("fade-out"); // отменяем анимацию при ошибке
+          alert(t("admin.errorDeletingBooking"));
+        }
       }
     }
-  }
-};
-
+  };
 
   const replyMessage = async (id) => {
     const token = localStorage.getItem("token");
@@ -174,62 +175,59 @@ export default function AdminDashboard() {
   };
 
   const updateSettings = (field, value) => {
- 
-  const val = value.replace(/,/g, ".");
-  setSettings((prev) => ({
-    ...prev,
-    [field]: val,
-  }));
-};
-
-
-  const handleSettingsSubmit = async (e) => {
-  e.preventDefault();
-  if (!window.confirm(t("admin.confirmSettingsUpdate"))) return;
-
-  const token = localStorage.getItem("token");
-
-  // Преобразуем поля в числа
-  const payload = {
-    pricePerKm: parseFloat(settings.pricePerKm),
-    coefForRoundTrip: parseFloat(settings.coefForRoundTrip),
-    minFare: parseFloat(settings.minFare),
-    pricePerHour: parseFloat(settings.pricePerHour),
-    locale: settings.locale, // если нужно
+    const val = value.replace(/,/g, ".");
+    setSettings((prev) => ({
+      ...prev,
+      [field]: val,
+    }));
   };
 
-  console.log("Updating settings with payload:", payload);
-console.log("pricePerMin raw value:", settings.coefForRoundTrip);
+  const handleSettingsSubmit = async (e) => {
+    e.preventDefault();
+    if (!window.confirm(t("admin.confirmSettingsUpdate"))) return;
 
-  // Проверка на ошибки в числе
-  if (
-    isNaN(payload.pricePerKm) ||
-    isNaN(payload.coefForRoundTrip) ||
-    isNaN(payload.minFare) ||
-    isNaN(payload.pricePerHour)
-  ) {
-    alert(t("admin.invalidPrice"));
-    return;
-  }
-  console.log("pricePerMin after conversion:", payload.coefForRoundTrip);
-console.log(settings.coefForRoundTrip);
-  try {
-    const response = await axios.put(
-      `https://backtest1-0501.onrender.com/api/login/admin/settings/${settings._id}`,
-      payload,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    
-    setSettings(response.data);
-    alert(t("admin.settingsUpdated"));
-  } catch (error) {
-    console.error("Error updating settings:", error.response?.data || error);
-    alert(t("admin.errorUpdatingSettings"));
-  }
-};
+    const token = localStorage.getItem("token");
 
+    // Преобразуем поля в числа
+    const payload = {
+      pricePerKm: parseFloat(settings.pricePerKm),
+      coefForRoundTrip: parseFloat(settings.coefForRoundTrip),
+      minFare: parseFloat(settings.minFare),
+      pricePerHour: parseFloat(settings.pricePerHour),
+      locale: settings.locale, // если нужно
+    };
+
+    console.log("Updating settings with payload:", payload);
+    console.log("pricePerMin raw value:", settings.coefForRoundTrip);
+
+    // Проверка на ошибки в числе
+    if (
+      isNaN(payload.pricePerKm) ||
+      isNaN(payload.coefForRoundTrip) ||
+      isNaN(payload.minFare) ||
+      isNaN(payload.pricePerHour)
+    ) {
+      alert(t("admin.invalidPrice"));
+      return;
+    }
+    console.log("pricePerMin after conversion:", payload.coefForRoundTrip);
+    console.log(settings.coefForRoundTrip);
+    try {
+      const response = await axios.put(
+        `https://backtest1-0501.onrender.com/api/login/admin/settings/${settings._id}`,
+        payload,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setSettings(response.data);
+      alert(t("admin.settingsUpdated"));
+    } catch (error) {
+      console.error("Error updating settings:", error.response?.data || error);
+      alert(t("admin.errorUpdatingSettings"));
+    }
+  };
 
   const renderBookingList = (bookings, type) =>
     bookings.map((b) => (
@@ -254,6 +252,12 @@ console.log(settings.coefForRoundTrip);
 
         <div className="booking-info">
           <p>
+            <b>{t("admin.dateCreation")}:</b>{" "}
+            {new Date(b.createdAt).toLocaleString("fr-FR", {
+              timeZone: "Europe/Paris",
+            })}
+          </p>
+          <p>
             <b>{t("admin.name")}:</b> {b.name}
           </p>
           <p>
@@ -262,6 +266,7 @@ console.log(settings.coefForRoundTrip);
           <p>
             <b>{t("admin.phone")}:</b> {b.phone}
           </p>
+
           <p>
             <b>{t("admin.language")}:</b>{" "}
             {b.locale === "fr"
@@ -469,6 +474,12 @@ console.log(settings.coefForRoundTrip);
                 className={`booking-card ${msg.replied ? "replied" : ""}`}
               >
                 <p>
+                  <b>{t("admin.dateCreation")}:</b>{" "}
+                  {new Date(msg.createdAt).toLocaleString("fr-FR", {
+                    timeZone: "Europe/Paris",
+                  })}
+                </p>
+                <p>
                   <b>{t("admin.name")}:</b> {msg.name}
                 </p>
                 <p>
@@ -522,7 +533,7 @@ console.log(settings.coefForRoundTrip);
       {activeTab === "settings" && settings && (
         <form onSubmit={handleSettingsSubmit} className="settings-form">
           <label>
-            {t("admin.pricePerKm")}:  
+            {t("admin.pricePerKm")}:
             <input
               type="number"
               step="0.01"
@@ -553,9 +564,7 @@ console.log(settings.coefForRoundTrip);
               type="number"
               step="0.01"
               value={settings.minFare}
-              onChange={(e) =>
-                updateSettings("minFare", e.target.value)
-              }
+              onChange={(e) => updateSettings("minFare", e.target.value)}
               required
             />
           </label>
@@ -565,9 +574,7 @@ console.log(settings.coefForRoundTrip);
               type="number"
               step="0.01"
               value={settings.pricePerHour}
-              onChange={(e) =>
-                updateSettings("pricePerHour", e.target.value)
-              }
+              onChange={(e) => updateSettings("pricePerHour", e.target.value)}
               required
             />
           </label>

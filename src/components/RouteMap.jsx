@@ -11,7 +11,7 @@ export default function RouteMap({ from, to, onPriceCalculated, setLoading , onC
   useEffect(() => {
     // Цены (если есть такая коллекция)
     axios
-      .get("https://backtest1-0501.onrender.com/api/admin/settings", {
+      .get("https://backtest1-0501.onrender.com/api/login/admin/settings", {
         headers: {
           "Content-Type": "application/json",
         },

@@ -75,6 +75,16 @@
   gap: 8px; /* небольшой отступ между строками */
 }
 
+.booking-card p,
+.booking-info p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  word-break: break-word; /* ← важно! */
+}
+
+
+
 
 .booking-id {
   color: #3f51b5;
@@ -110,6 +120,15 @@
     margin-top: 6px;
     text-align: center;
   }
+
+ .booking-card p,
+.booking-info p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  word-break: break-word; /* ← важно! */
+}
+
 }
 
 
