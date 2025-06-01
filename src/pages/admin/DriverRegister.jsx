@@ -26,7 +26,6 @@ export default function DriverRegister() {
       const res = await fetch('https://backtest1-0501.onrender.com/api/login/admin/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',  Authorization: `Bearer ${adminToken}` },
-        
         body: JSON.stringify(form),
       });
       const data = await res.json();
