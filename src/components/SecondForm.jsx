@@ -377,6 +377,9 @@ useEffect(() => {
           <p>
             {t("form.estimatedPrice")} <strong>{totalPrice}€</strong>
           </p>
+          <p style={{ fontSize: "0.9rem", marginTop: "0.5rem", color: "#333" }}>
+            * {t("tarifs.noteApproximate")}
+          </p>
         </div>
 
         <div

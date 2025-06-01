@@ -344,6 +344,12 @@ console.log(settings.coefForRoundTrip);
                   : t("admin.notSpecified")}
               </p>
               <p>
+                <b>{t("admin.priceServer")}:</b>{" "}
+                {b.priceServer
+                  ? `${b.priceServer.toFixed(2)} €`
+                  : t("admin.notSpecified")}
+              </p>
+              <p>
                 <b>{t("admin.comment")}:</b>{" "}
                 {b.tripPurpose || t("admin.notSpecified")}
               </p>
