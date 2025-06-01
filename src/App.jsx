@@ -9,6 +9,7 @@ import "../src/components/i18n";
 import "./styles/Index.css";
 import ScrollToTopButton from "../src/components/ScrollToTopButton";
 import ProtectedRoute from "./pages/admin/ProtectedRoute";
+import ProtectedRouteDriver from "./pages/driver/ProtectedRouteDriver";
 
 
 // Страницы
@@ -70,9 +71,9 @@ export default function App() {
         <Route 
           path="/login/driver/dashboard" 
           element={
-            <ProtectedRoute role="driver">
+            <ProtectedRouteDriver role="driver">
               <DriverDashboard />
-            </ProtectedRoute>
+            </ProtectedRouteDriver>
           } 
         />
       </Routes>
