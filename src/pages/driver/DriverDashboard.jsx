@@ -10,13 +10,13 @@ export default function DriverDashboard() {
     const fetchDriverData = async () => {
       try {
         const driverToken = localStorage.getItem('driverToken');
-        console.log(driverToken);
+        
         const res = await axios.get('https://backtest1-0501.onrender.com/api/driver/profile', {
           headers: {
             Authorization: `Bearer ${driverToken}`,
           },
         });
-        console.log(driverToken);
+        
         setDriver(res.data);
       } catch (err) {
   if (err.response?.status === 401 || err.response?.status === 403) {
