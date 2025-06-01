@@ -14,9 +14,9 @@ export default function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://backtest1-0501.onrender.com/api/admin', { email, password });
+      const res = await axios.post('https://backtest1-0501.onrender.com/api/login/admin', { email, password });
       localStorage.setItem('token', res.data.token);
-      navigate('/admin');
+      navigate('/login/admin');
     } catch (err) {
       console.error(err);
       alert(t("adminLogin.error")); // Используем перевод для сообщения об ошибке

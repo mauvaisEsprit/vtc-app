@@ -54,9 +54,9 @@ export default function App() {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-de-confidentialite" element={<PolitiqueDeConfidentialite />} />
 
-         <Route path="/admin/login" element={<AdminLogin />} />
+         <Route path="/login" element={<AdminLogin />} />
         <Route
-          path="/admin"
+          path="/login/admin"
           element={
             <ProtectedRoute>
               <AdminDashboard />

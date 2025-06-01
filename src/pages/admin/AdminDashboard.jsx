@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     };
     // Обычные поездки
     axios
-      .get("https://backtest1-0501.onrender.com/api/bookings/admin", {
+      .get("https://backtest1-0501.onrender.com/api/bookings/login/admin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setStandardBookings(res.data))
@@ -44,7 +44,7 @@ export default function AdminDashboard() {
 
     // Почасовая аренда
     axios
-      .get("https://backtest1-0501.onrender.com/api/hourly/admin", {
+      .get("https://backtest1-0501.onrender.com/api/hourly/login/admin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setHourlyBookings(res.data))
@@ -52,7 +52,7 @@ export default function AdminDashboard() {
 
     // Сообщения с сайта (если есть такая коллекция)
     axios
-      .get("https://backtest1-0501.onrender.com/api/messages/admin", {
+      .get("https://backtest1-0501.onrender.com/api/messages/login/admin", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setMessages(res.data))
@@ -60,7 +60,7 @@ export default function AdminDashboard() {
 
     // Цены (если есть такая коллекция)
     axios
-      .get("https://backtest1-0501.onrender.com/api/admin/settings", {
+      .get("https://backtest1-0501.onrender.com/api/login/admin/settings", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setSettings(res.data))
@@ -73,8 +73,8 @@ export default function AdminDashboard() {
       const token = localStorage.getItem("token");
       const url =
         type === "hourly"
-          ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}/confirm`
-          : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}/confirm`;
+          ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}/confirm`
+          : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}/confirm`;
 
       await axios.put(
         url,
@@ -106,8 +106,8 @@ export default function AdminDashboard() {
         const token = localStorage.getItem("token");
         const url =
           type === "hourly"
-            ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}`
-            : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}`;
+            ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}`
+            : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}`;
 
         await axios.delete(url, {
           headers: { Authorization: `Bearer ${token}` },
@@ -132,7 +132,7 @@ export default function AdminDashboard() {
     const token = localStorage.getItem("token");
     try {
       await axios.post(
-        `https://backtest1-0501.onrender.com/api/messages/admin/${id}/reply`,
+        `https://backtest1-0501.onrender.com/api/messages/login/admin/${id}/reply`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -158,7 +158,7 @@ export default function AdminDashboard() {
           const token = localStorage.getItem("token");
           try {
             await axios.delete(
-              `https://backtest1-0501.onrender.com/api/messages/admin/${id}`,
+              `https://backtest1-0501.onrender.com/api/messages/login/admin/${id}`,
               {
                 headers: { Authorization: `Bearer ${token}` },
               }
@@ -215,7 +215,7 @@ console.log("pricePerMin raw value:", settings.coefForRoundTrip);
 console.log(settings.coefForRoundTrip);
   try {
     const response = await axios.put(
-      `https://backtest1-0501.onrender.com/api/admin/settings/${settings._id}`,
+      `https://backtest1-0501.onrender.com/api/login/admin/settings/${settings._id}`,
       payload,
       {
         headers: { Authorization: `Bearer ${token}` },
