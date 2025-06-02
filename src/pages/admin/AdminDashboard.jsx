@@ -231,6 +231,11 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   const renderBookingList = (bookings, type) =>
     bookings.map((b) => (
       <div
@@ -441,6 +446,12 @@ export default function AdminDashboard() {
           className={`tab-button ${activeTab === "settings" ? "active" : ""}`}
         >
           {t("admin.settings")}
+        </button>
+        <button
+          className="logoutButton"
+          onClick={handleLogout}
+        >
+          {t("admin.logout")}
         </button>
       </div>
 
