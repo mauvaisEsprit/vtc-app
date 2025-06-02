@@ -1,61 +1,40 @@
-.driver-dashboard {
+.dashboard-tabs {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  min-height: 100vh;
-  background: linear-gradient(to right, #f8f9fa, #e9ecef);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 125px;
 }
 
-.dashboard-card {
-  background-color: #ffffff;
-  border-radius: 20px;
-  padding: 2.5rem 3rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  width: 100%;
-  transition: transform 0.2s ease-in-out;
+.dashboard-tabs button {
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.dashboard-card:hover {
-  transform: translateY(-5px);
-}
-
-.dashboard-card h1 {
-  font-size: 2rem;
-  color: #343a40;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.dashboard-card p {
-  font-size: 1rem;
-  color: #495057;
-  margin: 0.5rem 0;
-}
-
-.dashboard-card strong {
-  color: #212529;
-  font-weight: 600;
-  display: inline-block;
-  width: 160px;
-}
-
-.status {
-  margin-top: 1.5rem;
-  font-size: 1.1rem;
+.dashboard-tabs button.active {
+  background-color: #007bff;
+  color: white;
   font-weight: bold;
-  color: #495057;
-  text-align: center;
 }
 
-@media (max-width: 600px) {
-  .dashboard-card {
-    padding: 2rem 1.5rem;
-  }
+.dashboard-tabs button.not-active:hover {
+  background-color: rgba(0, 87, 179, 0.5);
+  color: white;
+  font-weight: bold;
+}
 
-  .dashboard-card strong {
-    width: 120px;
-  }
+.dashboard-tabs .logoutButton  {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+
+.dashboard-tabs .logoutButton:hover {
+  background-color: darkred;
+  color: white;
+  font-weight: bold;
 }

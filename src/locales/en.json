@@ -357,6 +357,9 @@
     "driverDeleted": "Driver successfully deleted",
     "errorLoadingDrivers": "Error loading drivers",
     "errorDeletingDriver": "Error deleting driver",
+    "profile": "Profile",
+      "trips": "Trips",
+      "logout": "Logout",
   "invalidPrice": "Invalid price format. Please enter a valid number."
   },
 

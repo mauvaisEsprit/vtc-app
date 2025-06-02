@@ -1,0 +1,73 @@
+.driver-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  
+  transition: transform 0.2s ease-in-out;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-card h1 {
+  font-size: 2rem;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.dashboard-card p {
+  font-size: 1rem;
+  color: #495057;
+  margin: 0.5rem 0;
+}
+
+.dashboard-card strong {
+  color: #212529;
+  font-weight: 600;
+  display: inline-block;
+  width: 160px;
+  text-align: start;
+  margin-right: 12px;
+}
+
+.dashboard-card strong #text {
+  color: #343a40;
+  font-weight: 600;
+  display: inline-block;
+  width: 160px;
+  text-align: end;
+}
+
+.status {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #495057;
+  
+}
+
+@media (max-width: 600px) {
+  .dashboard-card {
+    padding: 2rem 1.5rem;
+    min-width: 400px;
+  }
+
+  .dashboard-card strong {
+    width: 120px;
+  }
+}

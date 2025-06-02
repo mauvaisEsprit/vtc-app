@@ -359,6 +359,9 @@
     "errorDeletingDriver": "Erreur lors de la suppression du chauffeur",
     "driverUpdated": "Chauffeur mis à jour avec succès.",
     "errorLoadingDrivers": "Erreur lors du chargement des chauffeurs.",
+    "profile": "Profile",
+      "trips": "Voyages",
+      "logout": "Deconnexion",
   "invalidPrice": "Prix invalide. Veuillez entrer un nombre valide."
   },
 
