@@ -13,10 +13,15 @@
 }
 
 .legal-container h1 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
+   max-width: 100%;
   font-weight: 700;
   margin-bottom: 1.5rem;
   color: #222;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
   text-align: center;
 }
 
@@ -50,7 +55,7 @@
   }
 
   .legal-container h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .legal-container h2 {
