@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import "../../styles/AdminDashboard.css";
 import { useNavigate } from "react-router-dom";
 import DriverRegister from "./DriverRegister";
+import DriversTab from "../driver/DriversTab";
 
 export default function AdminDashboard() {
   const { t } = useTranslation();
@@ -21,15 +22,15 @@ export default function AdminDashboard() {
   const unrepliedMessages = messages.filter((m) => !m.replied).length;
 
   useEffect(() => {
-    const adminToken = localStorage.getItem("adminToken");
-    if (!adminToken) {
+    const token = localStorage.getItem("token");
+    if (!token) {
       navigate("/login", { replace: true });
       return;
     }
 
     const handleError = (err) => {
       if (err.response?.status === 401 || err.response?.status === 403) {
-        localStorage.removeItem("adminToken");
+        localStorage.removeItem("token");
         navigate("/login", { replace: true });
       } else {
         console.error(err);
@@ -37,32 +38,32 @@ export default function AdminDashboard() {
     };
     // Обычные поездки
     axios
-      .get("https://backtest1-0501.onrender.com/api/bookings/login/admin", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+      .get("https://backtest1-0501.onrender.com/api/bookings/admin", {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setStandardBookings(res.data))
       .catch(handleError);
 
     // Почасовая аренда
     axios
-      .get("https://backtest1-0501.onrender.com/api/hourly/login/admin", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+      .get("https://backtest1-0501.onrender.com/api/hourly/admin", {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setHourlyBookings(res.data))
       .catch(handleError);
 
     // Сообщения с сайта (если есть такая коллекция)
     axios
-      .get("https://backtest1-0501.onrender.com/api/messages/login/admin", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+      .get("https://backtest1-0501.onrender.com/api/messages/admin", {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setMessages(res.data))
       .catch(handleError);
 
     // Цены (если есть такая коллекция)
     axios
-      .get("https://backtest1-0501.onrender.com/api/login/admin/settings", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+      .get("https://backtest1-0501.onrender.com/api/admin/settings", {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setSettings(res.data))
       .catch(console.error);
@@ -71,17 +72,17 @@ export default function AdminDashboard() {
   const confirmBooking = useCallback(
     async (id, type) => {
       if (window.confirm(t("admin.confirmBooking"))) {
-        const adminToken = localStorage.getItem("adminToken");
+        const token = localStorage.getItem("token");
         const url =
           type === "hourly"
-            ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}/confirm`
-            : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}/confirm`;
+            ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}/confirm`
+            : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}/confirm`;
 
         await axios.put(
           url,
           {},
           {
-            headers: { Authorization: `Bearer ${adminToken}` },
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
 
@@ -106,14 +107,14 @@ export default function AdminDashboard() {
         card.classList.add("fade-out");
         try {
           await new Promise((resolve) => setTimeout(resolve, 500)); // ждем анимацию
-          const adminToken = localStorage.getItem("adminToken");
+          const token = localStorage.getItem("token");
           const url =
             type === "hourly"
-              ? `https://backtest1-0501.onrender.com/api/hourly/login/admin/${id}`
-              : `https://backtest1-0501.onrender.com/api/bookings/login/admin/${id}`;
+              ? `https://backtest1-0501.onrender.com/api/hourly/admin/${id}`
+              : `https://backtest1-0501.onrender.com/api/bookings/admin/${id}`;
 
           await axios.delete(url, {
-            headers: { Authorization: `Bearer ${adminToken}` },
+            headers: { Authorization: `Bearer ${token}` },
           });
 
           if (type === "hourly") {
@@ -131,13 +132,13 @@ export default function AdminDashboard() {
   };
 
   const replyMessage = async (id) => {
-    const adminToken = localStorage.getItem("adminToken");
+    const token = localStorage.getItem("token");
     try {
       await axios.post(
-        `https://backtest1-0501.onrender.com/api/messages/login/admin/${id}/reply`,
+        `https://backtest1-0501.onrender.com/api/messages/admin/${id}/reply`,
         {},
         {
-          headers: { Authorization: `Bearer ${adminToken}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       alert(t("admin.messageSentToClient"));
@@ -157,12 +158,12 @@ export default function AdminDashboard() {
       if (card) {
         card.classList.add("fade-out");
         setTimeout(async () => {
-          const adminToken = localStorage.getItem("adminToken");
+          const token = localStorage.getItem("token");
           try {
             await axios.delete(
-              `https://backtest1-0501.onrender.com/api/messages/login/admin/${id}`,
+              `https://backtest1-0501.onrender.com/api/messages/admin/${id}`,
               {
-                headers: { Authorization: `Bearer ${adminToken}` },
+                headers: { Authorization: `Bearer ${token}` },
               }
             );
             setMessages((prev) => prev.filter((msg) => msg._id !== id));
@@ -187,7 +188,7 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!window.confirm(t("admin.confirmSettingsUpdate"))) return;
 
-    const adminToken = localStorage.getItem("adminToken");
+    const token = localStorage.getItem("token");
 
     // Преобразуем поля в числа
     const payload = {
@@ -215,10 +216,10 @@ export default function AdminDashboard() {
     console.log(settings.coefForRoundTrip);
     try {
       const response = await axios.put(
-        `https://backtest1-0501.onrender.com/api/login/admin/settings/${settings._id}`,
+        `https://backtest1-0501.onrender.com/api/admin/settings/${settings._id}`,
         payload,
         {
-          headers: { Authorization: `Bearer ${adminToken}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
@@ -587,10 +588,7 @@ export default function AdminDashboard() {
 
       {activeTab === "drivers" && (
         <div className="drivers-content">
-          <DriverRegister />
-          <h2>{t("admin.drivers")}</h2>
-          <p>{t("admin.driversComingSoon")}</p>
-          {/* Список водителей, добавление, удаление, смена статуса */}
+          <DriversTab t={t} />
         </div>
       )}
     </div>

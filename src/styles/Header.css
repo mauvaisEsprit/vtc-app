@@ -79,3 +79,21 @@ header {
         font-size: 24px;
     }
 }
+
+.LoginButton {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    height: 120px;
+    z-index: 1000;
+    border: none;
+    color: white;
+    font-size: 24px;
+}

@@ -98,6 +98,9 @@ export default function BurgerMenu() {
                 <Link to="/support" onClick={toggleMenu}>
                   {t("footer.support")}
                 </Link>
+                <Link to="/login" onClick={toggleMenu}>
+                  {t("nav.login")}
+                </Link>
               </div>
             </nav>
           </div>

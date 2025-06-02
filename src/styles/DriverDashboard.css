@@ -1,68 +1,61 @@
 .driver-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
-  margin-top: 150px;
-  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.dashboard-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #1f2937;
+.dashboard-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  transition: transform 0.2s ease-in-out;
 }
 
-.dashboard-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.card {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
+.dashboard-card:hover {
   transform: translateY(-5px);
 }
 
-.card h2 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: #374151;
+.dashboard-card h1 {
+  font-size: 2rem;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-.card p {
-  font-size: 1.5rem;
-  font-weight: bold;
+.dashboard-card p {
+  font-size: 1rem;
+  color: #495057;
+  margin: 0.5rem 0;
+}
+
+.dashboard-card strong {
+  color: #212529;
+  font-weight: 600;
+  display: inline-block;
+  width: 160px;
 }
 
 .status {
-  padding: 0.3rem 0.6rem;
-  border-radius: 5px;
-  display: inline-block;
-}
-
-.status.online {
-  background-color: #d1fae5;
-  color: #065f46;
-}
-
-.status.offline {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
-
-.dashboard-message {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #10b981;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #495057;
   text-align: center;
-  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .dashboard-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .dashboard-card strong {
+    width: 120px;
+  }
 }

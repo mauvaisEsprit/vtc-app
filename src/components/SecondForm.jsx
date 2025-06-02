@@ -46,7 +46,7 @@ export default function SecondForm() {
 useEffect(() => {
     // Цены (если есть такая коллекция)
     axios
-      .get("https://backtest1-0501.onrender.com/api/login/admin/settings", {
+      .get("https://backtest1-0501.onrender.com/api/admin/settings", {
         headers: {
           "Content-Type": "application/json",
         },

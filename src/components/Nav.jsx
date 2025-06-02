@@ -42,6 +42,8 @@ export default function Nav() {
               <Link to="/faq">{t("nav.faq")}</Link>
               <Link to="/contact">{t("nav.contact")}</Link>
               <Link to="/support">{t("nav.support")}</Link>
+              <Link to="/login">{t("nav.login")}</Link>
+      
             </div>
           </div>
         </div>

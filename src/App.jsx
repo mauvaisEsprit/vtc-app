@@ -9,7 +9,7 @@ import "../src/components/i18n";
 import "./styles/Index.css";
 import ScrollToTopButton from "../src/components/ScrollToTopButton";
 import ProtectedRoute from "./pages/admin/ProtectedRoute";
-import ProtectedRouteDriver from "./pages/driver/ProtectedRouteDriver";
+
 
 
 // Страницы
@@ -22,9 +22,8 @@ import Contact from "./pages/Contact";
 import Support from "./pages/Support";
 import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueDeConfidentialite from "./pages/PolitiqueDeConfidentialite";
-import AdminLogin from "./pages/admin/AdminLogin";
+import Login from "./pages/admin/Login";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import DriverLogin from "./pages/driver/DriverLogin";
 import DriverDashboard from "./pages/driver/DriverDashboard";
 export default function App() {
  const { t, i18n } = useTranslation();
@@ -58,10 +57,10 @@ export default function App() {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/politique-de-confidentialite" element={<PolitiqueDeConfidentialite />} />
 
-         <Route path="/login/admin" element={<AdminLogin />} />
-         <Route path="/login/driver" element={<DriverLogin />} />
+         <Route path="/login" element={<Login />} />
+         
         <Route
-          path="/login/admin/dashboard"
+          path="/admin/dashboard"
           element={
             <ProtectedRoute role="admin">
               <AdminDashboard />
@@ -69,11 +68,11 @@ export default function App() {
           }
         />
         <Route 
-          path="/login/driver/dashboard" 
+          path="/driver/dashboard" 
           element={
-            <ProtectedRouteDriver role="driver">
+            <ProtectedRoute role="driver">
               <DriverDashboard />
-            </ProtectedRouteDriver>
+            </ProtectedRoute>
           } 
         />
       </Routes>

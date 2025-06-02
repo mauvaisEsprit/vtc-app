@@ -4,23 +4,40 @@ import axios from 'axios';
 import { useTranslation } from "react-i18next";
 import '../../styles/Login.css'; // Подключаем CSS-файл
 
-export default function AdminLogin() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
     const { t } = useTranslation();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('https://backtest1-0501.onrender.com/api/login/admin', { email, password });
-      localStorage.setItem('adminToken', res.data.adminToken);
-      navigate('/login/admin/dashboard');
-    } catch (err) {
-      console.error(err);
-      alert(t("adminLogin.error")); // Используем перевод для сообщения об ошибке
+  e.preventDefault();
+  try {
+    const res = await axios.post('https://backtest1-0501.onrender.com/api/login', {
+      email,
+      password,
+    });
+
+    const { token, role, /*name*/ } = res.data;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', role);      // можно сохранить роль
+    //localStorage.setItem('name', name);      // если хочешь отображать имя
+
+    if (role === 'admin') {
+      navigate('/admin/dashboard');
+    } else if (role === 'driver') {
+      navigate('/driver/dashboard');
+    } else {
+      alert(t("adminLogin.unknownRole")); // если вдруг придёт неизвестная роль
     }
-  };
+
+  } catch (err) {
+    console.error(err);
+    alert(t("adminLogin.error")); // сообщение об ошибке
+  }
+};
+
 
   return (
     <div className="login-container">

@@ -10,6 +10,7 @@ export default function Header() {
       <div id="logo" onClick={ScrollToTop}>
         <Link to="/">Blue Coast</Link>
       </div>
+      
       <Nav />
     </header>
   );

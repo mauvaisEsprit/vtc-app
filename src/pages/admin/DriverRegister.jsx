@@ -21,12 +21,12 @@ export default function DriverRegister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const adminToken = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch('https://backtest1-0501.onrender.com/api/login/admin/register', {
+      const res = await fetch('https://backtest1-0501.onrender.com/api/admin/register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json',  Authorization: `Bearer ${adminToken}` },
+        headers: { 'Content-Type': 'application/json',  Authorization: `Bearer ${token}` },
         body: JSON.stringify(form),
       });
       const data = await res.json();

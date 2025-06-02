@@ -1,0 +1,188 @@
+.drivers-content {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.drivers-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.drivers-tabs button {
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.drivers-tabs button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.drivers-list-section {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.drivers-list {
+  flex: 1 1 250px;
+  max-width: 300px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.drivers-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.drivers-list li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.drivers-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.driver-edit-form {
+  flex: 2;
+  min-width: 300px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.driver-edit-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.driver-edit-form .edit-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/*.driver-edit-form button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}*/
+
+/*.driver-edit-form button:hover {
+  background-color: #218838;
+}*/
+
+.driver-info-panel {
+  flex: 2;
+  min-width: 300px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.driver-details {
+  line-height: 1.6;
+}
+
+.driver-details p {
+  margin: 0.5rem 0;
+}
+
+.driver-details strong {
+  color: #333;
+}
+
+.driver-details button {
+  margin-top: 1rem;
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.driver-details button:hover {
+  background-color: #0056b3;
+}
+
+.saveDriverInfo {
+  background-color: green;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelDriverInfo {
+  background-color: orange;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteDriver {
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteDriver:hover {
+  background-color: darkred;
+}
+
+.cancelDriverInfo:hover {
+  background-color: darkorange;
+}
+
+.saveDriverInfo:hover {
+  background-color: darkgreen;
+}
+
+.change-password {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.changePassword {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.changePassword:hover {
+  background-color: #0056b3;
+}
