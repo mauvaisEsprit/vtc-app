@@ -362,6 +362,8 @@
     "profile": "Profile",
       "trips": "Voyages",
       "logout": "Deconnexion",
+      "confirmChangePassword": "Confirmer la modification du mot de passe ?",
+      "confirmUpdateDriver": "Confirmer la mise à jour du chauffeur ?",
   "invalidPrice": "Prix invalide. Veuillez entrer un nombre valide."
   },
 

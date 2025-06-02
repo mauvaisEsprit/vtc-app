@@ -27,6 +27,8 @@
 
 .drivers-list-section {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
 }
@@ -98,6 +100,9 @@
 
 .driver-info-panel {
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-width: 300px;
   background-color: #fff;
   border: 1px solid #ddd;

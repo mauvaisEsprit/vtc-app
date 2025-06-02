@@ -73,6 +73,7 @@ function DriversList({ t }) {
 
   const handleSave = async () => {
     if (!selectedDriver) return;
+    if (window.confirm(t("admin.confirmUpdateDriver")))
     try {
       const token = localStorage.getItem("token");
       const dataToSend = { ...formData, id: selectedDriver._id };
@@ -101,6 +102,7 @@ function DriversList({ t }) {
 
   const handleChangePassword = async () => {
     if (!selectedDriver) return;
+    if (window.confirm(t("admin.confirmChangePassword")))
     try {
       const token = localStorage.getItem("token");
       await axios.put(
@@ -118,6 +120,7 @@ function DriversList({ t }) {
       console.error(error);
       alert(t("admin.errorChangingPassword"));
     }
+    
   };
 
   const handleDelete = async () => {

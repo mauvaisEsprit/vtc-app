@@ -360,6 +360,8 @@
     "profile": "Profile",
       "trips": "Trips",
       "logout": "Logout",
+      "confirmChangePassword": "Are you sure you want to change your password?",
+      "confirmUpdateDriver": "Are you sure you want to update this driver?",
   "invalidPrice": "Invalid price format. Please enter a valid number."
   },
 
