@@ -76,7 +76,7 @@
   .fullscreen-menu nav {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 40px;
     text-align: center;
   }
 
